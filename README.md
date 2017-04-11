@@ -1,5 +1,5 @@
-# MiniRisk
-### Beágyazott szoftvertervezés házi feladat
+# Rizikóka
+### Beágyazott rendszerek szoftverarchitektúrája házi feladat
 
 Szióka! Remélem használni tudjuk ezen nagyszerű program adta lehetőségeket!
 
