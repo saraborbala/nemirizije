@@ -1,0 +1,3 @@
+Az UML diagramok ebbe a mappába kerüljenek.
+Felhasznált program:
+  Astah 7.1 Professional (elérhetőség: sch-s email címmel)
