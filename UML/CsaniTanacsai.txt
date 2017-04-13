@@ -1,0 +1,28 @@
+Hellóka! 
+
+Kezdeném a rossz hírekkel és folytanám a szintén rossz hírekkel. 
+A beadásra jó lenne, ha seqence diagramot készítenénk. Ezt elkezdtem, de nem tudom hogy lehet a lifeline-okat megölni.
+Valamint a megvalósításhoz tanácsok:
+
+- Legyen egy csomagolóosztály, ami tartalmazza a játék állapotát (GameState osztály). Ennek csak publikus változói legyenek
+ (térképet, ki támadott kit, mi változott ...) 
+- A csomagolóosztályokat megkapja a GUI, illetve a szerver, ezért mindennek benne kell lennie, ahhoz hogy megtudjuk mi változott
+és új GUI-t rajzoljunk. (Mindkét oldalon)
+- A csomagolóosztályokat egy interface-be szervezzük ki, így a Server és a GUI is használhatja õket
+- A motor tartalmazzon egy GameState listát ezen fog végiiterálni, hogy mikor mi történt. (Ezt én sem értem, bocsánat)
+- A GUI a motor felé függvényekkel kommunikáljon (esetleg osztályba szervezve) (Command)
+- A motor miutána megkapta a command-ot, (onCommand) hozzon létre egy új GameState példányt az elõzõek alapján, és ezt küldje ki a GUI
+illetve a szerver felé. 
+- A motornak mindegy, hogy az adott cél, akinek küldi a Commandot GUI vagy Server, ezért kell az ICommand interface
+
+
+Személyes megjegyzés: 
+
+Úgy vettem észre, hogy nem nagy baj, ha max 2 játékosra csináljuk meg a feladatunkat.
+Mindenki úgy készüljön, hogy lesz egy csomagolóosztály amin keresztül kommunikál, ebbe össze kell gyûjteni azokat a változókat, amelyek
+szükségesek ahhoz, hogy minden mûködjön. Természetesen nem kell mindent felírni, csak néhányat. 
+Ezekkel kiegészítve a UML class diagram már jó, sequence diagram kell, elsõ sorban azt kell végiggondolni, hogy mi történik a játék során.
+Pl. Kattintok egy mezõre, kiválsztom, hogy mit szeretnék csinálni (a guin belüli kommunikációt még nem kell részletezni), ekkor 
+elküldök egy Commandot az Engine-nek. Az feldolgozza, pl áthelyezek 2 egységet ez úgy zajlik, hogy a GameState osztályon belüli map 
+országának egysége csökken, a másiké nõ. Majd az Engine elküldi a hívó GUInak az osztályt, és a szervernek is, aki továbbküldi a kliens felé
+majd a második GUI felé. 
