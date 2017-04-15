@@ -7,15 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 
 import java.awt.event.ActionListener;
@@ -318,6 +315,211 @@ public class JGUI extends JFrame {
 		String Alasca = "Alasca";
 		labels.put(Alasca, lblAlasca);
 		
+		//Great Britain
+		JLabel lblGreatBritain = new JLabel("");
+		lblGreatBritain.setToolTipText("Great Britain");
+		lblGreatBritain.setBounds(465, 206, 70, 68);
+		Mainpanel.add(lblGreatBritain);
+		String GreatBritain = "Great Britain";
+		labels.put(GreatBritain, lblGreatBritain);
+		
+		//Iceland
+		JLabel lblIceland = new JLabel("");
+		lblIceland.setToolTipText("Iceland");
+		lblIceland.setBounds(487, 153, 62, 42);
+		Mainpanel.add(lblIceland);
+		String Iceland = "Iceland";
+		labels.put(Iceland, lblIceland);
+		
+		//Afganistan
+		JLabel lblAfganistan = new JLabel("");
+		lblAfganistan.setToolTipText("Afganistan");
+		lblAfganistan.setBounds(716, 232, 92, 85);
+		Mainpanel.add(lblAfganistan);
+		String Afganistan = "Afganistan";
+		labels.put(Afganistan, lblAfganistan);
+		
+		//Siberia
+		JLabel lblSiberia = new JLabel("");
+		lblSiberia.setToolTipText("Siberia");
+		lblSiberia.setBounds(798, 78, 70, 112);
+		Mainpanel.add(lblSiberia);
+		String Siberia = "Siberia";
+		labels.put(Siberia, lblSiberia);
+		
+		JLabel lblSiberia2 = new JLabel("");
+		lblSiberia2.setToolTipText("Siberia");
+		lblSiberia2.setBounds(818, 159, 32, 76);
+		Mainpanel.add(lblSiberia2);
+		String Siberia2 = "Siberia2";
+		labels.put(Siberia2, lblSiberia2);
+		
+		//Ural
+		JLabel lblUral = new JLabel("");
+		lblUral.setToolTipText("Ural");
+		lblUral.setBounds(751, 91, 70, 161);
+		Mainpanel.add(lblUral);
+		String Ural = "Ural";
+		labels.put(Ural, lblUral);
+		
+		//Russia
+		JLabel lblRussia = new JLabel("");
+		lblRussia.setToolTipText("Russia");
+		lblRussia.setBounds(644, 109, 103, 208);
+		Mainpanel.add(lblRussia);
+		String Russia = "Russia";
+		labels.put(Russia, lblRussia);
+		
+		//Scandinavia
+		JLabel lblScandinavia = new JLabel("");
+		lblScandinavia.setToolTipText("Scandinavia");
+		lblScandinavia.setBounds(560, 106, 80, 104);
+		Mainpanel.add(lblScandinavia);
+		String Scandinavia = "Scandinavia";
+		labels.put(Scandinavia, lblScandinavia);
+		
+		//Western Europe
+		JLabel lblWesternEurope = new JLabel("");
+		lblWesternEurope.setToolTipText("Western Europe");
+		lblWesternEurope.setBounds(487, 285, 67, 76);
+		Mainpanel.add(lblWesternEurope);
+		String WesternEurope = "Western Europe";
+		labels.put(WesternEurope, lblWesternEurope);
+		
+		//Northern Europe
+		JLabel lblNorthernEurope = new JLabel("");
+		lblNorthernEurope.setToolTipText("Northern Europe");
+		lblNorthernEurope.setBounds(554, 215, 80, 76);
+		Mainpanel.add(lblNorthernEurope);
+		String NorthernEurope = "Northern Europe";
+		labels.put(NorthernEurope, lblNorthernEurope);
+		
+		//Southern Europe
+		JLabel lblSouthernEurope = new JLabel("");
+		lblSouthernEurope.setToolTipText("Southern Europe");
+		lblSouthernEurope.setBounds(564, 271, 70, 85);
+		Mainpanel.add(lblSouthernEurope);
+		String SouthernEurope = "Southern Europe";
+		labels.put(SouthernEurope, lblSouthernEurope);
+		
+		//Middle East
+		JLabel lblMiddleEast = new JLabel("");
+		lblMiddleEast.setToolTipText("Middle East");
+		lblMiddleEast.setBounds(644, 328, 112, 120);
+		Mainpanel.add(lblMiddleEast);
+		String MiddleEast = "Middle East";
+		labels.put(MiddleEast, lblMiddleEast);
+		
+		//Siam
+		JLabel lblSiam = new JLabel("");
+		lblSiam.setToolTipText("Siam");
+		lblSiam.setBounds(858, 373, 70, 85);
+		Mainpanel.add(lblSiam);
+		String Siam = "Siam";
+		labels.put(Siam, lblSiam);
+		
+		//India
+		JLabel lblIndia = new JLabel("");
+		lblIndia.setToolTipText("India");
+		lblIndia.setBounds(766, 319, 90, 146);
+		Mainpanel.add(lblIndia);
+		String India = "India";
+		labels.put(India, lblIndia);
+		
+		//Yakutsk
+		JLabel lblYakutsk = new JLabel("");
+		lblYakutsk.setToolTipText("Yakutsk");
+		lblYakutsk.setBounds(864, 78, 70, 76);
+		Mainpanel.add(lblYakutsk);
+		String Yakutsk = "Yakutsk";
+		labels.put(Yakutsk, lblYakutsk);
+		
+		//Kamchatka
+		JLabel lblKamchatka = new JLabel("");
+		lblKamchatka.setToolTipText("Kamchatka");
+		lblKamchatka.setBounds(932, 78, 107, 128);
+		Mainpanel.add(lblKamchatka);
+		String Kamchatka = "Kamchatka";
+		labels.put(Kamchatka, lblKamchatka);
+		
+		//Mongolia
+		JLabel lblMongolia = new JLabel("");
+		lblMongolia.setToolTipText("Mongolia");
+		lblMongolia.setBounds(855, 232, 99, 59);
+		Mainpanel.add(lblMongolia);
+		String Mongolia = "Mongolia";
+		labels.put(Mongolia, lblMongolia);
+		
+		//Japan
+		JLabel lblJapan = new JLabel("");
+		lblJapan.setToolTipText("Japan");
+		lblJapan.setBounds(964, 215, 46, 112);
+		Mainpanel.add(lblJapan);
+		String Japan = "Japan";
+		labels.put(Japan, lblJapan);
+		
+		//Irkutsk
+		JLabel lblIrkutsk = new JLabel("");
+		lblIrkutsk.setToolTipText("Irkutsk");
+		lblIrkutsk.setBounds(854, 170, 53, 54);
+		Mainpanel.add(lblIrkutsk);
+		String Irkutsk = "Irkutsk";
+		labels.put(Irkutsk, lblIrkutsk);
+		
+		//China
+		JLabel lblChina1 = new JLabel("");
+		lblChina1.setToolTipText("China");
+		lblChina1.setBounds(810, 260, 40, 85);
+		Mainpanel.add(lblChina1);
+		String China = "China";
+		labels.put(China, lblChina1);
+		
+		JLabel lblChina2 = new JLabel("");
+		lblChina2.setToolTipText("China");
+		lblChina2.setBounds(818, 293, 126, 76);
+		Mainpanel.add(lblChina2);
+		String China2 = "China2";
+		labels.put(China2, lblChina2);
+		
+		//Eastern Australia
+		JLabel lblEasternAustralia = new JLabel("");
+		lblEasternAustralia.setToolTipText("Eastern Australia");
+		lblEasternAustralia.setBounds(950, 530, 89, 54);
+		Mainpanel.add(lblEasternAustralia);
+		String EasternAustralia = "Eastern Australia";
+		labels.put(EasternAustralia, lblEasternAustralia);
+		
+		JLabel lblEasternAustralia2 = new JLabel("");
+		lblEasternAustralia2.setToolTipText("Eastern Australia");
+		lblEasternAustralia2.setBounds(989, 575, 46, 76);
+		Mainpanel.add(lblEasternAustralia2);
+		String EasternAustralia2 = "Eastern Australia2";
+		labels.put(EasternAustralia2, lblEasternAustralia2);
+		
+		//Western Australia
+		JLabel lblWesternAustralia = new JLabel("");
+		lblWesternAustralia.setToolTipText("Western Australia");
+		lblWesternAustralia.setBounds(885, 543, 102, 119);
+		Mainpanel.add(lblWesternAustralia);
+		String WesternAustralia = "Western Australia";
+		labels.put(WesternAustralia, lblWesternAustralia);
+		
+		//New Guinea
+		JLabel lblNewGuinea = new JLabel("");
+		lblNewGuinea.setToolTipText("New Guinea");
+		lblNewGuinea.setBounds(932, 463, 71, 45);
+		Mainpanel.add(lblNewGuinea);
+		String NewGuinea = "New Guinea";
+		labels.put(NewGuinea, lblNewGuinea);
+		
+		//Indonezia
+		JLabel lblIndonezia = new JLabel("");
+		lblIndonezia.setToolTipText("Indonezia");
+		lblIndonezia.setBounds(836, 469, 92, 76);
+		Mainpanel.add(lblIndonezia);
+		String Indonezia = "Indonezia";
+		labels.put(Indonezia, lblIndonezia);
+		
 		//Országok vége
 		//----------------------------------------------------------------------------------------------------------------
 		
@@ -359,6 +561,4 @@ public class JGUI extends JFrame {
 
 		}
 	}
-	
-	
 }
