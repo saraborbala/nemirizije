@@ -3,6 +3,9 @@ import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import org.eclipse.swt.events.PaintEvent;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -13,13 +16,20 @@ import javax.swing.UIManager;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
 public class NewPlayer extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField_Name;
-
+	
+	//Játékos kiválasztott színének eltárolása
+	String playerColorStr;
+	Color playerColor;
 	/**
 	 * Launch the application.
 	 */
@@ -71,27 +81,50 @@ public class NewPlayer extends JFrame {
 		lblNv.setBounds(58, 11, 98, 32);
 		Details.add(lblNv);
 		
-		JLabel lblSzn = new JLabel("Sz\u00EDn:");
-		lblSzn.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSzn.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblSzn.setBounds(58, 63, 98, 27);
-		Details.add(lblSzn);
+		JLabel lblColor = new JLabel("Sz\u00EDn:");
+		lblColor.setHorizontalAlignment(SwingConstants.CENTER);
+		lblColor.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblColor.setBounds(58, 63, 98, 27);
+		Details.add(lblColor);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setForeground(java.awt.Color.BLACK);
-		comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Piros", "Z\u00F6ld", "K\u00E9k", "Narancs", "Lila"}));
+		JComboBox comboBoxColor = new JComboBox();
+		comboBoxColor.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				playerColorStr = comboBoxColor.getSelectedItem().toString();
+				//A kiválasztott mezõnek megfelõlõen contentPane és details label hátterének állítása
+				//playerColor-ba a szín beállítva
+				switch(playerColorStr){
+					case("Piros") 	: contentPane.setBackground(Color.RED); playerColor = Color.RED; break;
+					case("Zöld") 	: contentPane.setBackground(Color.GREEN); playerColor = Color.GREEN; break;
+					case("Narancs")	: contentPane.setBackground(Color.ORANGE); playerColor = Color.ORANGE; break;
+					case("Kék") 	: contentPane.setBackground(Color.BLUE); playerColor = Color.BLUE; break;
+					case("Magenta") : contentPane.setBackground(Color.MAGENTA); playerColor = Color.MAGENTA; break;			
+				}
+				Details.setBackground(contentPane.getBackground());
+			}
+		});
+
+		comboBoxColor.setForeground(java.awt.Color.BLACK);
+		comboBoxColor.setBorder(UIManager.getBorder("ComboBox.border"));
+		comboBoxColor.setModel(new DefaultComboBoxModel(new String[] {"Piros", "Zöld", "Kék", "Narancs", "Magenta"}));
 		
-        comboBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		comboBox.setBounds(160, 64, 137, 25);
-		
-		Details.add(comboBox);
+        comboBoxColor.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		comboBoxColor.setBounds(160, 64, 137, 25);
+		Details.add(comboBoxColor);
 		
 		JButton btnNewGame = new JButton("Kezd\u0151dj\u00F6n a harc!");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Funkciók implementálása TODO
 				
+				//Játékos nevének beolvasása TODO: motorban levõ játékoshoz adni
+				String temp = null;
+				temp = textField_Name.getText();
+				
+				// Játékos színének beállítása -> PlayerColor változóban a szín
+				
+					
+				//}
 				//Bezárás
 				dispose();
 			}
