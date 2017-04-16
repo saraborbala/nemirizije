@@ -22,6 +22,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
 
 @SuppressWarnings("serial")
 public class JGUI extends JFrame {
@@ -82,7 +83,7 @@ public class JGUI extends JFrame {
 		upperMenu.setBorder(UIManager.getBorder("InternalFrame.border"));
 		upperMenu.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		upperMenu.setMargin(new Insets(3, 3, 3, 3));
-		upperMenu.setBounds(0, 0, 59, 34);
+		upperMenu.setBounds(0, 0, 112, 34);
 		MenuBar.add(upperMenu);
 		
 		JMenu Menu = new JMenu("Menu");
@@ -124,6 +125,16 @@ public class JGUI extends JFrame {
 		Menu.add(NewGame);
 		Menu.add(Attack);
 		Menu.add(Exit);
+		
+		//Egységek mozgatás
+		JMenu Move = new JMenu("Mozgatás");
+		Move.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			//TODO: Egységmozgatáshoz szükséges pl üzenetek megjelenítése 
+			}
+		});
+		upperMenu.add(Move);
+		
 		
 		// Menu vége
 		//------------------------------------------------------------------------------------
@@ -357,7 +368,7 @@ public class JGUI extends JFrame {
 		//Ural
 		JLabel lblUral = new JLabel("");
 		lblUral.setToolTipText("Ural");
-		lblUral.setBounds(751, 91, 70, 161);
+		lblUral.setBounds(751, 124, 70, 128);
 		Mainpanel.add(lblUral);
 		String Ural = "Ural";
 		labels.put(Ural, lblUral);
@@ -538,9 +549,26 @@ public class JGUI extends JFrame {
 		lblAktulisOrszg.setBounds(465, 10, 191, 33);
 		Mainpanel.add(lblAktulisOrszg);
 		
-		Panel PlayerStatus = new Panel();
-		PlayerStatus.setBounds(1099, 10, 228, 523);
+		JPanel PlayerStatus = new JPanel();
+		PlayerStatus.setBounds(1098, 10, 239, 555);
 		Mainpanel.add(PlayerStatus);
+		PlayerStatus.setLayout(null);
+		
+		JLabel lblPlayerInd1 = new JLabel("New label");
+		//TODO: Keret színének beállítása (második argumentum)- mindhárom kerethez
+		lblPlayerInd1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		lblPlayerInd1.setBounds(10, 5, 219, 173);
+		PlayerStatus.add(lblPlayerInd1);
+		
+		JLabel lblPlayerInd2 = new JLabel("New label");
+		lblPlayerInd2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		lblPlayerInd2.setBounds(10, 189, 219, 173);
+		PlayerStatus.add(lblPlayerInd2);
+		
+		JLabel lblPlayerInd3 = new JLabel("New label");
+		lblPlayerInd3.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		lblPlayerInd3.setBounds(10, 373, 219, 173);
+		PlayerStatus.add(lblPlayerInd3);
 		
 				
 		//Listenerek hozzáadása az országok labeljeihez
