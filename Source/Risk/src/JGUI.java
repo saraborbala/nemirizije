@@ -139,11 +139,18 @@ public class JGUI extends JFrame {
 		// Menu vége
 		//------------------------------------------------------------------------------------
 	
-		JLabel lblActCountryDet = new JLabel("");
-		lblActCountryDet.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblActCountryDet.setHorizontalAlignment(SwingConstants.LEFT);
-		lblActCountryDet.setBounds(661, 10, 261, 33);
-		Mainpanel.add(lblActCountryDet);
+		JLabel lblActCountryPic = new JLabel("");
+		lblActCountryPic.setBorder(null);
+		lblActCountryPic.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblActCountryPic.setHorizontalAlignment(SwingConstants.LEFT);
+		lblActCountryPic.setBounds(32, 438, 208, 224);
+		Mainpanel.add(lblActCountryPic);
+		
+		JLabel lblActCntryName = new JLabel("");
+		lblActCntryName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblActCntryName.setHorizontalAlignment(SwingConstants.LEFT);
+		lblActCntryName.setBounds(32, 629, 208, 33);
+		Mainpanel.add(lblActCntryName);
 		
 
 		//----------------------------------------------------------------------------------------------------------------
@@ -154,7 +161,7 @@ public class JGUI extends JFrame {
 		lblNwtTerritory.setIcon(new ImageIcon(JGUI.class.getResource("/Resized/America/Northwest Territory.png")));
 		lblNwtTerritory.setBounds(210, 78, 155, 76);
 		Mainpanel.add(lblNwtTerritory);
-		String NorthWestTerritory = "North West Territory";
+		String NorthWestTerritory = "Northwest Territory";
 		labels.put(NorthWestTerritory, lblNwtTerritory);
 		
 		//North Africa
@@ -198,16 +205,6 @@ public class JGUI extends JFrame {
 		
 		//Madagascar
 		JLabel lblMadagascar = new JLabel("");
-		lblMadagascar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblActCountryDet.setText(lblMadagascar.getToolTipText());
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblActCountryDet.setText("");
-			}
-		});
 		lblMadagascar.setToolTipText("Madagascar");
 		lblMadagascar.setBounds(704, 561, 40, 85);
 		Mainpanel.add(lblMadagascar);
@@ -359,10 +356,12 @@ public class JGUI extends JFrame {
 		labels.put(Siberia, lblSiberia);
 		
 		JLabel lblSiberia2 = new JLabel("");
+		lblSiberia2.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblSiberia2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSiberia2.setToolTipText("Siberia");
 		lblSiberia2.setBounds(818, 159, 32, 76);
 		Mainpanel.add(lblSiberia2);
-		String Siberia2 = "Siberia2";
+		String Siberia2 = "Siberia";
 		labels.put(Siberia2, lblSiberia2);
 		
 		//Ural
@@ -489,7 +488,7 @@ public class JGUI extends JFrame {
 		lblChina2.setToolTipText("China");
 		lblChina2.setBounds(818, 293, 126, 76);
 		Mainpanel.add(lblChina2);
-		String China2 = "China2";
+		String China2 = "China";
 		labels.put(China2, lblChina2);
 		
 		//Eastern Australia
@@ -543,10 +542,10 @@ public class JGUI extends JFrame {
 		Mainpanel.add(lblMap);
 		//Térkép vége
 		
-		JLabel lblAktulisOrszg = new JLabel("Aktu\u00E1lisan kijel\u00F6lt orsz\u00E1g:");
-		lblAktulisOrszg.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblAktulisOrszg = new JLabel("");
+		lblAktulisOrszg.setHorizontalAlignment(SwingConstants.LEFT);
 		lblAktulisOrszg.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblAktulisOrszg.setBounds(465, 10, 191, 33);
+		lblAktulisOrszg.setBounds(32, 415, 208, 33);
 		Mainpanel.add(lblAktulisOrszg);
 		
 		JPanel PlayerStatus = new JPanel();
@@ -576,13 +575,21 @@ public class JGUI extends JFrame {
 		for(Map.Entry<String, JLabel> entry : labels.entrySet()) {
 		    String key = entry.getKey();
 		    JLabel value = entry.getValue();
+		    String path = "/Resized/"+ entry.getKey().toString() +".png";
 		    value.addMouseListener(new MouseAdapter() {
 		    	public void mouseEntered(MouseEvent e) {
-		    		lblActCountryDet.setText(value.getToolTipText());
+		    		lblAktulisOrszg.setText("Aktuálisan kijelölt ország:");
+		    		lblActCntryName.setText(value.getToolTipText());
+		    		lblActCountryPic.setIcon(new ImageIcon(JGUI.class.getResource(path)));
+		    		
+					repaint();
 		    	}
 				@Override
 				public void mouseExited(MouseEvent arg0) {
-					lblActCountryDet.setText("");
+					lblActCountryPic.setText("");
+					lblAktulisOrszg.setText("");
+					lblActCountryPic.setIcon(null);
+					lblActCntryName.setText("");
 				}
 		    });
 		    // do what you have to do here
