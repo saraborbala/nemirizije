@@ -138,14 +138,14 @@ public class JGUI extends JFrame {
 		
 		// Menu vége
 		//------------------------------------------------------------------------------------
-			
+	
 		JLabel lblActCountryPic = new JLabel("");
 		lblActCountryPic.setBorder(null);
 		lblActCountryPic.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblActCountryPic.setHorizontalAlignment(SwingConstants.LEFT);
 		lblActCountryPic.setBounds(32, 438, 208, 224);
 		Mainpanel.add(lblActCountryPic);
-			
+		
 		JLabel lblActCntryName = new JLabel("");
 		lblActCntryName.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblActCntryName.setHorizontalAlignment(SwingConstants.LEFT);
@@ -161,7 +161,7 @@ public class JGUI extends JFrame {
 		lblNwtTerritory.setIcon(new ImageIcon(JGUI.class.getResource("/Resized/America/Northwest Territory.png")));
 		lblNwtTerritory.setBounds(210, 78, 155, 76);
 		Mainpanel.add(lblNwtTerritory);
-		String NorthWestTerritory = "North West Territory";
+		String NorthWestTerritory = "Northwest Territory";
 		labels.put(NorthWestTerritory, lblNwtTerritory);
 		
 		//North Africa
@@ -356,10 +356,12 @@ public class JGUI extends JFrame {
 		labels.put(Siberia, lblSiberia);
 		
 		JLabel lblSiberia2 = new JLabel("");
+		lblSiberia2.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblSiberia2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSiberia2.setToolTipText("Siberia");
 		lblSiberia2.setBounds(818, 159, 32, 76);
 		Mainpanel.add(lblSiberia2);
-		String Siberia2 = "Siberia2";
+		String Siberia2 = "Siberia";
 		labels.put(Siberia2, lblSiberia2);
 		
 		//Ural
@@ -486,7 +488,7 @@ public class JGUI extends JFrame {
 		lblChina2.setToolTipText("China");
 		lblChina2.setBounds(818, 293, 126, 76);
 		Mainpanel.add(lblChina2);
-		String China2 = "China2";
+		String China2 = "China";
 		labels.put(China2, lblChina2);
 		
 		//Eastern Australia
@@ -540,11 +542,11 @@ public class JGUI extends JFrame {
 		Mainpanel.add(lblMap);
 		//Térkép vége
 		
-		JLabel lblActualCntryFixText = new JLabel("");
-		lblActualCntryFixText.setHorizontalAlignment(SwingConstants.LEFT);
-		lblActualCntryFixText.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblActualCntryFixText.setBounds(32, 415, 208, 33);
-		Mainpanel.add(lblActualCntryFixText);
+		JLabel lblAktulisOrszg = new JLabel("");
+		lblAktulisOrszg.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAktulisOrszg.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblAktulisOrszg.setBounds(32, 415, 208, 33);
+		Mainpanel.add(lblAktulisOrszg);
 		
 		JPanel PlayerStatus = new JPanel();
 		PlayerStatus.setBounds(1098, 10, 239, 555);
@@ -576,15 +578,16 @@ public class JGUI extends JFrame {
 		    String path = "/Resized/"+ entry.getKey().toString() +".png";
 		    value.addMouseListener(new MouseAdapter() {
 		    	public void mouseEntered(MouseEvent e) {
-		    		//lblActCountry.setText(value.getToolTipText());
-		    		lblActualCntryFixText.setText("Aktuálisan kijelölt ország:");
+		    		lblAktulisOrszg.setText("Aktuálisan kijelölt ország:");
 		    		lblActCntryName.setText(value.getToolTipText());
 		    		lblActCountryPic.setIcon(new ImageIcon(JGUI.class.getResource(path)));
+		    		
+					repaint();
 		    	}
 				@Override
 				public void mouseExited(MouseEvent arg0) {
 					lblActCountryPic.setText("");
-					lblActualCntryFixText.setText("");
+					lblAktulisOrszg.setText("");
 					lblActCountryPic.setIcon(null);
 					lblActCntryName.setText("");
 				}
