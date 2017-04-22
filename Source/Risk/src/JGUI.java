@@ -139,18 +139,11 @@ public class JGUI extends JFrame {
 		// Menu vége
 		//------------------------------------------------------------------------------------
 	
-		JLabel lblActCountryPic = new JLabel("");
-		lblActCountryPic.setBorder(null);
-		lblActCountryPic.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblActCountryPic.setHorizontalAlignment(SwingConstants.LEFT);
-		lblActCountryPic.setBounds(32, 438, 208, 224);
-		Mainpanel.add(lblActCountryPic);
-		
-		JLabel lblActCntryName = new JLabel("");
-		lblActCntryName.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblActCntryName.setHorizontalAlignment(SwingConstants.LEFT);
-		lblActCntryName.setBounds(32, 629, 208, 33);
-		Mainpanel.add(lblActCntryName);
+		JLabel lblActCountryDet = new JLabel("");
+		lblActCountryDet.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblActCountryDet.setHorizontalAlignment(SwingConstants.LEFT);
+		lblActCountryDet.setBounds(661, 10, 261, 33);
+		Mainpanel.add(lblActCountryDet);
 		
 
 		//----------------------------------------------------------------------------------------------------------------
@@ -161,7 +154,7 @@ public class JGUI extends JFrame {
 		lblNwtTerritory.setIcon(new ImageIcon(JGUI.class.getResource("/Resized/America/Northwest Territory.png")));
 		lblNwtTerritory.setBounds(210, 78, 155, 76);
 		Mainpanel.add(lblNwtTerritory);
-		String NorthWestTerritory = "Northwest Territory";
+		String NorthWestTerritory = "North West Territory";
 		labels.put(NorthWestTerritory, lblNwtTerritory);
 		
 		//North Africa
@@ -205,6 +198,16 @@ public class JGUI extends JFrame {
 		
 		//Madagascar
 		JLabel lblMadagascar = new JLabel("");
+		lblMadagascar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblActCountryDet.setText(lblMadagascar.getToolTipText());
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblActCountryDet.setText("");
+			}
+		});
 		lblMadagascar.setToolTipText("Madagascar");
 		lblMadagascar.setBounds(704, 561, 40, 85);
 		Mainpanel.add(lblMadagascar);
@@ -356,12 +359,10 @@ public class JGUI extends JFrame {
 		labels.put(Siberia, lblSiberia);
 		
 		JLabel lblSiberia2 = new JLabel("");
-		lblSiberia2.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblSiberia2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSiberia2.setToolTipText("Siberia");
 		lblSiberia2.setBounds(818, 159, 32, 76);
 		Mainpanel.add(lblSiberia2);
-		String Siberia2 = "Siberia";
+		String Siberia2 = "Siberia2";
 		labels.put(Siberia2, lblSiberia2);
 		
 		//Ural
@@ -488,7 +489,7 @@ public class JGUI extends JFrame {
 		lblChina2.setToolTipText("China");
 		lblChina2.setBounds(818, 293, 126, 76);
 		Mainpanel.add(lblChina2);
-		String China2 = "China";
+		String China2 = "China2";
 		labels.put(China2, lblChina2);
 		
 		//Eastern Australia
@@ -575,9 +576,9 @@ public class JGUI extends JFrame {
 		for(Map.Entry<String, JLabel> entry : labels.entrySet()) {
 		    String key = entry.getKey();
 		    JLabel value = entry.getValue();
-		    String path = "/Resized/"+ entry.getKey().toString() +".png";
 		    value.addMouseListener(new MouseAdapter() {
 		    	public void mouseEntered(MouseEvent e) {
+
 		    		lblActualCntryFixText.setText("Aktuálisan kijelölt ország:");
 		    		lblActCntryName.setText(value.getToolTipText());
 		    		lblActCountryPic.setIcon(new ImageIcon(JGUI.class.getResource(path)));
