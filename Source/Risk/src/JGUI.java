@@ -542,11 +542,11 @@ public class JGUI extends JFrame {
 		Mainpanel.add(lblMap);
 		//Térkép vége
 		
-		JLabel lblAktulisOrszg = new JLabel("");
-		lblAktulisOrszg.setHorizontalAlignment(SwingConstants.LEFT);
-		lblAktulisOrszg.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblAktulisOrszg.setBounds(32, 415, 208, 33);
-		Mainpanel.add(lblAktulisOrszg);
+		JLabel lblActualCntryFixText = new JLabel("");
+		lblActualCntryFixText.setHorizontalAlignment(SwingConstants.LEFT);
+		lblActualCntryFixText.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblActualCntryFixText.setBounds(32, 415, 208, 33);
+		Mainpanel.add(lblActualCntryFixText);
 		
 		JPanel PlayerStatus = new JPanel();
 		PlayerStatus.setBounds(1098, 10, 239, 555);
@@ -578,16 +578,15 @@ public class JGUI extends JFrame {
 		    String path = "/Resized/"+ entry.getKey().toString() +".png";
 		    value.addMouseListener(new MouseAdapter() {
 		    	public void mouseEntered(MouseEvent e) {
-		    		lblAktulisOrszg.setText("Aktuálisan kijelölt ország:");
+		    		lblActualCntryFixText.setText("Aktuálisan kijelölt ország:");
 		    		lblActCntryName.setText(value.getToolTipText());
 		    		lblActCountryPic.setIcon(new ImageIcon(JGUI.class.getResource(path)));
-		    		
-					repaint();
+					//repaint();
 		    	}
 				@Override
 				public void mouseExited(MouseEvent arg0) {
 					lblActCountryPic.setText("");
-					lblAktulisOrszg.setText("");
+					lblActualCntryFixText.setText("");
 					lblActCountryPic.setIcon(null);
 					lblActCntryName.setText("");
 				}
