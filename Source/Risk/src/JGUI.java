@@ -138,12 +138,19 @@ public class JGUI extends JFrame {
 		
 		// Menu vége
 		//------------------------------------------------------------------------------------
-	
-		JLabel lblActCountryDet = new JLabel("");
-		lblActCountryDet.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblActCountryDet.setHorizontalAlignment(SwingConstants.LEFT);
-		lblActCountryDet.setBounds(661, 10, 261, 33);
-		Mainpanel.add(lblActCountryDet);
+			
+		JLabel lblActCountryPic = new JLabel("");
+		lblActCountryPic.setBorder(null);
+		lblActCountryPic.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblActCountryPic.setHorizontalAlignment(SwingConstants.LEFT);
+		lblActCountryPic.setBounds(32, 438, 208, 224);
+		Mainpanel.add(lblActCountryPic);
+			
+		JLabel lblActCntryName = new JLabel("");
+		lblActCntryName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblActCntryName.setHorizontalAlignment(SwingConstants.LEFT);
+		lblActCntryName.setBounds(32, 629, 208, 33);
+		Mainpanel.add(lblActCntryName);
 		
 
 		//----------------------------------------------------------------------------------------------------------------
@@ -198,16 +205,6 @@ public class JGUI extends JFrame {
 		
 		//Madagascar
 		JLabel lblMadagascar = new JLabel("");
-		lblMadagascar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblActCountryDet.setText(lblMadagascar.getToolTipText());
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblActCountryDet.setText("");
-			}
-		});
 		lblMadagascar.setToolTipText("Madagascar");
 		lblMadagascar.setBounds(704, 561, 40, 85);
 		Mainpanel.add(lblMadagascar);
@@ -543,19 +540,11 @@ public class JGUI extends JFrame {
 		Mainpanel.add(lblMap);
 		//Térkép vége
 		
-<<<<<<< HEAD
 		JLabel lblActualCntryFixText = new JLabel("");
 		lblActualCntryFixText.setHorizontalAlignment(SwingConstants.LEFT);
 		lblActualCntryFixText.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblActualCntryFixText.setBounds(32, 415, 208, 33);
 		Mainpanel.add(lblActualCntryFixText);
-=======
-		JLabel lblAktulisOrszg = new JLabel("Aktu\u00E1lisan kijel\u00F6lt orsz\u00E1g:");
-		lblAktulisOrszg.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAktulisOrszg.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblAktulisOrszg.setBounds(465, 10, 191, 33);
-		Mainpanel.add(lblAktulisOrszg);
->>>>>>> origin/master
 		
 		JPanel PlayerStatus = new JPanel();
 		PlayerStatus.setBounds(1098, 10, 239, 555);
@@ -584,13 +573,13 @@ public class JGUI extends JFrame {
 		for(Map.Entry<String, JLabel> entry : labels.entrySet()) {
 		    String key = entry.getKey();
 		    JLabel value = entry.getValue();
+		    String path = "/Resized/"+ entry.getKey().toString() +".png";
 		    value.addMouseListener(new MouseAdapter() {
 		    	public void mouseEntered(MouseEvent e) {
-<<<<<<< HEAD
+		    		//lblActCountry.setText(value.getToolTipText());
 		    		lblActualCntryFixText.setText("Aktuálisan kijelölt ország:");
 		    		lblActCntryName.setText(value.getToolTipText());
 		    		lblActCountryPic.setIcon(new ImageIcon(JGUI.class.getResource(path)));
-					//repaint();
 		    	}
 				@Override
 				public void mouseExited(MouseEvent arg0) {
@@ -598,13 +587,6 @@ public class JGUI extends JFrame {
 					lblActualCntryFixText.setText("");
 					lblActCountryPic.setIcon(null);
 					lblActCntryName.setText("");
-=======
-		    		lblActCountryDet.setText(value.getToolTipText());
-		    	}
-				@Override
-				public void mouseExited(MouseEvent arg0) {
-					lblActCountryDet.setText("");
->>>>>>> origin/master
 				}
 		    });
 		    // do what you have to do here
