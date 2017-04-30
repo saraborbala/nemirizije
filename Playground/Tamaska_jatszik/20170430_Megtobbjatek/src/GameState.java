@@ -1,3 +1,7 @@
+/////////////////////////////
+// PLAYGROUND
+////////////////////////////
+import java.io.*;
 public class GameState implements java.io.Serializable{
 	// Csak publikus osztályváltozók, ide jön minden ami szükséges arra, hogy a GUI felépüljön, illetve
 	// néhány szerver mûködéséshez fontos dolog
