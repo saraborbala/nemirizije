@@ -94,7 +94,7 @@ public class JGUI extends JFrame {
 		NewPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NewPlayer frame = new NewPlayer();
-				frame.setBounds(100, 100, 480, 285);
+				frame.setBounds(100, 100, 481, 338);
 				frame.setLocation(new Point(300,300));
 				frame.setResizable(false);
 				//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
