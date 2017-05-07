@@ -9,6 +9,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.JRadioButton;
 
 @SuppressWarnings("serial")
 public class NewPlayer extends JFrame {
@@ -48,7 +50,7 @@ public class NewPlayer extends JFrame {
 	public NewPlayer() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 480, 285);
+		setBounds(100, 100, 481, 338);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -61,26 +63,26 @@ public class NewPlayer extends JFrame {
 		contentPane.add(lblNewPlayer);
 		
 		JPanel Details = new JPanel();
-		Details.setBounds(48, 62, 366, 116);
+		Details.setBounds(10, 62, 455, 180);
 		contentPane.add(Details);
 		Details.setLayout(null);
 		
 		textField_Name = new JTextField();
 		textField_Name.setToolTipText("G\u00E9peld be a k\u00EDv\u00E1nt nevet! :)");
-		textField_Name.setBounds(160, 12, 136, 34);
+		textField_Name.setBounds(253, 12, 136, 34);
 		Details.add(textField_Name);
 		textField_Name.setColumns(10);
 		
-		JLabel lblNv = new JLabel("N\u00E9v:");
-		lblNv.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNv.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNv.setBounds(58, 11, 98, 32);
-		Details.add(lblNv);
+		JLabel lblName = new JLabel("N\u00E9v:");
+		lblName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblName.setBounds(108, 11, 98, 32);
+		Details.add(lblName);
 		
 		JLabel lblColor = new JLabel("Sz\u00EDn:");
 		lblColor.setHorizontalAlignment(SwingConstants.CENTER);
 		lblColor.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblColor.setBounds(58, 63, 98, 27);
+		lblColor.setBounds(108, 63, 98, 27);
 		Details.add(lblColor);
 		
 		JComboBox comboBoxColor = new JComboBox();
@@ -90,11 +92,11 @@ public class NewPlayer extends JFrame {
 				//A kiválasztott mezõnek megfelõlõen contentPane és details label hátterének állítása
 				//playerColor-ba a szín beállítva
 				switch(playerColorStr){
-					case("Piros") 	: contentPane.setBackground(Color.RED); playerColor = Color.RED; break;
-					case("Zöld") 	: contentPane.setBackground(Color.GREEN); playerColor = Color.GREEN; break;
+					case("Piros") 	: contentPane.setBackground(Color.RED.darker()); playerColor = Color.RED.darker(); break;
+					case("Zöld") 	: contentPane.setBackground(Color.GREEN.darker()); playerColor = Color.GREEN; break;
 					case("Narancs")	: contentPane.setBackground(Color.ORANGE); playerColor = Color.ORANGE; break;
-					case("Kék") 	: contentPane.setBackground(Color.BLUE); playerColor = Color.BLUE; break;
-					case("Magenta") : contentPane.setBackground(Color.MAGENTA); playerColor = Color.MAGENTA; break;			
+					case("Kék") 	: contentPane.setBackground(Color.CYAN); playerColor = Color.CYAN; break;
+					case("Magenta") : contentPane.setBackground(Color.MAGENTA.darker()); playerColor = Color.MAGENTA.darker(); break;			
 				}
 				Details.setBackground(contentPane.getBackground());
 			}
@@ -105,13 +107,50 @@ public class NewPlayer extends JFrame {
 		comboBoxColor.setModel(new DefaultComboBoxModel(new String[] {"Piros", "Zöld", "Kék", "Narancs", "Magenta"}));
 		
         comboBoxColor.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		comboBoxColor.setBounds(160, 64, 137, 25);
+		comboBoxColor.setBounds(253, 64, 137, 25);
 		Details.add(comboBoxColor);
+		
+		JLabel lblClientServer = new JLabel("Kliens vagy szerver:");
+		lblClientServer.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblClientServer.setBounds(91, 101, 136, 34);
+		Details.add(lblClientServer);
+		
+		//Kliens vagy szerver választhatóság
+		JRadioButton rdbtnServer = new JRadioButton("Szerver");
+		rdbtnServer.setEnabled(true);
+		rdbtnServer.setOpaque(false);
+		rdbtnServer.setBounds(338, 109, 90, 23);
+		Details.add(rdbtnServer);
+		rdbtnServer.setBackground(contentPane.getBackground());
+		//Szerver ne legyen választható, ha már van szerver
+		//TODO van-e szerver feltétel? 
+		boolean isServerAvailable = true;
+		if(isServerAvailable){
+			rdbtnServer.setEnabled(false);
+		}
+		
+		JRadioButton rdbtnClient = new JRadioButton("Kliens");
+		rdbtnClient.setOpaque(false);
+		rdbtnClient.setBounds(253, 109, 83, 23);
+		Details.add(rdbtnClient);
+		rdbtnClient.setBackground(contentPane.getBackground());
+		
+		//Radio gombok közül csak az egyik legyen választható
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnServer);
+		group.add(rdbtnClient);
+		
 		
 		JButton btnNewGame = new JButton("Kezd\u0151dj\u00F6n a harc!");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Funkciók implementálása TODO
+				
+				//Kliens vagy szerver? 
+				
+				//rdbtnServer.isSelected()
+				//rdbtnClient.isSelected()
+				
 				
 				//Játékos nevének beolvasása TODO: motorban levõ játékoshoz adni
 				String temp = null;
@@ -126,7 +165,7 @@ public class NewPlayer extends JFrame {
 			}
 		});
 		btnNewGame.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewGame.setBounds(147, 199, 172, 34);
+		btnNewGame.setBounds(147, 253, 172, 34);
 		contentPane.add(btnNewGame);
 
 	}

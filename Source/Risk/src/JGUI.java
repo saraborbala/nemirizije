@@ -23,6 +23,7 @@ import javax.swing.JMenu;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class JGUI extends JFrame {
@@ -156,10 +157,10 @@ public class JGUI extends JFrame {
 		//----------------------------------------------------------------------------------------------------------------
 		//Countries: 
 		
-		JLabel lblNwtTerritory = new JLabel("North West Territory");
+		JLabel lblNwtTerritory = new JLabel("");
 		lblNwtTerritory.setToolTipText("North West Territory");
-		lblNwtTerritory.setIcon(new ImageIcon(JGUI.class.getResource("/Resized/America/Northwest Territory.png")));
-		lblNwtTerritory.setBounds(210, 78, 155, 76);
+		lblNwtTerritory.setIcon(null);
+		lblNwtTerritory.setBounds(210, 100, 155, 54);
 		Mainpanel.add(lblNwtTerritory);
 		String NorthWestTerritory = "Northwest Territory";
 		labels.put(NorthWestTerritory, lblNwtTerritory);
@@ -538,7 +539,7 @@ public class JGUI extends JFrame {
 		JLabel lblMap = new JLabel("");
 
 		lblMap.setToolTipText("");
-		lblMap.setIcon(new ImageIcon(JGUI.class.getResource("/Resized/Full_map/map_resized_all_layer_AILL_resized900606.png")));
+		lblMap.setIcon(new ImageIcon(JGUI.class.getResource("/Resized/Full_map/map_resized_final.png")));
 		lblMap.setBounds(139, 56, 900, 606);
 		Mainpanel.add(lblMap);
 		//Térkép vége
@@ -565,10 +566,15 @@ public class JGUI extends JFrame {
 		lblPlayerInd2.setBounds(10, 189, 219, 173);
 		PlayerStatus.add(lblPlayerInd2);
 		
-		JLabel lblPlayerInd3 = new JLabel("New label");
-		lblPlayerInd3.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		lblPlayerInd3.setBounds(10, 373, 219, 173);
-		PlayerStatus.add(lblPlayerInd3);
+		JButton btnNewButton = new JButton("K\u00F6r v\u00E9ge");
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnNewButton.setBounds(1135, 606, 166, 76);
+		Mainpanel.add(btnNewButton);
 		
 				
 		//Listenerek hozzáadása az országok labeljeihez
