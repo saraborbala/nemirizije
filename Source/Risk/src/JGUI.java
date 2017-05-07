@@ -361,7 +361,7 @@ public class JGUI extends JFrame {
 		lblSiberia2.setToolTipText("Siberia");
 		lblSiberia2.setBounds(818, 159, 32, 76);
 		Mainpanel.add(lblSiberia2);
-		String Siberia2 = "Siberia";
+		String Siberia2 = "Siberia2";
 		labels.put(Siberia2, lblSiberia2);
 		
 		//Ural
@@ -428,6 +428,14 @@ public class JGUI extends JFrame {
 		String Siam = "Siam";
 		labels.put(Siam, lblSiam);
 		
+		//China
+		JLabel lblChina1 = new JLabel("");
+		lblChina1.setToolTipText("China");
+		lblChina1.setBounds(818, 260, 32, 85);
+		Mainpanel.add(lblChina1);
+		String China = "China";
+		labels.put(China, lblChina1);
+		
 		//India
 		JLabel lblIndia = new JLabel("");
 		lblIndia.setToolTipText("India");
@@ -455,7 +463,7 @@ public class JGUI extends JFrame {
 		//Mongolia
 		JLabel lblMongolia = new JLabel("");
 		lblMongolia.setToolTipText("Mongolia");
-		lblMongolia.setBounds(855, 232, 99, 59);
+		lblMongolia.setBounds(860, 232, 94, 59);
 		Mainpanel.add(lblMongolia);
 		String Mongolia = "Mongolia";
 		labels.put(Mongolia, lblMongolia);
@@ -476,19 +484,12 @@ public class JGUI extends JFrame {
 		String Irkutsk = "Irkutsk";
 		labels.put(Irkutsk, lblIrkutsk);
 		
-		//China
-		JLabel lblChina1 = new JLabel("");
-		lblChina1.setToolTipText("China");
-		lblChina1.setBounds(810, 260, 40, 85);
-		Mainpanel.add(lblChina1);
-		String China = "China";
-		labels.put(China, lblChina1);
 		
 		JLabel lblChina2 = new JLabel("");
 		lblChina2.setToolTipText("China");
 		lblChina2.setBounds(818, 293, 126, 76);
 		Mainpanel.add(lblChina2);
-		String China2 = "China";
+		String China2 = "China2";
 		labels.put(China2, lblChina2);
 		
 		//Eastern Australia
@@ -537,7 +538,7 @@ public class JGUI extends JFrame {
 		JLabel lblMap = new JLabel("");
 
 		lblMap.setToolTipText("");
-		lblMap.setIcon(new ImageIcon(JGUI.class.getResource("/Resized/Full_map/map_resized_all_layer.png")));
+		lblMap.setIcon(new ImageIcon(JGUI.class.getResource("/Resized/Full_map/map_resized_all_layer_AILL_resized900606.png")));
 		lblMap.setBounds(139, 56, 900, 606);
 		Mainpanel.add(lblMap);
 		//Térkép vége
@@ -575,7 +576,7 @@ public class JGUI extends JFrame {
 		for(Map.Entry<String, JLabel> entry : labels.entrySet()) {
 		    String key = entry.getKey();
 		    JLabel value = entry.getValue();
-		    String path = "/Resized/"+ entry.getKey().toString() +".png";
+		    String path = "/Resized/"+ key.toString() +".png";
 		    value.addMouseListener(new MouseAdapter() {
 		    	public void mouseEntered(MouseEvent e) {
 		    		lblAktulisOrszg.setText("Aktuálisan kijelölt ország:");
