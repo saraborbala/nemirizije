@@ -1,4 +1,6 @@
-package risziko;
+import java.awt.Color;
+import java.util.Vector;
+
 
 public class Player {
 
@@ -56,32 +58,13 @@ public class Player {
     }
     
     
-    //dobás
-    public int dob(){		//nemlennikockadoboangol, ezt a kockát majd a motorból kapja gondolom
-    	return numOfKocka;
-    }
-	
-    
     //játékos területeivel kapcsolatos cucc:
-	public Vector<Territory> getOccupiedTerritories(){
-		return occupiedTerritories;
-	}
-	
 	public boolean isMyTerritory(Territory t){
 		if (t.getPlayer() == this)			//am nem tom h thiselhetek-e am :(
 				return true;
 		return false;
 	}
 	
-	//támadhat-e a drága-- ez nem tudom hogy van ángolul bocsi
-	public boolean isTamadhatoTerritory(Territory t){
-				
-		if (isAdjacent(t) && !isMyTerritory(t)) //szomszi és nem a sajátja
-			return true;
-		else
-			//gondolom ide kéne vmi hibaüzi: Ne legyél csicska!- níd help
-			return false; //ha szomszédos de saját, vagy nem is szomszédos		
-	}
 
 	public int numOfTerritories(){
 		return occupiedTerritories.size();
@@ -98,5 +81,5 @@ public class Player {
 	
 	
 	
-	
 }
+

@@ -1,4 +1,5 @@
-package risziko;
+import java.util.Vector;
+
 
 public class Continent {
 	

@@ -1,6 +1,8 @@
-package risziko;
+import java.util.Vector;
 
-public class Territory {
+
+
+public class Territory{
 
 		protected int id;
 	    private int x;	//szomszédosságok miatt kellenek?!
@@ -90,7 +92,7 @@ public class Territory {
 	    //adott játékos támadhatja-e
 	    public boolean isTamadhato(Player p){	//szomszédos területem van ezzel
 	    	//+ nem az enyém kell legyen
-	    	if ( !isMyterritory(p) && ( getPlayerIndex(p) != player.getPlayerIndex()))
+	    	if ( !p.isMyTerritory(this) && ( p.getPlayerIndex() != player.getPlayerIndex()))
 	    		return true;
 	    	return false;
 	    }
@@ -117,3 +119,4 @@ public class Territory {
 
 
 }
+
