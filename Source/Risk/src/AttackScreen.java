@@ -67,8 +67,6 @@ public class AttackScreen extends JFrame {
 	
 	private void blackJack(){
 		if(throwCntr == 1){
-			for(int i=0; i<1000; i++)
-			{
 				Random r = new Random();
 				int Low = 1;
 				int High = 6;
@@ -81,11 +79,10 @@ public class AttackScreen extends JFrame {
 						case 5: {lblAttDice1.setIcon(Dice5icon); break;}
 						case 6:	{lblAttDice1.setIcon(Dice6icon); break;}		
 				}
-			}
 		}
+		
 		else if(throwCntr == 2){
-			for(int i=0; i<1000; i++)
-			{
+
 				Random r = new Random();
 				int Low = 1;
 				int High = 7;
@@ -97,13 +94,10 @@ public class AttackScreen extends JFrame {
 						case 4: {lblAttDice2.setIcon(Dice4icon); break;}
 						case 5: {lblAttDice2.setIcon(Dice5icon); break;}
 						case 6:	{lblAttDice2.setIcon(Dice6icon); break;}
-						//case 7:	{lblAttDice2.setText("baj");; break;}
-				}
-			}
+						case 7:	{lblAttDice2.setText("baj");; break;}
+					}
 		}
 		else if(throwCntr == 3){
-			for(int i=0; i<1000; i++)
-			{
 				Random r = new Random();
 				int Low = 1;
 				int High = 6;
@@ -115,8 +109,7 @@ public class AttackScreen extends JFrame {
 						case 4: {lblAttDice3.setIcon(Dice4icon); break;}
 						case 5: {lblAttDice3.setIcon(Dice5icon); break;}
 						case 6:	{lblAttDice3.setIcon(Dice6icon); break;}		
-				}
-			}			
+				}			
 		}
 	}
 	/**
@@ -165,9 +158,8 @@ public class AttackScreen extends JFrame {
 		JButton btnThrowDice = new JButton("Dob\u00E1s!");
 		btnThrowDice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				throwCntr += 1;
 				blackJack();
-				
+				throwCntr += 1;
 				//lblAttDice1.setIcon(Dice1icon);
 				//lblAttDice2.setIcon(Dice2icon);
 			}
@@ -182,6 +174,10 @@ public class AttackScreen extends JFrame {
 				
 				
 				//Gyõztes visszaadása
+				//Territory tulajdonosának beállítása
+				
+				//Játékos megszerzett területének beállítása
+				
 				
 				//Ablak bezárása
 				dispose();	

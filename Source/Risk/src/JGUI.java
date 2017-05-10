@@ -64,6 +64,23 @@ public class JGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public JGUI() {
+			
+		//Teszt játékos
+		String tesztname = "teszt";
+		Player newPlayer = new Player(tesztname, 1);
+		Territory newTerritory = new Territory(1, "Alasca", 2, 4, 5);
+		newTerritory.setPlayer(newPlayer);
+		Motor.territories.add(newTerritory);
+		
+		newPlayer.setOccTerritory(newTerritory);
+		newPlayer.setColor(Color.GREEN);
+		Motor.players.add(newPlayer);
+		
+		
+		
+		
+		//-------------		
+		
 		setResizable(false);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -146,7 +163,10 @@ public class JGUI extends JFrame {
 		upperMenu.add(Move);
 		// Menu vége
 		//------------------------------------------------------------------------------------
-		
+		//Felhasznált változók
+		Color actualColor = null;
+		String actualColorStr;
+		 
 		//Országok nevei
 		
 		String NorthAfrica = "North Africa";
@@ -859,7 +879,50 @@ public class JGUI extends JFrame {
 		    String circlepath = "/Resized/"+ circlekey.toString() +".png";
 		    
 		    //teszt
-		    circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG")));
+		    //Indikátor színének beállítása
+		   
+		    //Területhez tartozó játékos kikeresése
+		    
+		    //Játékos színe alapján beállítás
+		    
+		    //Teszt Sára kódja alapján - indikátorok színének beállítása
+		    for(Territory territories : Motor.territories){
+		    	//Ha egyezik a kör labelje az adott terület nevével		    		    	
+			    	if(territories.getName().equals(circlekey))
+			    	{
+			    		Player actualPlayer;
+			    		
+			    		circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG")));
+			    		//actualColor = territories.getPlayer().getColor();
+			    		
+			    		actualPlayer = territories.getPlayer();
+			    		actualColor = actualPlayer.getColor();
+			    		System.out.println(circlekey);
+			    		
+			    		int colorID = 0; 
+						if(actualColor.equals(Color.RED.darker())) 		{colorID = 1;}
+						if(actualColor.equals(Color.CYAN))				{colorID = 2;}
+						if(actualColor.equals(Color.GREEN))				{colorID = 3;}
+						if(actualColor.equals(Color.ORANGE))			{colorID = 4;}
+						if(actualColor.equals(Color.MAGENTA.darker()))	{colorID = 5;}
+										
+					    switch(colorID){
+							case 1: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG"))); break;}
+							case 2: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG"))); break;}
+							case 3: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/green_dot.PNG"))); break;}
+							case 4: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/orange_dot.PNG"))); break;}
+							case 5: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/magenta_dot.PNG"))); break;}		
+							default: {circlevalue.setIcon(null);}
+					    }	    
+					    System.out.println(circlevalue);
+			    	}
+		    }
+
+		    
+		    
+		    
+		    
+		    //circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG")));
     		//TODO: Mapben leimplementálni, ez a pilot
     		circlevalue.setText("25");
     		circlevalue.setHorizontalTextPosition(lblWestUSInd.CENTER);

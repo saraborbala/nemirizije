@@ -151,12 +151,17 @@ public class NewPlayer extends JFrame {
 				//rdbtnServer.isSelected()
 				//rdbtnClient.isSelected()
 				
-				
-				//Játékos nevének beolvasása TODO: motorban levõ játékoshoz adni
-				String temp = null;
-				temp = textField_Name.getText();
+				//Új játékos létrehozása név alapján
+				String newPlayerName = textField_Name.getText();
+				Motor.addPlayer(newPlayerName);
 				
 				// Játékos színének beállítása -> PlayerColor változóban a szín
+				for(Player player : Motor.players){
+					if(player.getName() == newPlayerName){
+						player.setColor(playerColor);
+					}
+				}
+				
 				
 					
 				//}

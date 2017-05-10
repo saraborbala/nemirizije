@@ -36,9 +36,21 @@ public class Player {
 		return armies;
 	}
 	
+	//SD
 	public Vector<Territory> getOccupiedTerritories(){
 		return occupiedTerritories;
 	}
+	
+	//Strau - setterek
+	public void setColor(Color playercolor){
+		color = playercolor;
+	}
+	
+	public void setOccTerritory(Territory territory){
+		occupiedTerritories.add(territory);
+	}
+	
+	//----------------------------------
 	
 	//katonás csökken-nõ
 	public void addArmies(int a){
