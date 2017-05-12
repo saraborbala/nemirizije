@@ -26,6 +26,12 @@ public class Territory{
 			adjacents = new Vector<Integer>();         
 		}
 		
+		Territory(String n){
+			
+			name = n;
+			player = new Player(null,-1); 	       
+		}
+		
 		//setterek:
 		public void setPlayer(Player p){
 			player = p;

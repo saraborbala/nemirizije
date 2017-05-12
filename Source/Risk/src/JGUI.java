@@ -91,6 +91,7 @@ public class JGUI extends JFrame {
 		Motor.players.add(newPlayer2);	
 		
 		
+		
 		//-------------		
 		
 		setResizable(false);
@@ -213,7 +214,7 @@ public class JGUI extends JFrame {
 		// Menu vége
 		//------------------------------------------------------------------------------------
 		//Felhasznált változók
-		Color actualColor = null;
+		Color actualColor = Color.BLACK;
 		String actualColorStr;
 		 
 		//Országok nevei
@@ -927,6 +928,12 @@ public class JGUI extends JFrame {
 		    JLabel circlevalue = circleitem.getValue();
 		    String circlepath = "/Resized/"+ circlekey.toString() +".png";
 		    
+		    //Territories feltöltése
+		    Territory actualTerritory  = new Territory(circlekey);
+		    //actualTerritory.setPlayer(newPlayer1);
+		    Motor.territories.add(actualTerritory);
+		    
+		    //System.out.println(Motor.territories);
 		    //teszt
 		    //Indikátor színének beállítása
 		   
@@ -935,26 +942,27 @@ public class JGUI extends JFrame {
 		    //Játékos színe alapján beállítás
 		    
 		    //Teszt Sára kódja alapján - indikátorok színének beállítása
-		    for(Territory territories : Motor.territories){
-		    	//Ha egyezik a kör labelje az adott terület nevével		    		    	
-			    	if(territories.getName().equals(circlekey))
+		    for(Territory territories : Motor.territories){	    		    		    	
+		    	//Ha tartozik a területhez játékos
+		    	if(territories.getPlayer().getPlayerIndex() != -1){	
+		    		//Ha egyezik a kör labelje az adott terület nevével	
+		    		if(territories.getName().equals(circlekey))
 			    	{
 			    		Player actualPlayer;
-			    		
-			    		circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG")));
-			    		//actualColor = territories.getPlayer().getColor();
-			    		
+
 			    		actualPlayer = territories.getPlayer();
 			    		actualColor = actualPlayer.getColor();
 			    		System.out.println(circlekey);
 			    		
 			    		int colorID = 0; 
+			    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
 						if(actualColor.equals(Color.RED.darker())) 		{colorID = 1;}
 						if(actualColor.equals(Color.CYAN))				{colorID = 2;}
 						if(actualColor.equals(Color.GREEN))				{colorID = 3;}
 						if(actualColor.equals(Color.ORANGE))			{colorID = 4;}
 						if(actualColor.equals(Color.MAGENTA.darker()))	{colorID = 5;}
-										
+						
+						//Megfelelõ színû kör kiválasztása és beállítása
 					    switch(colorID){
 							case 1: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG"))); break;}
 							case 2: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG"))); break;}
@@ -964,7 +972,8 @@ public class JGUI extends JFrame {
 							default: {circlevalue.setIcon(null);}
 					    }	    
 					    System.out.println(circlevalue);
-			    	}
+			    		}
+			    }
 		    }
 
 		    
