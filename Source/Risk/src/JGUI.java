@@ -326,74 +326,74 @@ public class JGUI extends JFrame {
 		circles.put(EasternUS, lblEastUS);
 		
 		JLabel lblCentralAmInd = new JLabel("");
-		lblCentralAmInd.setToolTipText("Eastern US");
+		lblCentralAmInd.setToolTipText(CentralAmerica);
 		lblCentralAmInd.setBounds(118, 268, 30, 30);
 		panel.add(lblCentralAmInd);
 		circles.put(CentralAmerica, lblCentralAmInd);
 		
 		JLabel lblOntarioInd = new JLabel("");
 		lblOntarioInd.setIcon(null);
-		lblOntarioInd.setToolTipText("Ontario");
+		lblOntarioInd.setToolTipText(Ontario);
 		lblOntarioInd.setBounds(174, 124, 30, 30);
 		panel.add(lblOntarioInd);
 		circles.put(Ontario, lblOntarioInd);
 		
 		JLabel lblQuebecInd = new JLabel("");
-		lblQuebecInd.setToolTipText("Quebec");
+		lblQuebecInd.setToolTipText(Quebec);
 		lblQuebecInd.setBounds(242, 124, 30, 30);
 		panel.add(lblQuebecInd);
 		circles.put(Quebec, lblQuebecInd);
 		
 		JLabel lblGreenlandInd = new JLabel("");
-		lblGreenlandInd.setToolTipText("Greeland");
+		lblGreenlandInd.setToolTipText(Greeland);
 		lblGreenlandInd.setBounds(298, 28, 30, 30);
 		panel.add(lblGreenlandInd);
 		circles.put(Greeland, lblGreenlandInd);
 		
 		JLabel lblIcelandInd = new JLabel("");
-		lblIcelandInd.setToolTipText("Eastern US");
+		lblIcelandInd.setToolTipText(Iceland);
 		lblIcelandInd.setBounds(368, 98, 30, 30);
 		panel.add(lblIcelandInd);
 		circles.put(Iceland, lblIcelandInd);
 		
 		JLabel lblGreatBritainInd = new JLabel("");
-		lblGreatBritainInd.setToolTipText("Eastern US");
+		lblGreatBritainInd.setToolTipText(GreatBritain);
 		lblGreatBritainInd.setBounds(353, 182, 30, 30);
 		panel.add(lblGreatBritainInd);
 		circles.put(GreatBritain, lblGreatBritainInd);
 		
 		JLabel lblWesternEUInd = new JLabel("");
-		lblWesternEUInd.setToolTipText("Eastern US");
+		lblWesternEUInd.setToolTipText(WesternUS);
 		lblWesternEUInd.setBounds(368, 268, 30, 30);
 		panel.add(lblWesternEUInd);
 		circles.put(WesternUS, lblWesternEUInd);
 		
 		JLabel lblScandinaviaInd = new JLabel("");
-		lblScandinaviaInd.setToolTipText("Eastern US");
+		lblScandinaviaInd.setToolTipText(Scandinavia);
 		lblScandinaviaInd.setBounds(452, 84, 30, 30);
 		panel.add(lblScandinaviaInd);
 		circles.put(Scandinavia, lblScandinaviaInd);
 		
 		JLabel lblRussiaInd = new JLabel("");
-		lblRussiaInd.setToolTipText("Russia");
+		lblRussiaInd.setToolTipText(Russia);
 		lblRussiaInd.setBounds(535, 135, 30, 30);
 		panel.add(lblRussiaInd);
 		circles.put(Russia, lblRussiaInd);
 		
 		JLabel lblNorthernEUInd = new JLabel("");
-		lblNorthernEUInd.setToolTipText("Eastern US");
+		lblNorthernEUInd.setToolTipText(NorthernEurope);
 		lblNorthernEUInd.setBounds(445, 184, 30, 30);
 		panel.add(lblNorthernEUInd);
 		circles.put(NorthernEurope, lblNorthernEUInd);
 		
 		JLabel lblSouthernEUInd = new JLabel("");
-		lblSouthernEUInd.setToolTipText("Eastern US");
+		lblSouthernEUInd.setToolTipText(SouthernEurope);
 		lblSouthernEUInd.setBounds(452, 243, 30, 30);
 		panel.add(lblSouthernEUInd);
 		circles.put(SouthernEurope, lblSouthernEUInd);
 		
 		JLabel lblVenezuelaInd = new JLabel("");
-		lblVenezuelaInd.setToolTipText("Eastern US");
+		lblVenezuelaInd.setToolTipText(Venezuela);
 		lblVenezuelaInd.setBounds(186, 323, 30, 30);
 		panel.add(lblVenezuelaInd);
 		circles.put(Venezuela, lblVenezuelaInd);
@@ -405,152 +405,152 @@ public class JGUI extends JFrame {
 		circles.put(Brazil, lblBrazilInd);
 		
 		JLabel lblPeruInd = new JLabel("");
-		lblPeruInd.setToolTipText("Eastern US");
+		lblPeruInd.setToolTipText(Peru);
 		lblPeruInd.setBounds(198, 410, 30, 30);
 		panel.add(lblPeruInd);
 		circles.put(Peru, lblPeruInd);
 		
 		JLabel lblArgentinaInd = new JLabel("");
-		lblArgentinaInd.setToolTipText("Eastern US");
+		lblArgentinaInd.setToolTipText(Argentina);
 		lblArgentinaInd.setBounds(212, 491, 30, 30);
 		panel.add(lblArgentinaInd);
 		circles.put(Argentina, lblArgentinaInd);
 		
 		JLabel lblNorthAfricaInd = new JLabel("");
-		lblNorthAfricaInd.setToolTipText("Eastern US");
+		lblNorthAfricaInd.setToolTipText(NorthAfrica);
 		lblNorthAfricaInd.setBounds(405, 364, 30, 30);
 		panel.add(lblNorthAfricaInd);
 		circles.put(NorthAfrica, lblNorthAfricaInd);
 		
 		JLabel lblCongoInd = new JLabel("");
-		lblCongoInd.setToolTipText("Eastern US");
+		lblCongoInd.setToolTipText(Congo);
 		lblCongoInd.setBounds(483, 445, 30, 30);
 		panel.add(lblCongoInd);
 		circles.put(Congo, lblCongoInd);
 		
 		JLabel lblSouthAfricaInd = new JLabel("");
-		lblSouthAfricaInd.setToolTipText("Eastern US");
+		lblSouthAfricaInd.setToolTipText(SouthAfrica);
 		lblSouthAfricaInd.setBounds(483, 525, 30, 30);
 		panel.add(lblSouthAfricaInd);
 		circles.put(SouthAfrica, lblSouthAfricaInd);
 		
 		JLabel lblMadagascarInd = new JLabel("");
-		lblMadagascarInd.setToolTipText("Eastern US");
+		lblMadagascarInd.setToolTipText(Madagascar);
 		lblMadagascarInd.setBounds(566, 535, 30, 30);
 		panel.add(lblMadagascarInd);
 		circles.put(Madagascar, lblMadagascarInd);
 		
 		JLabel lblEastAfricaInd = new JLabel("");
-		lblEastAfricaInd.setToolTipText("Eastern US");
+		lblEastAfricaInd.setToolTipText(EastAfrica);
 		lblEastAfricaInd.setBounds(515, 394, 30, 30);
 		panel.add(lblEastAfricaInd);
 		circles.put(EastAfrica, lblEastAfricaInd);
 		
 		JLabel lblEgyptInd = new JLabel("");
-		lblEgyptInd.setToolTipText("Eastern US");
+		lblEgyptInd.setToolTipText(Egypt);
 		lblEgyptInd.setBounds(483, 333, 30, 30);
 		panel.add(lblEgyptInd);
 		circles.put(Egypt, lblEgyptInd);
 		
 		JLabel lblMiddleEastInd = new JLabel("");
-		lblMiddleEastInd.setToolTipText("Eastern US");
+		lblMiddleEastInd.setToolTipText(MiddleEast);
 		lblMiddleEastInd.setBounds(550, 293, 30, 30);
 		panel.add(lblMiddleEastInd);
 		circles.put(MiddleEast, lblMiddleEastInd);
 		
 		JLabel lblIndiaInd = new JLabel("");
-		lblIndiaInd.setToolTipText("Eastern US");
+		lblIndiaInd.setToolTipText(India);
 		lblIndiaInd.setBounds(661, 293, 30, 30);
 		panel.add(lblIndiaInd);
 		circles.put(India, lblIndiaInd);
 		
 		JLabel lblAfganistanInd = new JLabel("");
-		lblAfganistanInd.setToolTipText("Eastern US");
+		lblAfganistanInd.setToolTipText(Afganistan);
 		lblAfganistanInd.setBounds(612, 206, 30, 30);
 		panel.add(lblAfganistanInd);
 		circles.put(Afganistan, lblAfganistanInd);
 		
 		JLabel lblUralInd = new JLabel("");
-		lblUralInd.setToolTipText("Eastern US");
+		lblUralInd.setToolTipText(Ural);
 		lblUralInd.setBounds(627, 114, 30, 30);
 		panel.add(lblUralInd);
 		circles.put(Ural, lblUralInd);
 		
 		JLabel lblChinaInd = new JLabel("");
-		lblChinaInd.setToolTipText("Eastern US");
+		lblChinaInd.setToolTipText(China);
 		lblChinaInd.setBounds(724, 253, 30, 30);
 		panel.add(lblChinaInd);
 		circles.put(China, lblChinaInd);
 		
 		JLabel lblSiamInd = new JLabel("");
-		lblSiamInd.setToolTipText("Eastern US");
+		lblSiamInd.setToolTipText(Siam);
 		lblSiamInd.setBounds(739, 323, 30, 30);
 		panel.add(lblSiamInd);
 		circles.put(Siam, lblSiamInd);
 		
 		JLabel lblSiberiaInd = new JLabel("");
-		lblSiberiaInd.setToolTipText("Eastern US");
+		lblSiberiaInd.setToolTipText(Siberia);
 		lblSiberiaInd.setBounds(676, 63, 30, 30);
 		panel.add(lblSiberiaInd);
 		circles.put(Siberia, lblSiberiaInd);
 		
 		JLabel lblYakutskInd = new JLabel("");
-		lblYakutskInd.setToolTipText("Eastern US");
+		lblYakutskInd.setToolTipText(Yakutsk);
 		lblYakutskInd.setBounds(749, 43, 30, 30);
 		panel.add(lblYakutskInd);
 		circles.put(Yakutsk, lblYakutskInd);
 		
 		JLabel lblIrkutskInd = new JLabel("");
-		lblIrkutskInd.setToolTipText("Eastern US");
+		lblIrkutskInd.setToolTipText(Irkutsk);
 		lblIrkutskInd.setBounds(739, 124, 30, 30);
 		panel.add(lblIrkutskInd);
 		circles.put(Irkutsk, lblIrkutskInd);
 		
 		JLabel lblMongoliaInd = new JLabel("");
-		lblMongoliaInd.setToolTipText("Eastern US");
+		lblMongoliaInd.setToolTipText(Mongolia);
 		lblMongoliaInd.setBounds(749, 190, 30, 30);
 		panel.add(lblMongoliaInd);
 		circles.put(Mongolia, lblMongoliaInd);
 		
 		JLabel lblKamchatkaInd = new JLabel("");
-		lblKamchatkaInd.setToolTipText("Eastern US");
+		lblKamchatkaInd.setToolTipText(Kamchatka);
 		lblKamchatkaInd.setBounds(821, 52, 30, 30);
 		panel.add(lblKamchatkaInd);
 		circles.put(Kamchatka, lblKamchatkaInd);
 		
 		JLabel lblJapanInd = new JLabel("");
-		lblJapanInd.setToolTipText("Eastern US");
+		lblJapanInd.setToolTipText(Japan);
 		lblJapanInd.setBounds(841, 206, 30, 30);
 		panel.add(lblJapanInd);
 		circles.put(Japan, lblJapanInd);
 		
 		JLabel lblIndonesiaInd = new JLabel("");
-		lblIndonesiaInd.setToolTipText("Eastern US");
+		lblIndonesiaInd.setToolTipText(Indonezia);
 		lblIndonesiaInd.setBounds(739, 445, 30, 30);
 		panel.add(lblIndonesiaInd);
 		circles.put(Indonezia, lblIndonesiaInd);
 		
 		JLabel lblNewGuineaInd = new JLabel("");
-		lblNewGuineaInd.setToolTipText("Eastern US");
+		lblNewGuineaInd.setToolTipText(NewGuinea);
 		lblNewGuineaInd.setBounds(815, 415, 30, 30);
 		panel.add(lblNewGuineaInd);
 		circles.put(NewGuinea, lblNewGuineaInd);
 		
 		JLabel lblWesternAustraliaInd = new JLabel("");
-		lblWesternAustraliaInd.setToolTipText("Eastern US");
+		lblWesternAustraliaInd.setToolTipText(WesternAustralia);
 		lblWesternAustraliaInd.setBounds(773, 525, 30, 30);
 		panel.add(lblWesternAustraliaInd);
 		circles.put(WesternAustralia, lblWesternAustraliaInd);
 		
 		JLabel lblEasternAustraliaInd = new JLabel("");
-		lblEasternAustraliaInd.setToolTipText("Eastern US");
+		lblEasternAustraliaInd.setToolTipText(EasternAustralia);
 		lblEasternAustraliaInd.setBounds(821, 491, 30, 30);
 		panel.add(lblEasternAustraliaInd);
 		circles.put(EasternAustralia, lblEasternAustraliaInd);
 		
 		//Countries: 
 		JLabel lblNwtTerritory = new JLabel("");
-		lblNwtTerritory.setToolTipText("North West Territory");
+		lblNwtTerritory.setToolTipText(NorthWestTerritory);
 		lblNwtTerritory.setIcon(null);
 		lblNwtTerritory.setBounds(210, 100, 155, 54);
 		Mainpanel.add(lblNwtTerritory);
@@ -558,7 +558,7 @@ public class JGUI extends JFrame {
 		
 		//North Africa
 		JLabel lblNorthAfrica = new JLabel("");
-		lblNorthAfrica.setToolTipText("North Africa");
+		lblNorthAfrica.setToolTipText(NorthAfrica);
 		lblNorthAfrica.setBounds(512, 382, 80, 112);
 		Mainpanel.add(lblNorthAfrica);
 		labels.put(NorthAfrica, lblNorthAfrica);
@@ -1022,6 +1022,12 @@ public class JGUI extends JFrame {
 		};
 		
 		//listener vége -----------------------------------------------------------------------------
+		}
+		
+		
+		//////TESZT
+		for(Player players : Motor.players){
+		System.out.println(players.getName());
 		}
 	}
 }
