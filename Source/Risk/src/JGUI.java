@@ -66,17 +66,29 @@ public class JGUI extends JFrame {
 	public JGUI() {
 			
 		//Teszt játékos
-		String tesztname = "teszt";
-		Player newPlayer = new Player(tesztname, 1);
-		Territory newTerritory = new Territory(1, "Alasca", 2, 4, 5);
-		newTerritory.setPlayer(newPlayer);
-		Motor.territories.add(newTerritory);
+		Player newPlayer1 = new Player("tesztname", 0);
+		Player newPlayer2 = new Player("tesztname2", 1);
 		
-		newPlayer.setOccTerritory(newTerritory);
-		newPlayer.setColor(Color.GREEN);
-		Motor.players.add(newPlayer);
+		Territory newTerritory1 = new Territory(1, "Alasca", 2, 4, 5);
+		Territory newTerritory2 = new Territory(1, "Congo", 2, 4, 5);
 		
+		newTerritory1.setPlayer(newPlayer1);
+		newTerritory2.setPlayer(newPlayer2);
 		
+		Motor.territories.add(newTerritory1);
+		Motor.territories.add(newTerritory2);
+		
+		newPlayer1.setOccTerritory(newTerritory1);
+		newPlayer1.setColor(Color.GREEN);
+		
+		newPlayer1.addArmies(0);
+		newPlayer2.addArmies(10);
+		
+		Motor.players.add(newPlayer1);
+		
+		newPlayer2.setOccTerritory(newTerritory2);
+		newPlayer2.setColor(Color.RED);
+		Motor.players.add(newPlayer2);	
 		
 		
 		//-------------		
@@ -97,6 +109,43 @@ public class JGUI extends JFrame {
 		Mainpanel.setBorder(UIManager.getBorder("MenuBar.border"));
 		contentPane.add(Mainpanel, BorderLayout.CENTER);
 		Mainpanel.setLayout(null);
+		
+		
+		
+		//Indikátor a játékosok egységeinek száma függvényében
+		JLabel Player1Units = new JLabel("");
+		Player1Units.setOpaque(true);
+		Player1Units.setForeground(Color.RED);
+		//Player1Units.setBackground(Color.RED);
+		//Player1Units.setBounds(414, 10, 150, 20);
+		Mainpanel.add(Player1Units);
+		
+		JLabel Player2Units = new JLabel("");
+		//Player2Units.setBackground(Color.BLUE);
+		Player2Units.setOpaque(true);
+		//Player2Units.setBounds(564, 10, 150, 20);
+		Mainpanel.add(Player2Units);
+		
+		//TODO: Megoldani, hogy a játékosok indexe 0 és 1 legyen
+		//Szélességek beállítása a játékosok egységeinek függvényében
+		Color playerInd1Color;
+		Color playerInd2Color;
+		float widthPercentage = ((float)(Motor.players.get(0).getNumberOfArmies())) / ((float)(Motor.players.get(1).getNumberOfArmies()) + (float)(Motor.players.get(0).getNumberOfArmies()));
+		playerInd1Color = Motor.players.get(0).getColor();
+		playerInd2Color = Motor.players.get(1).getColor();
+		
+		//TODO: matek része
+		int width = (int) (300*widthPercentage);
+		
+		System.out.println(widthPercentage);
+		System.out.println(width);
+		System.out.println(Motor.players.get(0).getNumberOfArmies());
+		System.out.println(Motor.players.get(1).getNumberOfArmies());
+		
+		Player1Units.setBounds(414, 10, (width), 20);
+		Player1Units.setBackground(playerInd1Color);
+		Player2Units.setBackground(playerInd2Color);
+		Player2Units.setBounds((414+(width)), 10, (300-width), 20);
 		
 		//------------------------------------------------------------------------------------
 		//Menüsor
@@ -973,7 +1022,6 @@ public class JGUI extends JFrame {
 		};
 		
 		//listener vége -----------------------------------------------------------------------------
-		
 		}
 	}
 }
