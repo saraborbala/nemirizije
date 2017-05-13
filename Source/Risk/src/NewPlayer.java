@@ -27,11 +27,7 @@ public class NewPlayer extends JFrame {
 	private JTextField textField_Name;
 
 	private Motor motor;
-<<<<<<< HEAD
-	//Játékos kiválasztott színének eltárolása
-	String playerColorStr;
-	Color playerColor;
-=======
+
 /*	// Hálózat
 	private Network net = null;
 	private String ip = "localhost";
@@ -70,7 +66,6 @@ public class NewPlayer extends JFrame {
 	/**
 	 * Create the frame.
 	 */
->>>>>>> master
 	public NewPlayer(Motor motor) {
 		this.motor = motor;
 
@@ -151,11 +146,8 @@ public class NewPlayer extends JFrame {
 		
 		//Szerver ne legyen választható, ha már van szerver
 		//TODO van-e szerver feltétel? 
-<<<<<<< HEAD
-		boolean isServerAvailable = false;
-=======
 		/*boolean isServerAvailable = true;
->>>>>>> master
+
 		if(isServerAvailable){
 			rdbtnServer.setEnabled(false);
 		}*/
