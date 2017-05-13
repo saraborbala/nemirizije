@@ -503,6 +503,32 @@ public class Motor {
 
       }
 
-     
+     // Szerver-kommunikációhoz tartozó függvények
+    private Network net = null;
+ 	private String ip = "localhost"; // teszt, majd rendes IP-t is meg lehet adni (elvileg)
+ 	void startServer(){
+		if (net != null)
+			net.disconnect();
+		net = new Server(this);
+		net.connect(ip);
+	}
+	
+	void startClient(){
+		if (net != null)
+			net.disconnect();
+		net = new Client(this);
+		net.connect(ip);
+	}
+	
+	public void sendGameState(GameState gs){
+		if (net == null)
+			return;
+		net.sendGameState(gs);
+	}
+	public void GameStateRecieved(GameState gs){
+		//TODO error handling
+		System.out.println(gs.msg);
+	}
+
 
 }
