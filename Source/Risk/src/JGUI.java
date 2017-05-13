@@ -1023,10 +1023,10 @@ public class JGUI extends JFrame {
 					//Szélesség kiszámítása
 					int width = (int) (300*widthPercentage);
 							
-					System.out.println(widthPercentage);
-					System.out.println(width);
-					System.out.println(Motor.players.get(0).getNumberOfArmies());
-					System.out.println(Motor.players.get(1).getNumberOfArmies());
+					//System.out.println(widthPercentage);
+					//System.out.println(width);
+					//System.out.println(Motor.players.get(0).getNumberOfArmies());
+					//System.out.println(Motor.players.get(1).getNumberOfArmies());
 							
 					Player1Units.setBounds(414, 10, (width), 20);
 					Player1Units.setBackground(playerInd1Color);
@@ -1042,13 +1042,7 @@ public class JGUI extends JFrame {
 		});
 		
 		}
-		
-		
-		
-		//////TESZT
-		for(Player players : Motor.players){
-		System.out.println(players.getName());
-		}
+
 	}
 	
 }

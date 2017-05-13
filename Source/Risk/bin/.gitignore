@@ -8,6 +8,7 @@
 /Command.class
 /Continent.class
 /GameState.class
+/Indicators/
 /InternalFramePropertyChangeHandler.class
 /JGUI$1$1.class
 /JGUI$1.class
@@ -25,6 +26,8 @@
 /Map.class
 /Motor.class
 /Network.class
+/NewPlayer$1.class
+/NewPlayer$2.class
 /NewPlayer.class
 /Player.class
 /Resized/
@@ -33,5 +36,3 @@
 /Territory.class
 /org/
 /test.class
-/NewPlayer$1.class
-/NewPlayer$2.class
