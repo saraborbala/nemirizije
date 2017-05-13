@@ -70,9 +70,7 @@ public class Client extends Network{
 			System.err.println("Error while closing conn."); 
 			// TODO: errorMsgbe tenni
 		}
-		
 	}
-
 	@Override
 	void sendGameState(GameState gs) {
 		if (out == null)

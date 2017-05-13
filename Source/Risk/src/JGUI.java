@@ -898,6 +898,9 @@ public class JGUI extends JFrame {
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				GameState GS = new GameState();
+				GS.msg = "Helloka!";
+				motor.sendGameState(GS);
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
