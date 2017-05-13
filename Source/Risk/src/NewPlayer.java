@@ -21,33 +21,37 @@ import javax.swing.JRadioButton;
 
 @SuppressWarnings("serial")
 public class NewPlayer extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField textField_Name;
-	
+	private Motor motor;
+/*	// Hálózat
+	private Network net = null;
+	private String ip = "localhost";
+	private Motor motor;*/
 	//Játékos kiválasztott színének eltárolása
 	String playerColorStr;
 	Color playerColor;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NewPlayer frame = new NewPlayer();
+					NewPlayer frame = new NewPlayer(motor);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public NewPlayer() {
+	public NewPlayer(Motor motor) {
+		this.motor = motor;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 481, 338);
@@ -148,8 +152,12 @@ public class NewPlayer extends JFrame {
 				
 				//Kliens vagy szerver? 
 				
-				//rdbtnServer.isSelected()
-				//rdbtnClient.isSelected()
+				if(rdbtnServer.isSelected()){
+					//motor.startServer;
+				}
+				if(rdbtnClient.isSelected()){
+					 //motor.startClient;
+				}
 				
 				//Új játékos létrehozása név alapján
 				//String newPlayerName = textField_Name.getText();
@@ -179,6 +187,21 @@ public class NewPlayer extends JFrame {
 		btnNewGame.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewGame.setBounds(147, 253, 172, 34);
 		contentPane.add(btnNewGame);
-
 	}
+	/**
+	 * Hálózatos rész
+	 */
+	/*void startServer(){
+		if (net != null)
+			net.disconnect();
+		net = new Server(this);
+		net.connect(ip);
+	}
+	
+	void startClient(){
+		if (net != null)
+			net.disconnect();
+		net = new Client(this);
+		net.connect(ip);
+	}*/
 }
