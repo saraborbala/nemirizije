@@ -6,7 +6,7 @@ import java.util.Vector;	//vektorok
 
 
 public class Motor {
-	
+	private JGUI jgui;
 	//allapotok-gameStates
     public static final int NEW_GAME = 0;	//új játék
     public static final int START_TURN = 1;	// ha minden játékosnak van már területe 
@@ -504,6 +504,11 @@ public class Motor {
       }
 
      // Szerver-kommunikációhoz tartozó függvények
+      // motor és gui összekapcsolása
+  void setGUI(JGUI jgui){
+  		this.jgui = jgui;
+  	}  
+      	
     private Network net = null;
  	private String ip = "localhost"; // teszt, majd rendes IP-t is meg lehet adni (elvileg)
  	void startServer(){

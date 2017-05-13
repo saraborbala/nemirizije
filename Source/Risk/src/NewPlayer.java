@@ -25,6 +25,14 @@ import javax.swing.JRadioButton;
 public class NewPlayer extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField_Name;
+<<<<<<< HEAD
+=======
+	private Motor motor;
+/*	// Hálózat
+	private Network net = null;
+	private String ip = "localhost";
+	private Motor motor;*/
+>>>>>>> origin/master
 	//Játékos kiválasztott színének eltárolása
 	String playerColorStr;
 	Color playerColor;
@@ -32,11 +40,11 @@ public class NewPlayer extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NewPlayer frame = new NewPlayer();
+					NewPlayer frame = new NewPlayer(motor);
 					frame.setVisible(true);
 					frame.setTitle("Játékos hozzáadása");
 				} catch (Exception e) {
@@ -44,6 +52,7 @@ public class NewPlayer extends JFrame {
 				}
 			}
 		});
+<<<<<<< HEAD
 	} 
 	
 	
@@ -52,6 +61,15 @@ public class NewPlayer extends JFrame {
 	 */
 	public NewPlayer() {
 		
+=======
+	}*/
+
+	/**
+	 * Create the frame.
+	 */
+	public NewPlayer(Motor motor) {
+		this.motor = motor;
+>>>>>>> origin/master
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 481, 338);
@@ -152,8 +170,12 @@ public class NewPlayer extends JFrame {
 				
 				//Kliens vagy szerver? 
 				
-				//rdbtnServer.isSelected()
-				//rdbtnClient.isSelected()
+				if(rdbtnServer.isSelected()){
+					//motor.startServer;
+				}
+				if(rdbtnClient.isSelected()){
+					 //motor.startClient;
+				}
 				
 				//Új játékos létrehozása név alapján
 				//String newPlayerName = textField_Name.getText();
@@ -186,6 +208,21 @@ public class NewPlayer extends JFrame {
 		btnNewGame.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewGame.setBounds(147, 253, 172, 34);
 		contentPane.add(btnNewGame);
-
 	}
+	/**
+	 * Hálózatos rész
+	 */
+	/*void startServer(){
+		if (net != null)
+			net.disconnect();
+		net = new Server(this);
+		net.connect(ip);
+	}
+	
+	void startClient(){
+		if (net != null)
+			net.disconnect();
+		net = new Client(this);
+		net.connect(ip);
+	}*/
 }

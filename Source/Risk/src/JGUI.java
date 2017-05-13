@@ -28,7 +28,7 @@ import javax.swing.event.MenuKeyEvent;
 
 @SuppressWarnings("serial")
 public class JGUI extends JFrame {
-	
+	private Motor motor;
 	private Point p1 = new Point(0, 0); 
 	public int teszt = 1;
 	JDesktopPane desktopPane = new JDesktopPane();
@@ -89,8 +89,8 @@ public class JGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JGUI() {
-			
+	public JGUI(Motor motor) {
+		this.motor = motor;	// motor és GUI összekapcsolása
 		//Teszt játékos
 		Player newPlayer1 = new Player("tesztname", 0);
 		//Player newPlayer2 = new Player("tesztname2", 1);
@@ -174,12 +174,33 @@ public class JGUI extends JFrame {
 		JMenuItem NewPlayer = new JMenuItem("Új játékos");
 		NewPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				NewPlayer NewPlayerFrame = new NewPlayer();
 				NewPlayerFrame.setBounds(100, 100, 481, 338);
 				NewPlayerFrame.setLocation(new Point(300,300));
 				NewPlayerFrame.setResizable(false);
 				//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 				NewPlayerFrame.setVisible(true);				
+=======
+				
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							NewPlayer frame = new NewPlayer(motor);
+							frame.setVisible(true);
+							frame.setBounds(100, 100, 481, 338);
+							frame.setLocation(new Point(300,300));
+							frame.setResizable(false);
+							//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+							frame.setVisible(true);	
+						} 
+						catch (Exception e) {
+						e.printStackTrace();
+						}
+					}
+				});
+
+>>>>>>> origin/master
 			}
 		});
 		
