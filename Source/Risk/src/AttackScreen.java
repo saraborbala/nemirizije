@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -16,6 +18,11 @@ public class AttackScreen extends JFrame {
 	//Dice icons
 	ImageIcon Dice1icon, Dice2icon, Dice3icon, Dice4icon, Dice5icon, Dice6icon ;
 	int throwCntr = 0;
+	//Támadó dobásainak tárolása
+	private List<Integer> attackerResult = new ArrayList<>();
+	//Védekezõ dobásainak tárolása
+	private List<Integer> defenderResult = new ArrayList<>();
+	//
 	/**
 	 * Launch the application.
 	 */
