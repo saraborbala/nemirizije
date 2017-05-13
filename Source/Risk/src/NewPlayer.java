@@ -25,14 +25,13 @@ import javax.swing.JRadioButton;
 public class NewPlayer extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField_Name;
-<<<<<<< HEAD
-=======
+
 	private Motor motor;
 /*	// Hálózat
 	private Network net = null;
 	private String ip = "localhost";
 	private Motor motor;*/
->>>>>>> origin/master
+
 	//Játékos kiválasztott színének eltárolása
 	String playerColorStr;
 	Color playerColor;
@@ -52,24 +51,23 @@ public class NewPlayer extends JFrame {
 				}
 			}
 		});
-<<<<<<< HEAD
+
 	} 
 	
 	
-	/**
+	/*
 	 * Create the frame.
 	 */
 	public NewPlayer() {
 		
-=======
-	}*/
+	}
 
 	/**
 	 * Create the frame.
 	 */
 	public NewPlayer(Motor motor) {
 		this.motor = motor;
->>>>>>> origin/master
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 481, 338);

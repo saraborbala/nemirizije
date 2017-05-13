@@ -174,14 +174,12 @@ public class JGUI extends JFrame {
 		JMenuItem NewPlayer = new JMenuItem("Új játékos");
 		NewPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
 				NewPlayer NewPlayerFrame = new NewPlayer();
 				NewPlayerFrame.setBounds(100, 100, 481, 338);
 				NewPlayerFrame.setLocation(new Point(300,300));
 				NewPlayerFrame.setResizable(false);
 				//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 				NewPlayerFrame.setVisible(true);				
-=======
 				
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
@@ -200,7 +198,6 @@ public class JGUI extends JFrame {
 					}
 				});
 
->>>>>>> origin/master
 			}
 		});
 		
