@@ -24,32 +24,9 @@ public class NewPlayer extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField_Name;
 	private Motor motor;
-/*	// Hálózat
-	private Network net = null;
-	private String ip = "localhost";
-	private Motor motor;*/
 	//Játékos kiválasztott színének eltárolása
 	String playerColorStr;
 	Color playerColor;
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					NewPlayer frame = new NewPlayer(motor);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
-	/**
-	 * Create the frame.
-	 */
 	public NewPlayer(Motor motor) {
 		this.motor = motor;
 		setResizable(false);
@@ -128,7 +105,7 @@ public class NewPlayer extends JFrame {
 		rdbtnServer.setBackground(contentPane.getBackground());
 		//Szerver ne legyen választható, ha már van szerver
 		//TODO van-e szerver feltétel? 
-		boolean isServerAvailable = true;
+		boolean isServerAvailable = false;
 		if(isServerAvailable){
 			rdbtnServer.setEnabled(false);
 		}
@@ -153,10 +130,10 @@ public class NewPlayer extends JFrame {
 				//Kliens vagy szerver? 
 				
 				if(rdbtnServer.isSelected()){
-					//motor.startServer;
+					motor.startServer();
 				}
 				if(rdbtnClient.isSelected()){
-					 //motor.startClient;
+					 motor.startClient();
 				}
 				
 				//Új játékos létrehozása név alapján

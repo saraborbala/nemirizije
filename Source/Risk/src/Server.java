@@ -22,6 +22,7 @@ public class Server extends Network{
 	private class ReceiverRunnable implements Runnable {
 
 		public void run() {
+			//while(true){
 			try {
 				System.out.println("Waiting for Client");
 				clientSocket = serverSocket.accept();
@@ -32,7 +33,7 @@ public class Server extends Network{
 				disconnect();
 				return;
 			}
-
+			
 			
 			 try {
 				out = new ObjectOutputStream(clientSocket.getOutputStream()); // csatorna indítás
@@ -57,7 +58,7 @@ public class Server extends Network{
 				disconnect();
 			}
 					 
-		}
+		}//}
 	}
 	
 
