@@ -1,5 +1,4 @@
 import java.awt.*;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -19,15 +18,17 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JRadioButton;
 
+
+
+
 @SuppressWarnings("serial")
 public class NewPlayer extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField textField_Name;
-	
 	//Játékos kiválasztott színének eltárolása
 	String playerColorStr;
 	Color playerColor;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -37,17 +38,20 @@ public class NewPlayer extends JFrame {
 				try {
 					NewPlayer frame = new NewPlayer();
 					frame.setVisible(true);
+					frame.setTitle("Játékos hozzáadása");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
-
+	} 
+	
+	
 	/**
 	 * Create the frame.
 	 */
 	public NewPlayer() {
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 481, 338);
@@ -66,7 +70,7 @@ public class NewPlayer extends JFrame {
 		Details.setBounds(10, 62, 455, 180);
 		contentPane.add(Details);
 		Details.setLayout(null);
-		
+
 		textField_Name = new JTextField();
 		textField_Name.setToolTipText("G\u00E9peld be a k\u00EDv\u00E1nt nevet! :)");
 		textField_Name.setBounds(253, 12, 136, 34);
@@ -122,12 +126,13 @@ public class NewPlayer extends JFrame {
 		rdbtnServer.setBounds(338, 109, 90, 23);
 		Details.add(rdbtnServer);
 		rdbtnServer.setBackground(contentPane.getBackground());
+		
 		//Szerver ne legyen választható, ha már van szerver
 		//TODO van-e szerver feltétel? 
-		boolean isServerAvailable = true;
+		/*boolean isServerAvailable = true;
 		if(isServerAvailable){
 			rdbtnServer.setEnabled(false);
-		}
+		}*/
 		
 		JRadioButton rdbtnClient = new JRadioButton("Kliens");
 		rdbtnClient.setOpaque(false);
@@ -139,8 +144,7 @@ public class NewPlayer extends JFrame {
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnServer);
 		group.add(rdbtnClient);
-		
-		
+				
 		JButton btnNewGame = new JButton("Kezd\u0151dj\u00F6n a harc!");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -154,13 +158,12 @@ public class NewPlayer extends JFrame {
 				//Új játékos létrehozása név alapján
 				//String newPlayerName = textField_Name.getText();
 				//Motor.addPlayer(newPlayerName);
-				int playerNum = 0;
-				String playerName = textField_Name.getText();
+				int playerNum = Motor.players.size();
+				String playerName = textField_Name.getText();				
+				Player newPlayer = new Player(playerName, playerNum+1);
 				
-				Player newPlayer = new Player(playerName, playerNum);
-				playerNum += 1;
-				
-				if(playerNum < 3){
+				//Csak 2 játékos adható összesen hozzá
+				if(playerNum < 2){
 				Motor.players.add(newPlayer);
 				}
 				
@@ -170,6 +173,10 @@ public class NewPlayer extends JFrame {
 						player.setColor(playerColor);
 					}
 				}
+				
+				//debug
+				System.out.println(Motor.players);
+				
 				
 				//}
 				//Bezárás
