@@ -49,8 +49,8 @@ public class Motor {
      public Motor(){
      gameState = NEW_GAME;
         
-		addPlayer ("Jatekos1");	//ezt szépen kéne 
-		initalPlayer();	//kezdõjátékos- 0. 
+		//addPlayer ("Jatekos1");	//ezt szépen kéne 
+		//initalPlayer();	//kezdõjátékos- 0. 
 		     
 		loadMap();			//AHAAHAAHA
        
