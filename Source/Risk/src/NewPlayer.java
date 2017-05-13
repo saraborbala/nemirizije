@@ -146,10 +146,15 @@ public class NewPlayer extends JFrame {
 		
 		//Szerver ne legyen választható, ha már van szerver
 		//TODO van-e szerver feltétel? 
+<<<<<<< HEAD
 
 		boolean isServerAvailable = false;
 
 		/*boolean isServerAvailable = true;
+=======
+		/*boolean isServerAvailable = true;
+
+>>>>>>> origin/master
 		if(isServerAvailable){
 			rdbtnServer.setEnabled(false);
 		}*/
