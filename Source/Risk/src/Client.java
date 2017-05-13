@@ -38,7 +38,7 @@ public class Client extends Network{
 		// TODO Auto-generated method stub
 		disconnect();
 		try {
-			socket = new Socket(ip, 10007);
+			socket = new Socket(ip, 7555);
 
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
