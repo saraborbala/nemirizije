@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class AttackScreen extends JFrame {
-	
+ 	
 	//Dice icons
 	ImageIcon Dice1icon, Dice2icon, Dice3icon, Dice4icon, Dice5icon, Dice6icon ;
 	int throwCntr = 0;

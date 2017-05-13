@@ -217,7 +217,7 @@ public class JGUI extends JFrame {
 				frame.setVisible(true);	
 			}
 		});
-		
+		 
 
 		JMenuItem Exit = new JMenuItem("Kilépés");
 		Exit.addActionListener(new ActionListener() {

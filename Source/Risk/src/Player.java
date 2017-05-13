@@ -18,7 +18,7 @@ public class Player {
 		armies = 10; //mennyivel kezd?
 	}
 	
-	
+	 
 	//getterek:
 	public int getPlayerIndex(){
 		return index;

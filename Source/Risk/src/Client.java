@@ -31,7 +31,7 @@ public class Client extends Network{
 			}
 		}
 	}
-	
+	 
 	
 	@Override
 	void connect(String ip) {
