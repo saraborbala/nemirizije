@@ -31,11 +31,33 @@ public class JGUI extends JFrame {
 	private Motor motor;
 	private Point p1 = new Point(0, 0); 
 	public int teszt = 1;
+	private int availableUnits = 0;
+	private Integer unitsToMoveNum = 0; 
+	private Integer actualCircleUnits = 0;
+	private String fromMove;
+	private String toMove;
 	JDesktopPane desktopPane = new JDesktopPane();
 	
 	Map<String, JLabel> labels = new HashMap<String,JLabel>();
 	Map<String, JLabel> circles = new HashMap<String,JLabel>();
 	Map<String, JLabel> toBeRefreshed = new HashMap<String,JLabel>();
+	private String labelFromName;
+	private String labelToName;
+	
+	public int getUnitsToMove(){
+		return unitsToMoveNum;
+	}
+	public int getAvailableUnits(){
+		return availableUnits;
+	}
+	
+	private enum StatusMove {
+		STARTED, FIRST_SELECTED, BOTH_SELECTED 
+	}
+	
+	StatusMove statusmove;
+	
+	
 	//TODO: hozzáadni a labelöket az országok közepére
 	
 	public Map<String, JLabel> getLabels() {
@@ -92,7 +114,7 @@ public class JGUI extends JFrame {
 	public JGUI(Motor motor) {
 		this.motor = motor;	// motor és GUI összekapcsolása
 		//Teszt játékos
-		Player newPlayer1 = new Player("tesztname", 0);
+		/*Player newPlayer1 = new Player("tesztname", 0);
 		//Player newPlayer2 = new Player("tesztname2", 1);
 		
 		Territory newTerritory1 = new Territory(1, "Alasca", 2, 4, 5);
@@ -111,11 +133,10 @@ public class JGUI extends JFrame {
 		//newPlayer2.addArmies(10);
 		
 		Motor.players.add(newPlayer1);
-		
+		*/
 		//newPlayer2.setOccTerritory(newTerritory2);
 		//newPlayer2.setColor(Color.RED);
 		//Motor.players.add(newPlayer2);	
-		
 		
 		
 		//-------------		
@@ -351,6 +372,9 @@ public class JGUI extends JFrame {
 		circles.put(Alberta, lblAlbertaInd);
 		
 		JLabel lblWestUSInd = new JLabel("");
+		
+			
+		
 		lblWestUSInd.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG")));
 		lblWestUSInd.setBounds(118, 182, 30, 30);	
 		//TODO: Mapben leimplementálni, ez a pilot
@@ -907,6 +931,90 @@ public class JGUI extends JFrame {
 		btnNewButton.setBounds(1135, 606, 166, 76);
 		Mainpanel.add(btnNewButton);
 		
+		JPanel movementPanel = new JPanel();
+		movementPanel.setBounds(343, 660, 611, 35);
+		Mainpanel.add(movementPanel);
+		movementPanel.setLayout(null);
+		
+		JLabel lblUnitNum = new JLabel("");
+		lblUnitNum.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblUnitNum.setBounds(330, 0, 41, 35);
+		movementPanel.add(lblUnitNum);
+		
+		JButton btnNewButton_1 = new JButton("+");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//if(availableUnits > unitsToMoveNum){
+					unitsToMoveNum += 1;
+					lblUnitNum.setText(unitsToMoveNum.toString());
+				//}
+			}
+		});
+		btnNewButton_1.setBounds(381, 0, 41, 35);
+		movementPanel.add(btnNewButton_1);
+		
+		JButton button = new JButton("-");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//if(unitsToMoveNum > 0){
+					unitsToMoveNum -= 1;
+					lblUnitNum.setText(unitsToMoveNum.toString());
+				//}
+					
+			}
+		});
+		button.setBounds(425, 0, 41, 35);
+		movementPanel.add(button);
+		
+		
+		//Szöveg a mozgatáshoz/támadáshoz
+		JLabel lblMoveOrAtt = new JLabel("Ennyi egys\u00E9get mozgatok:");
+		lblMoveOrAtt.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblMoveOrAtt.setBounds(152, 0, 168, 35);
+		movementPanel.add(lblMoveOrAtt);
+		
+		//Kész gomb
+		JButton btnDoneMoveSelect = new JButton("Kész!");
+		btnDoneMoveSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(unitsToMoveNum);
+				
+				motor.moveUnits(labelFromName, labelToName, unitsToMoveNum);
+				
+				for(Territory territories : motor.territories){	 
+					if(territories.getName().equals(labelFromName)){
+						Integer army = territories.getArmies();
+						fromMove = army.toString();
+					}
+					if(territories.getName().equals(labelToName)){
+						Integer army = territories.getArmies();
+						toMove = army.toString();
+					}
+					actualCircleUnits = territories.getArmies();
+						
+						//System.out.println(territories.getArmies());
+						for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
+							String circlekey 	= circleitem.getKey();
+							JLabel circlevalue 	= circleitem.getValue();
+							if(circlekey.equals(labelFromName)){					
+								circlevalue.setText(fromMove);
+							}
+							if(circlekey.equals(labelToName)){
+								circlevalue.setText(toMove);
+							}
+								
+							//circlevalue.setText("13");	
+						}					
+				}
+				
+				//System.out.println(x);
+				movementPanel.setVisible(false);
+			}
+		});
+		btnDoneMoveSelect.setBounds(476, 0, 89, 35);
+		movementPanel.add(btnDoneMoveSelect);
+		
+		movementPanel.setVisible(false);
 		//listenerek
 		
 		//Játékos indikátor körök listenerje  
@@ -919,7 +1027,8 @@ public class JGUI extends JFrame {
 		    //Territories feltöltése
 		    Territory actualTerritory  = new Territory(circlekey);
 		    //actualTerritory.setPlayer(newPlayer1);
-		    Motor.territories.add(actualTerritory);
+		    motor.territories.add(actualTerritory);
+		    actualTerritory.setArmies(1);
 		    
 		    //teszt
 		    
@@ -928,14 +1037,17 @@ public class JGUI extends JFrame {
 		    //Játékos színe alapján beállítás
 		    
 		    //Teszt Sára kódja alapján - indikátorok színének beállítása
-		    for(Territory territories : Motor.territories){	    		    		    	
+		    for(Territory territories : motor.territories){	    		    		    	
+		    	//Kezdetben minden területhez 1 játékos
+		    	//territories.addArmies(1);
+		    	actualCircleUnits = territories.getArmies();
 		    	//Ha tartozik a területhez játékos
 		    	if(territories.getPlayer().getPlayerIndex() != -1){	
 		    		//Ha egyezik a kör labelje az adott terület nevével	
 		    		if(territories.getName().equals(circlekey))
 			    	{
 			    		Player actualPlayer;
-
+			    		
 			    		actualPlayer = territories.getPlayer();
 			    		actualColor = actualPlayer.getColor();
 			    		System.out.println(circlekey);
@@ -964,16 +1076,17 @@ public class JGUI extends JFrame {
 		    
 		    //circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG")));
     		//TODO: Mapben leimplementálni, ez a pilot
-    		circlevalue.setText("25");
+    		circlevalue.setText(actualCircleUnits.toString());
     		circlevalue.setHorizontalTextPosition(lblWestUSInd.CENTER);
     		//------
 		    //Indikátorok listenerjei
+    		statusmove = StatusMove.STARTED;
+    		
     		circlevalue.addMouseListener(new MouseAdapter() {
 		    	public void mouseEntered(MouseEvent e) {
 		    		lblAktulisOrszg.setText("Aktuálisan kijelölt ország:");
 		    		lblActCntryName.setText(circlevalue.getToolTipText());
 		    		lblActCountryPic.setIcon(new ImageIcon(JGUI.class.getResource(circlepath)));
-		    		
 		    		//repaint();
 		    	}
 				public void mouseExited(MouseEvent arg0) {
@@ -983,6 +1096,41 @@ public class JGUI extends JFrame {
 					lblActCntryName.setText("");
 					
 				}
+				public void mouseClicked(MouseEvent arg0) {
+					switch(statusmove){
+						case STARTED: {
+							labelFromName = circlekey;
+							statusmove = StatusMove.FIRST_SELECTED;
+							System.out.println(statusmove);
+							break;
+						}
+						case FIRST_SELECTED: {						
+							for(Territory territories : motor.territories){	
+					    		  if(territories.getName().equals(labelFromName)){
+					    			  availableUnits = territories.getArmies();
+					    		  }
+							}
+							labelToName = circlekey;
+							//lblUnitNum.setText(unitsToMoveNum.toString());
+							
+							movementPanel.setVisible(true);
+
+							
+							statusmove = StatusMove.BOTH_SELECTED;
+							System.out.println(statusmove);
+							//Függvényhíváv labelFrommal és labelTo-val
+							
+							
+							//statusmove = StatusMove.STARTED;
+							break;
+						}
+					default:
+						break;
+						
+					}
+					
+				}
+				
 		    });		
 		
 		//Listenerek hozzáadása az országok labeljeihez		
@@ -1014,7 +1162,7 @@ public class JGUI extends JFrame {
 		};
 		
 		//listener vége -----------------------------------------------------------------------------
-		MapPanel.addMouseListener(new MouseAdapter() {
+		/*MapPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {		
 				if((Motor.players.size() == 2)){
@@ -1042,10 +1190,9 @@ public class JGUI extends JFrame {
 					
 				}
 			}
-		});
+		});*/
 		
 		}
 
 	}
-	
 }

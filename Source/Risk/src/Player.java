@@ -16,9 +16,9 @@ public class Player {
 		index = i;
 		occupiedTerritories = new Vector<Territory>();
 		armies = 10; //mennyivel kezd?
+		color = Color.BLACK;
 	}
-	
-	 
+		 
 	//getterek:
 	public int getPlayerIndex(){
 		return index;

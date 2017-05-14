@@ -24,3 +24,6 @@ public class GameState implements java.io.Serializable{
 	GameState(){}; 
 
 }
+
+//TODO
+//Átküldeni: Motorból: players, territories

@@ -1,14 +1,4 @@
-/AttackScreen$1.class
-/AttackScreen$2.class
-/AttackScreen$3.class
-/AttackScreen$4.class
-/AttackScreen.class
-/Client$ReceiverRunnable.class
-/Client.class
-/Command.class
-/Continent.class
 /GameState.class
-/Indicators/
 /InternalFramePropertyChangeHandler.class
 /JGUI$1$1.class
 /JGUI$1.class
@@ -19,7 +9,6 @@
 /JGUI$6.class
 /JGUI$7.class
 /JGUI$8.class
-/JGUI$9.class
 /JGUI.class
 /Main$1.class
 /Main.class
@@ -30,9 +19,12 @@
 /NewPlayer$2.class
 /NewPlayer.class
 /Player.class
-/Resized/
 /Server$ReceiverRunnable.class
 /Server.class
 /Territory.class
 /org/
 /test.class
+/JGUI$StatusMove.class
+/JGUI$9.class
+/JGUI$10.class
+/JGUI$11.class

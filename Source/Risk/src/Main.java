@@ -9,7 +9,8 @@ public class Main {
 				try {
 					JGUI frame = new JGUI(motor);
 					frame.setVisible(true);
-
+					motor.setGUI(frame);
+					
 				} 
 				catch (Exception e) {
 				e.printStackTrace();

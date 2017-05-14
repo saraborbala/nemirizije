@@ -199,8 +199,18 @@ public class Motor {
         return bonus;
       }
 
-      
-      
+     //SD: egységmozgatás 
+      public void moveUnits(String from, String to, int numberToMove){ 
+    	 //A honnan terület egységeit csökkenteni a vivendõvel
+    	  for(Territory territories : territories){	
+    		  if(territories.getName().equals(from)){
+    			  territories.setArmies(jgui.getAvailableUnits() - jgui.getUnitsToMove());	  
+    		  }
+    		  if(territories.getName().equals(to)){
+    			  territories.setArmies(jgui.getUnitsToMove());
+    		  }
+    	  }
+      }
      
       
       //JÁTÉKÁLLAPOT BEÁLLÍTÁS:- terület helye kell
@@ -314,8 +324,6 @@ public class Motor {
                       }
               }
           }
-
-         
         
           //támadolhatsz e -katonád elég van e
           if(getState() == ENOUGH_ARMIES){
@@ -533,6 +541,8 @@ public class Motor {
 	public void GameStateRecieved(GameState gs){
 		//TODO error handling
 		System.out.println(gs.msg);
+		jgui.revalidate();
+		
 	}
 
 
