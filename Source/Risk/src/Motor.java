@@ -26,7 +26,7 @@ public class Motor {
     static private int gameState;
 
         
-    public Vector<Continent> continents = new Vector<Continent>();
+  ///  public Vector<Continent> continents = new Vector<Continent>();
     static public Vector<Territory> territories = new Vector<Territory>();
     public Territory aTerritory;	//tám ter
     public Territory dTerritory;	//véd ter
@@ -157,7 +157,7 @@ public class Motor {
       }
 
       
-
+ 
       //KATONAOSZTOGATÁS:
      
       // kör eleji bónusz:
@@ -165,7 +165,7 @@ public class Motor {
           int bonus = 0;
           bonus = bonus + bonusFromTerritories();		//területekbõl adódó
           System.out.println("Bonusz a teruleteidbol: " + bonus);	//ez ko igy?
-          bonus = bonus + bonusFromContinents();		//kontinensekbõl adódó
+          //bonus = bonus + bonusFromContinents();		//kontinensekbõl adódó
           
           return bonus;
       }
@@ -180,7 +180,7 @@ public class Motor {
 
       
       // kontinensbõl származó bónusz-ha egy agészet elfoglal
-      public int bonusFromContinents(){
+ /*     public int bonusFromContinents(){
         int bonus = 0;
         int numberOfContinents = continents.size();
         
@@ -198,7 +198,7 @@ public class Motor {
         	}
         return bonus;
       }
-
+*/
      //SD: egységmozgatás 
       public void moveUnits(String from, String to, int numberToMove){ 
     	 //A honnan terület egységeit csökkenteni a vivendõvel
@@ -215,9 +215,9 @@ public class Motor {
       
       //JÁTÉKÁLLAPOT BEÁLLÍTÁS:- terület helye kell
       
-      public void gamePhaseSetup(int x, int y){
+ /*     public void gamePhaseSetup(int x, int y){
 
-          int valasztottTerritory = getMapLocation(x,y);
+         // int valasztottTerritory = getMapLocation(x,y);
           int numberOfOccTerr = 0; 
           
           
@@ -226,11 +226,11 @@ public class Motor {
            int n = numOfTerroitories();
 
            //ha kiválasztotta a területet
-           if(valasztottTerritory != -1){ 
+          // if(valasztottTerritory != -1){ 
         	   //és ha még senkié a terület
-              if(getOwnership(valasztottTerritory) == -1) 
+              //if(getOwnership(valasztottTerritory) == -1) 
             	  //akkor most a jelenlegi játékos bebirtokolja, mint állat
-                    initialOccupyTerritories(valasztottTerritory);
+                 //   initialOccupyTerritories(valasztottTerritory);
               
                 //mennyi területke van bebbirtokolva-e?
                 for(int i = 0; i < n; i++){
@@ -337,7 +337,7 @@ public class Motor {
                     }
                     //ha viszont nem elég
                     else
-                    	System.out.println("sajna keves a katonad");
+                    	System.out.println("sajna keves a katonad :(");
                     	//INNEN KÉNE OLYAN, HOGY ÁTHELYEZGETHESSEN?
                     
                 }
@@ -367,21 +367,21 @@ public class Motor {
               }
 
           }
-          
+   */       
           //maga a támadás, mikor szomszédeos,nemsaját,megemberisvan
-          if(getState() == ATTACK_PHASE){
+          //if(getState() == ATTACK_PHASE){
            
 
         	  ///JAJ
         	  // INNEN LEGYEN RÖGTÖN CSATA?
-          }
+        //  }
 
         
-      }
+     // }
       
       
       
-      public int getMapLocation(int x, int y){
+    /*  public int getMapLocation(int x, int y){
           int xx;
           int yy;
           int size = 10;//ide kell majd vmi közös!!!!-Strau mondj okost
@@ -397,11 +397,11 @@ public class Motor {
           // ha nincs is ilyen terület
           return -1;
       }
-      
+      */
         
       
-      //CSATA:
-      public void Battle(){
+      //CSATA:/
+/*public void Battle(){
 
            
            Integer[] attack = new Integer[attNum];
@@ -421,9 +421,9 @@ public class Motor {
             if(attNum == 1){
                System.out.println("elso dobas: tamado:"+attack[0] + " vedo: " +defend[0]);
                 if(attack[0] > defend[0])
-                    dTerritory.looseArmy();
+          //          dTerritory.looseArmy();
                 else
-                    aTerritory.looseArmy();
+            //        aTerritory.looseArmy();
             }
             
             //többel dobnak:
@@ -445,10 +445,12 @@ public class Motor {
 
              aktiv = slPlayer;
 
-      }
+      }*/
 
       
       //ELFOGLALÁS:
+
+// TODO ha armies == 0, swap player
       public void capture(){
           int armies = defNum;
           Territory d = dTerritory;	//védõ
@@ -465,8 +467,8 @@ public class Motor {
           }
 
 
-          a.looseArmies(armies);
-          d.addArmies(armies);
+         // a.looseArmies(armies);
+         // d.addArmies(armies);
 
           setState(ACTIVE_TURN);
           
@@ -501,7 +503,7 @@ public class Motor {
             Territory t = territories.elementAt(id);
             t.setPlayer(slPlayer);
             slPlayer.occupyTerritory(t);
-            t.addArmy();
+            //t.addArmy();
             slPlayer.looseArmy();
             nextPlayer();
           }

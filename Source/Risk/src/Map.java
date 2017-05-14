@@ -1,4 +1,4 @@
-import java.util.Vector;
+/*import java.util.Vector;
 
 public class Map {
 	
@@ -10,3 +10,4 @@ public class Map {
 	}
 
 }
+*/

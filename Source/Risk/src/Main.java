@@ -9,6 +9,7 @@ public class Main {
 				try {
 					JGUI frame = new JGUI(motor);
 					frame.setVisible(true);
+					frame.setTitle("Rizikó");
 					motor.setGUI(frame);
 					
 				} 

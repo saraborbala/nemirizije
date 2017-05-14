@@ -1,5 +1,9 @@
-import java.util.Vector;
+//import java.util.Vector;
 
+/**
+ * 
+ * @author Tamaskaa
+ *
 
 public class Continent {
 	
@@ -47,4 +51,4 @@ public class Continent {
 	return true; 
 	}
 
-}
+}*/

@@ -36,6 +36,7 @@ public class Player {
 		return armies;
 	}
 	
+
 	//SD
 	public Vector<Territory> getOccupiedTerritories(){
 		return occupiedTerritories;
