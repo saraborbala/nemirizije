@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Arrays;	
 import java.util.Collections;//dobás
 import java.util.Random;	//dobás
@@ -32,7 +33,7 @@ public class Motor {
     public Territory dTerritory;	//véd ter
         
         
-        static public Vector<Player> players = new Vector<Player>();
+        static public Vector<Player> players = new Vector<Player>(2);
         public Player defender;	//vedekezo
         public Player aktiv;	
         public Player slPlayer;	//soronlevõ játekos,aktuális
@@ -451,6 +452,24 @@ public class Motor {
       //ELFOGLALÁS:
 
 // TODO ha armies == 0, swap player
+      public void assignPlayer(){
+    	  // Az egyes területekhez hozzárendel egy-egy játékost.
+    	  // Összesen 41 terület van, 41/2 = 20 terület jut az elsõ játékosnak
+    	  //Elv: egy listában 41 elem, shuffle és az elsõ 20 elemhez rendeljük az elsõ playert
+    	  int num = 41;
+    	  ArrayList<Integer> list = new ArrayList<Integer>();
+          for (int i=1; i<=num; i++) {
+              list.add(new Integer(i));
+          }
+          Collections.shuffle(list);
+          for (int i=1; i<21; i++) {
+        	  territories.get(i).setPlayer(players.get(1));
+          }
+          for (int i=21; i<num; i++) {
+        	  territories.get(i).setPlayer(players.get(2));
+          }
+      }
+      
       public void capture(){
           int armies = defNum;
           Territory d = dTerritory;	//védõ
