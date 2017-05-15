@@ -378,7 +378,7 @@ public class JGUI extends JFrame {
 		lblWestUSInd.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG")));
 		lblWestUSInd.setBounds(118, 182, 30, 30);	
 		//TODO: Mapben leimplementálni, ez a pilot
-		lblWestUSInd.setText("25");
+		//lblWestUSInd.setText("25");
 		lblWestUSInd.setHorizontalTextPosition(lblWestUSInd.CENTER);
 		MapPanel.add(lblWestUSInd);
 		circles.put(WesternUS, lblWestUSInd);
@@ -421,7 +421,7 @@ public class JGUI extends JFrame {
 		JLabel lblWesternEUInd = new JLabel("");
 		lblWesternEUInd.setBounds(368, 268, 30, 30);
 		MapPanel.add(lblWesternEUInd);
-		circles.put(WesternUS, lblWesternEUInd);
+		circles.put(WesternEurope, lblWesternEUInd);
 		
 		JLabel lblScandinaviaInd = new JLabel("");
 		lblScandinaviaInd.setBounds(452, 84, 30, 30);
@@ -1195,6 +1195,7 @@ public class JGUI extends JFrame {
 		}
 
 	}
+}
 	/*// ------------------ Adatok frissítése serveren keresztül
 	public void refreshMap();{ // void? 
 	}

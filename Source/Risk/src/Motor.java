@@ -208,7 +208,8 @@ public class Motor {
     			  territories.setArmies(jgui.getAvailableUnits() - jgui.getUnitsToMove());	  
     		  }
     		  if(territories.getName().equals(to)){
-    			  territories.setArmies(jgui.getUnitsToMove());
+    			  int actArmy = territories.getArmies();
+    			  territories.setArmies(actArmy + jgui.getUnitsToMove());
     		  }
     	  }
       }
