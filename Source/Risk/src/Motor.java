@@ -559,6 +559,19 @@ public class Motor {
 				}
 			}
     	  
+    	//-------- Eastern US
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Eastern US")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Central America");
+					adjs.add("Western US");
+					adjs.add("Ontario");
+					adjs.add("Quebec");					
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(1);break; //:(
+				}
+			}
+    	  
         	//-------- Greenland
       	  for ( int i =0; i <41; i++ ){
   				if (territories.get(i).getName().equals("Greenland")){
@@ -781,6 +794,18 @@ public class Motor {
   				}
   			}
       	  
+        	//-------- South Africa
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("South Africa")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Congo");
+  					adjs.add("East Africa");
+  					adjs.add("Madagascar");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(4);break; //:(
+  				}
+  			}
+      	  
       	//-------- Madagascar
       	  for ( int i =0; i <41; i++ ){
   				if (territories.get(i).getName().equals("Madagascar")){
@@ -876,7 +901,7 @@ public class Motor {
       	  
       	//-------- Japan
       	  for ( int i =0; i <41; i++ ){
-  				if (territories.get(i).getName().equals("Kamchatka")){
+  				if (territories.get(i).getName().equals("Japan")){
   					Vector<String> adjs = new Vector<String>();
   					adjs.add("Kamchatka");
   					adjs.add("Mongolia");
