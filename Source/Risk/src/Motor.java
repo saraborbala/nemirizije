@@ -458,16 +458,545 @@ public class Motor {
     	  //Elv: egy listában 41 elem, shuffle és az elsõ 20 elemhez rendeljük az elsõ playert
     	  int num = 41;
     	  ArrayList<Integer> list = new ArrayList<Integer>();
-          for (int i=1; i<=num; i++) {
+          for (int i=0; i<num; i++) {
               list.add(new Integer(i));
           }
           Collections.shuffle(list);
-          for (int i=1; i<21; i++) {
+          for (int i=0; i<21; i++) {
         	  territories.get(i).setPlayer(players.get(1));
           }
-          for (int i=21; i<num; i++) {
+          for (int i=21; i<=num; i++) {
         	  territories.get(i).setPlayer(players.get(2));
           }
+      }
+      
+      public void assignAdjacentsandContinent(){
+    	  //Hozzárendeli az összes országhoz a szomszédait. Egyesével. Eretvágok.
+    	  // Nagyon csúnya, kérlet el se olvasd
+    	  // Kontinensek:
+    	  // 1 - Észak-Amerika
+    	  // 2 - Dél-Amerika
+    	  // 3 - Európa
+    	  // 4 - Afrika
+    	  // 5 - Ázsia
+    	  // 6 - Ausztália és Óceánia
+    	  
+    	  
+    	  //-------- Alasca
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Alasca")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Kamchatka");
+					adjs.add("Northwest Territory");
+					adjs.add("Alberta");
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(1);break; //:(
+				}
+			}
+    	  
+    	  //-------- Northwest Territory
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Northwest Territory")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Alasca");
+					adjs.add("Greenland");
+					adjs.add("Alberta");
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(1);break; //:(
+				}
+			}
+    	  
+    	  //-------- Quebec
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Quebec")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Eastern US");
+					adjs.add("Ontario");
+					adjs.add("Alberta");
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(1);break; //:(
+				}
+			}
+    	  
+    	  
+    	  //-------- Ontario
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Ontario")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Quebec");
+					adjs.add("Northwest Territory");
+					adjs.add("Alberta");
+					adjs.add("Western US");
+					adjs.add("Eastern US");	
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(1);break; //:(
+				}
+			}
+    	  
+    	//-------- Alberta
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Alberta")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Alasca");
+					adjs.add("Northwest Territory");
+					adjs.add("Ontario");
+					adjs.add("Western US");					
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(1);break; //:(
+				}
+			}
+    	  
+      	//-------- Western US
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Western US")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Central America");
+					adjs.add("Eastern US");
+					adjs.add("Ontario");
+					adjs.add("Alberta");					
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(1);break; //:(
+				}
+			}
+    	  
+        	//-------- Greenland
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Greenland")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Northwest Territory");
+  					adjs.add("Quebec");
+  					adjs.add("Ontario");
+  					adjs.add("Iceland");					
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(1);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Central America
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Central America")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Western US");
+					adjs.add("Eastern US");
+					adjs.add("Venezuela");					
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(1);break; //:(
+				}
+    	  }
+    	  
+    	//-------- Venezuela
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Venezuela")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Central America");
+					adjs.add("Peru");
+					adjs.add("Brazil");					
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(2);break; //:(
+				}
+			}
+    	  
+      	//-------- Peru
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Peru")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Venezuela");
+					adjs.add("Argentina");
+					adjs.add("Brazil");					
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(2);break; //:(
+				}
+			}
+    	  
+    	//-------- Brazil
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Brazil")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Venezuela");
+					adjs.add("Argentina");
+					adjs.add("Peru");
+					adjs.add("North Africa");
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(2);break; //:(
+				}
+			}
+    	  
+    	//-------- Argentina
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Argentina")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Brazil");
+					adjs.add("Peru");
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(2);break; //:(
+				}
+			}
+    	  
+    	//-------- Iceland
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Iceland")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Greenland");
+					adjs.add("Scandinavia");
+					adjs.add("Great Britain");
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(3);break; //:(
+				}
+			}
+    	  
+      	//-------- Great Britain
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Great Britain")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Iceland");
+					adjs.add("Scandinavia");
+					adjs.add("Western Europe");
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(3);break; //:(
+				}
+			}
+    	  
+        	//-------- Western Europe TODO: kijavítani
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Western Europe")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Great Britain");
+  					adjs.add("Northern Europe");
+  					adjs.add("Southern Europe");
+  					adjs.add("North Africa");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(3);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Scandinavia
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Scandinavia")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Iceland");
+					adjs.add("Russia");
+					adjs.add("Great Britain");
+					adjs.add("Northern Europe");
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(3);break; //:(
+				}
+			}
+    	  
+    	//-------- Northern Europe
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Northern Europe")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Iceland");
+					adjs.add("Russia");
+					adjs.add("Great Britain");
+					adjs.add("Scandinavia");
+					adjs.add("Southern Europe");
+					adjs.add("Western Europe");
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(3);break; //:(
+				}
+			}
+    	  
+        	//-------- Southern Europe
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Southern Europe")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Western Europe");
+  					adjs.add("Russia");
+  					adjs.add("Egypt");
+  					adjs.add("Northern Europe");
+  					adjs.add("Middle East");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(3);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Russia
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("Russia")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Southern Europe");
+					adjs.add("Scandinavia");
+					adjs.add("Northern Europe");
+					adjs.add("Middle East");
+					adjs.add("Ural");
+					adjs.add("Afganistan");
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(3);break; //:(
+				}
+			}
+    	  
+        	//-------- Egypt
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Egypt")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Southern Europe");
+  					adjs.add("North Africa");
+  					adjs.add("East Africa");
+  					adjs.add("Middle East");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(4);break; //:(
+  				}
+  			}
+    	  
+      	//-------- North Africa
+    	  for ( int i =0; i <41; i++ ){
+				if (territories.get(i).getName().equals("North Africa")){
+					Vector<String> adjs = new Vector<String>();
+					adjs.add("Southern Europe");
+					adjs.add("Egypt");
+					adjs.add("East Africa");
+					adjs.add("Western Europe");
+					adjs.add("Congo");
+					adjs.add("Brazil");
+					territories.get(i).setAdjacent(adjs);
+					territories.get(i).setContinent(4);break; //:(
+				}
+			}
+    	  
+        //-------- East Africa
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("East Africa")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Middle East");
+  					adjs.add("Egypt");
+  					adjs.add("North Africa");
+  					adjs.add("Congo");
+  					adjs.add("Madagascar");
+  					adjs.add("South Africa");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(4);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Congo
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Congo")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("North Africa");
+  					adjs.add("East Africa");
+  					adjs.add("South Africa");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(4);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Madagascar
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Madagascar")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("East Africa");
+  					adjs.add("South Africa");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(4);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Middle East
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Middle East")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("East Africa");
+  					adjs.add("Egypt");
+  					adjs.add("Russia");
+  					adjs.add("Southern Europe");
+  					adjs.add("India");
+  					adjs.add("Afganistan");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Afganistan
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Afganistan")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("China");
+  					adjs.add("Russia");
+  					adjs.add("Ural");
+  					adjs.add("India");
+  					adjs.add("Middle East");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Ural
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Ural")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("China");
+  					adjs.add("Russia");
+  					adjs.add("Afganistan");
+  					adjs.add("Siberia");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Siberia
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Siberia")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("China");
+  					adjs.add("Yakutsk");
+  					adjs.add("Irkutsk");
+  					adjs.add("Ural");
+  					adjs.add("Mongolia");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Yakutsk
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Yakutsk")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Kamchatka");
+  					adjs.add("Siberia");
+  					adjs.add("Irkutsk");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+        //-------- Kamchatka
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Kamchatka")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Yakutsk");
+  					adjs.add("Siberia");
+  					adjs.add("Irkutsk");
+  					adjs.add("Alasca");
+  					adjs.add("Japan");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Japan
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Kamchatka")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Kamchatka");
+  					adjs.add("Mongolia");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+          //-------- Irkutsk
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Irkutsk")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Yakutsk");
+  					adjs.add("Siberia");
+  					adjs.add("Kamchatka");
+  					adjs.add("Mongolia");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Mongolia
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Mongolia")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Yakutsk");
+  					adjs.add("Siberia");
+  					adjs.add("Kamchatka");
+  					adjs.add("Japan");
+  					adjs.add("China");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+      	//-------- China
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("China")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Ural");
+  					adjs.add("Siberia");
+  					adjs.add("Mongolia");
+  					adjs.add("Afganistan");
+  					adjs.add("Siam");
+  					adjs.add("India");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+      	//-------- India
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("India")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("China");
+  					adjs.add("Middle East");
+  					adjs.add("Afganistan");
+  					adjs.add("Siam");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+        //-------- Siam
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Siam")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("China");
+  					adjs.add("India");
+  					adjs.add("Indonezia");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(5);break; //:(
+  				}
+  			}
+      	  
+          //-------- Indonezia
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Indonezia")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Siam");
+  					adjs.add("New Guinea");
+  					adjs.add("Western Australia");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(6);break; //:(
+  				}
+  			}
+      	  
+      	//-------- New Guinea
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("New Guinea")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Eastern Australia");
+  					adjs.add("Indonezia");
+  					adjs.add("Western Australia");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(6);break; //:(
+  				}
+  			}
+      	  
+      	//-------- Western Australia
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Western Australia")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Eastern Australia");
+  					adjs.add("New Guinea");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(6);break; //:(
+  				}
+  			}
+      	  
+        	//-------- Eastern Australia
+      	  for ( int i =0; i <41; i++ ){
+  				if (territories.get(i).getName().equals("Eastern Australia")){
+  					Vector<String> adjs = new Vector<String>();
+  					adjs.add("Western Australia");
+  					adjs.add("Indonezia");
+  					territories.get(i).setAdjacent(adjs);
+  					territories.get(i).setContinent(6);break; //:(
+  				}
+  			} 	  
       }
       
       public void capture(){
@@ -531,7 +1060,7 @@ public class Motor {
 
 
       }
-
+//---------------------------------------------------------
      // Szerver-kommunikációhoz tartozó függvények
       // motor és gui összekapcsolása
   void setGUI(JGUI jgui){
