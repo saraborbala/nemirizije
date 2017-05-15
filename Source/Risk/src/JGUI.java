@@ -1195,4 +1195,7 @@ public class JGUI extends JFrame {
 		}
 
 	}
-}
+	/*// ------------------ Adatok frissítése serveren keresztül
+	public void refreshMap();{ // void? 
+	}
+}*/

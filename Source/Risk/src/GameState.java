@@ -1,3 +1,5 @@
+import java.util.Vector;
+
 public class GameState implements java.io.Serializable{
 	// Csak publikus osztályváltozók, ide jön minden ami szükséges arra, hogy a GUI felépüljön, illetve
 	// néhány szerver mûködéséshez fontos dolog
@@ -8,6 +10,8 @@ public class GameState implements java.io.Serializable{
 	// stb. kérlek írjátok be mi kell még
 	public int number = 1; // teszt
 	public String msg = ""; // teszt
+	public Vector<Territory> territories ;
+	public Vector<Player> players;
 	
 	public int connected = 0;
 	public int isGameOver = 0;

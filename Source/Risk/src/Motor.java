@@ -463,10 +463,10 @@ public class Motor {
           }
           Collections.shuffle(list);
           for (int i=0; i<21; i++) {
-        	  territories.get(i).setPlayer(players.get(1));
+        	  territories.get(i).setPlayer(players.get(0));
           }
           for (int i=21; i<=num; i++) {
-        	  territories.get(i).setPlayer(players.get(2));
+        	  territories.get(i).setPlayer(players.get(1));
           }
       }
       

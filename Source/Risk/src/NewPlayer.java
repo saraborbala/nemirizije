@@ -179,9 +179,15 @@ public class NewPlayer extends JFrame {
 				
 				if(rdbtnServer.isSelected()){
 					motor.startServer();
+					GameState GS = new GameState();
+					GS.msg = "Helloka!";
+					motor.sendGameState(GS);
 				}
 				if(rdbtnClient.isSelected()){
 					 motor.startClient();
+					GameState GS = new GameState();
+					GS.msg = "Helloka!";
+					motor.sendGameState(GS);
 				}
 				
 				//Új játékos létrehozása név alapján
@@ -215,20 +221,4 @@ public class NewPlayer extends JFrame {
 		btnNewGame.setBounds(147, 253, 172, 34);
 		contentPane.add(btnNewGame);
 	}
-	/**
-	 * Hálózatos rész
-	 */
-	/*void startServer(){
-		if (net != null)
-			net.disconnect();
-		net = new Server(this);
-		net.connect(ip);
-	}
-	
-	void startClient(){
-		if (net != null)
-			net.disconnect();
-		net = new Client(this);
-		net.connect(ip);
-	}*/
 }
