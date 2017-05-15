@@ -56,8 +56,7 @@ public class Territory{
 		
 
 		public boolean isAdjacent(String name){	//szomszédos-e
-			// TODO return adjacents.contains(t.getId());
-			return false;
+			return adjacents.contains(name);
 		}
 
 	    public boolean isOccupied(){	//foglalt-e
