@@ -9,6 +9,7 @@ public class Player {
 	private Color color;
 	private Vector<Territory> occupiedTerritories;	//elfoglalt területkéi
 	private int armies;		//mennyi katonája van összesen
+	private int bonusUnit;
 	
 	//kons
 	Player(String n, int i) {

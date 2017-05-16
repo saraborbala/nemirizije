@@ -50,7 +50,7 @@ public class Motor {
 
         
      public Motor(){
-     gameState = NEW_GAME;
+     
        
 		//addPlayer ("Jatekos1");	//ezt szépen kéne 
 		//initalPlayer();	//kezdõjátékos- 0. 
@@ -248,7 +248,7 @@ public class Motor {
     	  for(Territory territories : territories){  
     		  if(territories.getName().equals(labelToStr)){
     			  territories.setArmies(territories.getArmies() - lostUnits);
-    			  if(territories.getArmies() <= 0){
+    			  if(territories.getArmies() != 0){
     				  //Elfoglalva
     				  conqueared = true;
     				  territories.setPlayer(attacker);
