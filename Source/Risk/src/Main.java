@@ -11,7 +11,10 @@ public class Main {
 					frame.setVisible(true);
 					frame.setTitle("Rizikó");
 					motor.setGUI(frame);
-					
+					motor.initialTestPlayer();
+					motor.assignPlayer();
+					//System.out.println(motor.territories.get(0).getPlayer());
+					 
 				} 
 				catch (Exception e) {
 				e.printStackTrace();

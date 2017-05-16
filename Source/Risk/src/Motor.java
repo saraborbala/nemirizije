@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;	
 import java.util.Collections;//dobás
@@ -25,7 +26,8 @@ public class Motor {
     public static final int GAME_OVER = 20;	//játék vége---!! IDE MÉG NEM NAGYON VAN SEMMI!!
     
     static private int gameState;
-
+    
+    
         
   ///  public Vector<Continent> continents = new Vector<Continent>();
     static public Vector<Territory> territories = new Vector<Territory>();
@@ -49,7 +51,7 @@ public class Motor {
         
      public Motor(){
      gameState = NEW_GAME;
-        
+       
 		//addPlayer ("Jatekos1");	//ezt szépen kéne 
 		//initalPlayer();	//kezdõjátékos- 0. 
 		     
@@ -76,6 +78,19 @@ public class Motor {
  		// ja hát ezt nem tom :(((
  		
        }
+     
+     //Initial test players TODO: remove
+     public void initialTestPlayer(){
+    	 Player player1 = new Player("Tesztbábu1", 100);
+    	 Player player2 = new Player("Tesztbábu2", 40);
+    	 
+    	 player1.setColor(Color.ORANGE);
+    	 player2.setColor(Color.GREEN);
+    	 players.addElement(player1);
+    	 players.addElement(player2);
+    	 
+    	 
+     }
      
      //elején katonaosztási:
      public void distributeArmies(){		
@@ -111,7 +126,7 @@ public class Motor {
       public Vector<Player> getPlayers(){
     	  return players;
       }
-
+ 
       public Territory getTerritoryAt(int i){
     	  if(i > 0)
     		  return territories.elementAt(i);
@@ -214,6 +229,49 @@ public class Motor {
     	  }
       }
      
+      //Gyõztes kiszámítása 
+      public void upDateUnitsAfterAttack(){
+    	  //Játékosok egységszámainak frissítése a csata függvényében
+    	  Player attacker = null;
+    	  boolean conqueared = false;
+    	  String labelFromStr = jgui.getLabelFromName();
+    	  String labelToStr = jgui.getLabelToName();
+    	  System.out.println(labelFromStr);
+    	  System.out.println(labelToStr);
+    	  int lostUnits = jgui.getAttackerLostUnits();
+    	  for(Territory territories : territories){	
+    		  if(territories.getName().equals(labelFromStr)){
+    			  attacker = territories.getPlayer();
+    			  territories.setArmies(territories.getArmies() - lostUnits);
+    		  }
+    	  }  
+    	  for(Territory territories : territories){  
+    		  if(territories.getName().equals(labelToStr)){
+    			  territories.setArmies(territories.getArmies() - lostUnits);
+    			  if(territories.getArmies() <= 0){
+    				  //Elfoglalva
+    				  conqueared = true;
+    				  territories.setPlayer(attacker);
+    				  
+    				  //Egy egység átvitele
+    				  //TODO: mindegyikre alkalmazza
+    				  territories.addArmies(5);
+    				  //System.out.println(jgui.getLabelToName());
+    			  }
+    			  
+    		  }  
+    		  if(conqueared){
+    			  if(territories.getName().equals(labelFromStr)){
+    				  //Eredeti területrõl egy egység levonása
+        			  territories.setArmies(territories.getArmies() - 1);
+        		  }
+    		  }
+    	  } 
+    	  
+    	  jgui.refreshMap();
+      }
+    	  
+    	  
       
       //JÁTÉKÁLLAPOT BEÁLLÍTÁS:- terület helye kell
       

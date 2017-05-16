@@ -13,7 +13,7 @@ public class Territory{
 		Territory(String n){
 			
 			name = n;
-			player = new Player(null,-1); 	       
+			player = new Player(null,-1); 
 		}
 		
 		//setterek:

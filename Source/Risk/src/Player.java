@@ -23,6 +23,9 @@ public class Player {
 	public int getPlayerIndex(){
 		return index;
 	}
+	public void setName(String name){
+		this.name = name; 
+	}
 	
 	public String getName(){
 		return name;

@@ -1,4 +1,4 @@
-import java.awt.BorderLayout;
+/*import java.awt.BorderLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -27,7 +27,7 @@ public class test {
     JInternalFrame internalFrame = new JInternalFrame("Can Do All", true, true, true, true);
   
     
-    AttackScreen attackframe = new AttackScreen();
+    AttackScreen attackframe = new AttackScreen(jgui);
     attackframe.setBounds(23, 10, 851, 600);
     attackframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     //Display the window.
@@ -52,4 +52,4 @@ public class test {
     frame.setSize(500, 300);
     frame.setVisible(true);
   }
-}
+}*/

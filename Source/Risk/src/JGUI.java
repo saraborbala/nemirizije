@@ -21,6 +21,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JButton;
 import javax.swing.event.MenuKeyListener;
@@ -37,12 +38,26 @@ public class JGUI extends JFrame {
 	private String fromMove;
 	private String toMove;
 	JDesktopPane desktopPane = new JDesktopPane();
+	private Integer attackerLostUnits = 0;
+	private Integer defenderLostUnits = 0;
 	
 	Map<String, JLabel> labels = new HashMap<String,JLabel>();
 	Map<String, JLabel> circles = new HashMap<String,JLabel>();
 	Map<String, JLabel> toBeRefreshed = new HashMap<String,JLabel>();
 	private String labelFromName;
 	private String labelToName;
+	private boolean attackEnded = false;
+	
+	public void setAttackEnded(boolean value){
+		attackEnded = value;
+	}
+	
+	public String getLabelFromName(){
+		return labelFromName;
+	}
+	public String getLabelToName(){
+		return labelToName;
+	}
 	
 	public int getUnitsToMove(){
 		return unitsToMoveNum;
@@ -50,13 +65,30 @@ public class JGUI extends JFrame {
 	public int getAvailableUnits(){
 		return availableUnits;
 	}
-	
-	private enum StatusMove {
-		STARTED, FIRST_SELECTED, BOTH_SELECTED 
+	public Integer setAttackerLostUnits(int n){
+		return attackerLostUnits = n;
+	}
+	public Integer setDefenderLostUnits(int n){
+		return defenderLostUnits = n;
+	}
+	public Integer getAttackerLostUnits(){
+		return attackerLostUnits;
+	}
+	public Integer getDefenderLostUnits(){
+		return defenderLostUnits;
 	}
 	
-	StatusMove statusmove;
+	private enum StatusMove {
+		STARTED, FIRST_SELECTED, BOTH_SELECTED, ATTACK_ENDED 
+	}
 	
+	private StatusMove statusmove;
+	public StatusMove getStatusMove(){
+		return this.statusmove;
+	}
+	public void setStatusMove(StatusMove statusmove){
+		this.statusmove = statusmove;
+	}
 	
 	//TODO: hozzáadni a labelöket az országok közepére
 	
@@ -112,7 +144,12 @@ public class JGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public JGUI(Motor motor) {
+		
 		this.motor = motor;	// motor és GUI összekapcsolása
+		
+		//Teszt
+		
+		
 		//Teszt játékos
 		/*Player newPlayer1 = new Player("tesztname", 0);
 		//Player newPlayer2 = new Player("tesztname2", 1);
@@ -158,7 +195,7 @@ public class JGUI extends JFrame {
 		contentPane.add(Mainpanel, BorderLayout.CENTER);
 		Mainpanel.setLayout(null);
 		
-		
+		 
 		
 		//Indikátor a játékosok egységeinek száma függvényében
 		JLabel Player1Units = new JLabel("");
@@ -227,17 +264,17 @@ public class JGUI extends JFrame {
 		//TODO: Megoldandó feladatok: területek szétosztása játékosok között, random. 
 		//új játék kezdése: korábbit reseteli
 		
-		JMenuItem Attack = new JMenuItem("Támadás");
+		/*JMenuItem Attack = new JMenuItem("Támadás");
 		Attack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AttackScreen frame = new AttackScreen();
+				AttackScreen frame = new AttackScreen(this);
 				frame.setBounds(32, 62, 765, 325);
 				frame.setLocation(new Point(300,300));
 				frame.setResizable(false);
 				//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 				frame.setVisible(true);	
 			}
-		});
+		});*/ 
 		 
 
 		JMenuItem Exit = new JMenuItem("Kilépés");
@@ -250,7 +287,7 @@ public class JGUI extends JFrame {
 		upperMenu.add(Menu);
 		Menu.add(NewPlayer);
 		Menu.add(NewGame);
-		Menu.add(Attack);
+		//Menu.add(Attack);
 		Menu.add(Exit);
 		
 		//Egységek mozgatás
@@ -261,19 +298,20 @@ public class JGUI extends JFrame {
 			}
 		});
 		upperMenu.add(Move);
-		
+		JGUI jgui = this;
 		JMenu AttackMenu = new JMenu("Támadás");	
 		AttackMenu.addMouseListener(new MouseAdapter() {
 			@Override
+			
 			public void mouseClicked(MouseEvent e) {
-				AttackScreen frame = new AttackScreen();
+				AttackScreen frame = new AttackScreen(jgui, motor);
 				frame.setBounds(32, 62, 765, 325);
 				frame.setLocation(new Point(300,300));
 				frame.setResizable(false);
 				//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 				frame.setVisible(true);	
 			}
-		});
+		}); 
 		upperMenu.add(AttackMenu);
 		
 		// Menu vége
@@ -1014,6 +1052,30 @@ public class JGUI extends JFrame {
 		btnDoneMoveSelect.setBounds(476, 0, 89, 35);
 		movementPanel.add(btnDoneMoveSelect);
 		
+		JButton btnNewButton_2 = new JButton("refresh");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jgui.refreshMap();
+			}
+		});
+		btnNewButton_2.setBounds(21, 100, 89, 23);
+		Mainpanel.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Greenland");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for(Territory territories : motor.territories){
+					if(territories.getName().equals("Greeland")){
+						Player test = new Player("test", 1);
+						test.setColor(Color.ORANGE);
+						territories.setPlayer(test);
+					}
+				}
+			}
+		});
+		btnNewButton_3.setBounds(21, 131, 89, 23);
+		Mainpanel.add(btnNewButton_3);
+		
 		movementPanel.setVisible(false);
 		//listenerek
 		
@@ -1030,8 +1092,39 @@ public class JGUI extends JFrame {
 		    motor.territories.add(actualTerritory);
 		    actualTerritory.setArmies(1);
 		    
-		    //teszt
+		    //teszt TODO: remove
 		    
+		    /*for(Territory territories : motor.territories){
+		    if(territories.getPlayer().getPlayerIndex() != -1){	
+	    		//Ha egyezik a kör labelje az adott terület nevével	
+	    		if(territories.getName().equals(circlekey))
+		    	{
+		    		Player actualPlayer;
+		    		
+		    		actualPlayer = territories.getPlayer();
+		    		actualColor = actualPlayer.getColor();
+		    		System.out.println(circlekey);
+		    		
+		    		int colorID = 0; 
+		    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
+					if(actualColor.equals(Color.RED.darker())) 		{colorID = 1;}
+					if(actualColor.equals(Color.CYAN))				{colorID = 2;}
+					if(actualColor.equals(Color.GREEN))				{colorID = 3;}
+					if(actualColor.equals(Color.ORANGE))			{colorID = 4;}
+					if(actualColor.equals(Color.MAGENTA.darker()))	{colorID = 5;}
+					
+					//Megfelelõ színû kör kiválasztása és beállítása
+				    switch(colorID){
+						case 1: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG"))); break;}
+						case 2: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG"))); break;}
+						case 3: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/green_dot.PNG"))); break;}
+						case 4: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/orange_dot.PNG"))); break;}
+						case 5: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/magenta_dot.PNG"))); break;}		
+						default: {circlevalue.setIcon(null);}
+				    }	    
+				    System.out.println(circlevalue);
+		    		}
+		    }*/
 		    //Területhez tartozó játékos kikeresése
 		    
 		    //Játékos színe alapján beállítás
@@ -1081,7 +1174,7 @@ public class JGUI extends JFrame {
     		//------
 		    //Indikátorok listenerjei
     		statusmove = StatusMove.STARTED;
-    		
+    		    		
     		circlevalue.addMouseListener(new MouseAdapter() {
 		    	public void mouseEntered(MouseEvent e) {
 		    		lblAktulisOrszg.setText("Aktuálisan kijelölt ország:");
@@ -1096,24 +1189,54 @@ public class JGUI extends JFrame {
 					lblActCntryName.setText("");
 					
 				}
+				
+				
 				public void mouseClicked(MouseEvent arg0) {
+					Player labelFromPlayer = null;
+					Player labelToPlayer = null;
 					switch(statusmove){
 						case STARTED: {
 							labelFromName = circlekey;
+							for(Territory territories : motor.territories){	
+								if(territories.getName().equals(labelFromName)){
+									labelFromPlayer = territories.getPlayer();
+								}
+							}
+							
+							
 							statusmove = StatusMove.FIRST_SELECTED;
 							System.out.println(statusmove);
 							break;
 						}
 						case FIRST_SELECTED: {						
+							labelToName = circlekey;
 							for(Territory territories : motor.territories){	
 					    		  if(territories.getName().equals(labelFromName)){
 					    			  availableUnits = territories.getArmies();
+					    			  labelFromPlayer = territories.getPlayer();
+					    		  }
+					    		  if(territories.getName().equals(labelToName)){
+					    			  labelToPlayer = territories.getPlayer();
 					    		  }
 							}
-							labelToName = circlekey;
+							//System.out.println(labelFromName);
+							//System.out.println(labelToName);
 							//lblUnitNum.setText(unitsToMoveNum.toString());
+							if(!(labelFromPlayer.equals(labelToPlayer))){
+								//ATTACK
+								//Create attackframe
+								AttackScreen frame = new AttackScreen(jgui, motor);
+								frame.setBounds(32, 62, 765, 325);
+								frame.setLocation(new Point(300,300));
+								frame.setResizable(false);
+								//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+								frame.setVisible(true);	
+								
+							}
+							else{//MOVE
+								movementPanel.setVisible(true);
+							}
 							
-							movementPanel.setVisible(true);
 
 							
 							statusmove = StatusMove.BOTH_SELECTED;
@@ -1121,9 +1244,12 @@ public class JGUI extends JFrame {
 							//Függvényhíváv labelFrommal és labelTo-val
 							
 							
+							
+							
 							//statusmove = StatusMove.STARTED;
 							break;
 						}
+
 					default:
 						break;
 						
@@ -1132,7 +1258,7 @@ public class JGUI extends JFrame {
 				}
 				
 		    });		
-		
+    		
 		//Listenerek hozzáadása az országok labeljeihez		
 		for(Map.Entry<String, JLabel> labelitem : labels.entrySet()) {
 		    String labelkey = labelitem.getKey();
@@ -1187,16 +1313,97 @@ public class JGUI extends JFrame {
 					//Nevek beállítása
 					lblPlayerName1.setText(Motor.players.elementAt(0).getName());
 					lblPlayerName2.setText(Motor.players.elementAt(1).getName());	
+					for(Territory territories : motor.territories){
+					if(territories.getPlayer().getPlayerIndex() != -1){	
+			    		//Ha egyezik a kör labelje az adott terület nevével	
+			    		if(territories.getName().equals(circlekey))
+				    	{
+				    		Player actualPlayer;
+				    		
+				    		actualPlayer = territories.getPlayer();
+				    		//actualColor = actualPlayer.getColor();
+				    		//System.out.println(circlekey);
+				    		
+				    		int colorID = 0; 
+				    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
+							if(actualPlayer.getColor().equals(Color.RED.darker())) 		{colorID = 1;}
+							if(actualPlayer.getColor().equals(Color.CYAN))				{colorID = 2;}
+							if(actualPlayer.getColor().equals(Color.GREEN))				{colorID = 3;}
+							if(actualPlayer.getColor().equals(Color.ORANGE))			{colorID = 4;}
+							if(actualPlayer.getColor().equals(Color.MAGENTA.darker()))	{colorID = 5;}
+							
+							//Megfelelõ színû kör kiválasztása és beállítása
+						    switch(colorID){
+								case 1: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG"))); break;}
+								case 2: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG"))); break;}
+								case 3: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/green_dot.PNG"))); break;}
+								case 4: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/orange_dot.PNG"))); break;}
+								case 5: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/magenta_dot.PNG"))); break;}		
+								default: {circlevalue.setIcon(null);}
+						    }	    
+						    //System.out.println(circlevalue);
+				    		}
+				    }
 					
-				}
+				}}
 			}
 		});*/
 		
 		}
 
+	
+}
+	// ------------------ Adatok frissítése serveren keresztül
+	public void refreshMap(){ // void? 
+		//SwingUtilities.updateComponentTreeUI(this);
+		//revalidate();
+		//repaint();
+		
+			for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
+			String circlekey = circleitem.getKey();
+		    JLabel circlevalue = circleitem.getValue();
+			
+		    //this.pack();
+		    //this.repaint();
+		    //lblPlayerName1.setText(motor.players.elementAt(0).getName());
+			//lblPlayerName2.setText(motor.players.elementAt(1).getName());
+				
+		    for(Territory territories : motor.territories){
+		    	Integer armyNum = territories.getArmies();
+		    	circlevalue.setText(armyNum.toString());
+		    	
+		    	if(territories.getPlayer().getPlayerIndex() != -1){	
+	    		//Ha egyezik a kör labelje az adott terület nevével	
+	    		if(territories.getName().equals(circlekey))
+		    	{
+		    		Player actualPlayer;
+		    		
+		    		actualPlayer = territories.getPlayer();
+		    		//actualColor = actualPlayer.getColor();
+		    		//System.out.println(circlekey);
+		    		
+		    		int colorID = 0; 
+		    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
+					if(actualPlayer.getColor().equals(Color.RED.darker())) 		{colorID = 1;}
+					if(actualPlayer.getColor().equals(Color.CYAN))				{colorID = 2;}
+					if(actualPlayer.getColor().equals(Color.GREEN))				{colorID = 3;}
+					if(actualPlayer.getColor().equals(Color.ORANGE))			{colorID = 4;}
+					if(actualPlayer.getColor().equals(Color.MAGENTA.darker()))	{colorID = 5;}
+					
+					//Megfelelõ színû kör kiválasztása és beállítása
+				    switch(colorID){
+						case 1: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG"))); break;}
+						case 2: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG"))); break;}
+						case 3: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/green_dot.PNG"))); break;}
+						case 4: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/orange_dot.PNG"))); break;}
+						case 5: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/magenta_dot.PNG"))); break;}		
+						default: {circlevalue.setIcon(null);}
+				    }	    
+				    
+		    	}
+		    }
+	
+		  }
+		}
 	}
 }
-	/*// ------------------ Adatok frissítése serveren keresztül
-	public void refreshMap();{ // void? 
-	}
-}*/
