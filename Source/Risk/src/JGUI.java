@@ -1133,7 +1133,7 @@ public class JGUI extends JFrame {
 		    //Játékos színe alapján beállítás
 		    
 		    //Teszt Sára kódja alapján - indikátorok színének beállítása
-		    for(Territory territories : motor.territories){	    		    		    	
+		    /*for(Territory territories : motor.territories){	    		    		    	
 		    	//Kezdetben minden területhez 1 játékos
 		    	//territories.addArmies(1);
 		    	actualCircleUnits = territories.getArmies();
@@ -1168,7 +1168,7 @@ public class JGUI extends JFrame {
 					    System.out.println(circlevalue);
 			    		}
 			    }
-		    }
+		    }*/
 		    
 		    //circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG")));
     		//TODO: Mapben leimplementálni, ez a pilot
@@ -1361,10 +1361,22 @@ public class JGUI extends JFrame {
 		//SwingUtilities.updateComponentTreeUI(this);
 		//revalidate();
 		//repaint();
+			for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
+				String circlekey = circleitem.getKey();
+				JLabel circlevalue = circleitem.getValue();
+				
+				for(Territory territories : motor.territories){
+					if(territories.getName().equals(circlekey)){
+						Integer actarmy = territories.getArmies();
+						circlevalue.setText(actarmy.toString());
+					}
+				}
 		
+			}
 			for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
 			String circlekey = circleitem.getKey();
 		    JLabel circlevalue = circleitem.getValue();
+		    
 			
 		    //this.pack();
 		    //this.repaint();
@@ -1372,8 +1384,9 @@ public class JGUI extends JFrame {
 			//lblPlayerName2.setText(motor.players.elementAt(1).getName());
 				
 		    for(Territory territories : motor.territories){
-		    	Integer armyNum = territories.getArmies();
-		    	circlevalue.setText(armyNum.toString());
+		    	//Integer armyNum = territories.getArmies();
+		    	//circlevalue.setText(armyNum.toString());
+		    	//circlevalue.validate();
 		    	
 		    	if(territories.getPlayer().getPlayerIndex() != -1){	
 	    		//Ha egyezik a kör labelje az adott terület nevével	
@@ -1404,6 +1417,7 @@ public class JGUI extends JFrame {
 				    }	    
 				    
 		    	}
+	    		
 		    }
 	
 		  }

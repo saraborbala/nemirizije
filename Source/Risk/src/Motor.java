@@ -244,12 +244,15 @@ public class Motor {
     	  for(Territory territories : territories){	
     		  if(territories.getName().equals(labelFromStr)){
     			  attacker = territories.getPlayer();
-    			  territories.setArmies(territories.getArmies() - attackerLostUnits);
+    			  int actarmy = territories.getArmies();
+    			  territories.setArmies(actarmy - attackerLostUnits);
     		  }
     	  }  
     	  for(Territory territories : territories){  
     		  if(territories.getName().equals(labelToStr)){
-    			  territories.setArmies(territories.getArmies() - defenderLostUnits);
+    			  int actarmy = territories.getArmies();
+    			  territories.setArmies(actarmy - defenderLostUnits);
+    			  
     			  if(territories.getArmies() <= 0){
     				  //Elfoglalva
     				  conqueared = true;
@@ -265,7 +268,8 @@ public class Motor {
     		  if(conqueared){
     			  if(territories.getName().equals(labelFromStr)){
     				  //Eredeti területrõl egy egység levonása
-        			  territories.setArmies(territories.getArmies() - 1);
+    				  int actarmy = territories.getArmies();
+        			  territories.setArmies(actarmy - 1);
         		  }
     		  }
     	  } 
