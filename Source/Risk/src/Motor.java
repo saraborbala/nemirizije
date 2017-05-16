@@ -80,10 +80,10 @@ public class Motor {
  		
        }
      
-     //Initial test players TODO: remove
-     public void initialTestPlayer(){
-    	 Player player1 = new Player("Tesztbábu1", 100);
-    	 Player player2 = new Player("Tesztbábu2", 40);
+     //Initial players
+     public void initPlayers(){
+    	 Player player1 = new Player("Player1", 100);
+    	 Player player2 = new Player("Player2", 40);
     	 
     	 player1.setColor(Color.ORANGE);
     	 player2.setColor(Color.GREEN);
@@ -1203,9 +1203,13 @@ public class Motor {
 			System.out.println(gs.msg);
 			this.territories = gs.territories;
 			this.players = gs.players;
+			setPlayerTerritories();
+			for (Player players : players){
+				players.continentBonus();
+			}
 		}
 		
-		jgui.revalidate();
+		jgui.refreshMap();
 		
 	}
 

@@ -165,9 +165,6 @@ public class NewPlayer extends JFrame {
 						player.setColor(playerColor);
 					}
 				}
-			
-				
-				//}
 				//Bezárás
 				dispose();			
 			}

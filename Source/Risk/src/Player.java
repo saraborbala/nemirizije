@@ -55,7 +55,7 @@ public class Player implements java.io.Serializable {
 		occupiedTerritories.add(territory);
 	}
 	
-	public void ContinentBonus(){
+	public void continentBonus(){
 		// kontinens bónusz, minden kör végén meg kell hívni,
 		// a bónuszváltozót állítja annak függvényében, mennyi kontinense van
 		// Bónuszok: 
