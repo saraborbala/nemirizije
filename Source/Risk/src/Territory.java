@@ -2,7 +2,7 @@ import java.util.Vector;
 
 
 
-public class Territory{
+public class Territory implements java.io.Serializable{
 		private String name;
 		private Player player;
 		private int armies;

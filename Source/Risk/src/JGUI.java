@@ -960,9 +960,12 @@ public class JGUI extends JFrame {
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GameState GS = new GameState();
-				GS.msg = "Helloka!";
-				motor.sendGameState(GS);
+				GameState gs = new GameState();
+				gs.msg = "Kör vége!";
+				gs.state = 0; // new_turn
+				gs.territories = motor.territories;
+				gs.players = motor.players;
+				motor.sendGameState(gs);
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));

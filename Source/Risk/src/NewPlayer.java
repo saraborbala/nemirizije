@@ -179,15 +179,9 @@ public class NewPlayer extends JFrame {
 				
 				if(rdbtnServer.isSelected()){
 					motor.startServer();
-					GameState GS = new GameState();
-					GS.msg = "Helloka!";
-					motor.sendGameState(GS);
 				}
 				if(rdbtnClient.isSelected()){
 					 motor.startClient();
-					GameState GS = new GameState();
-					GS.msg = "Helloka!";
-					motor.sendGameState(GS);
 				}
 				
 				//Új játékos létrehozása név alapján

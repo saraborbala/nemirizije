@@ -1186,7 +1186,12 @@ public class Motor {
 	}
 	public void GameStateRecieved(GameState gs){
 		//TODO error handling
-		System.out.println(gs.msg);
+		if(gs.state == 0){
+			System.out.println(gs.msg);
+			this.territories = gs.territories;
+			this.players = gs.players;
+		}
+		
 		jgui.revalidate();
 		
 	}

@@ -13,8 +13,8 @@ public class Main {
 					motor.setGUI(frame);
 					motor.initialTestPlayer();
 					motor.assignPlayer();
-					//System.out.println(motor.territories.get(0).getPlayer());
-					 
+					motor.assignAdjacentsandContinent();			
+					motor.setPlayerTerritories();
 				} 
 				catch (Exception e) {
 				e.printStackTrace();

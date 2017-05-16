@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.util.Vector;
 
 
-public class Player {
+public class Player implements java.io.Serializable {
 
 	private String name;	//jáccó neve
 	private int index;		//indexe
