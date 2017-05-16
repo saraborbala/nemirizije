@@ -97,6 +97,7 @@ public class AttackScreen extends JFrame {
 		
 	}
 	public void setDiceIcon(Integer result, JLabel label){
+		//Eredmény függvényében az ikon kiválasztása és beállítása
 		switch(result){
 		case 1: {label.setIcon(Dice1icon); break;}
 		case 2: {label.setIcon(Dice2icon); break;}
@@ -169,7 +170,7 @@ public class AttackScreen extends JFrame {
 			}
 			else{jgui.setDefenderLostUnits(jgui.getDefenderLostUnits() + 1);}
 			
-			if(attackerResult.get(1) - defenderResult.get(1) <= 0){
+			if(attackerResult.get(1) - defenderResult.get(0) <= 0){
 				jgui.setAttackerLostUnits(jgui.getAttackerLostUnits() + 1);
 			}
 			else{jgui.setDefenderLostUnits(jgui.getDefenderLostUnits() + 1);}

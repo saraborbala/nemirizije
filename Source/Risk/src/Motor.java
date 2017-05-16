@@ -238,25 +238,26 @@ public class Motor {
     	  String labelToStr = jgui.getLabelToName();
     	  System.out.println(labelFromStr);
     	  System.out.println(labelToStr);
-    	  int lostUnits = jgui.getAttackerLostUnits();
+    	  int attackerLostUnits = jgui.getAttackerLostUnits();
+    	  int defenderLostUnits = jgui.getDefenderLostUnits();
     	  for(Territory territories : territories){	
     		  if(territories.getName().equals(labelFromStr)){
     			  attacker = territories.getPlayer();
-    			  territories.setArmies(territories.getArmies() - lostUnits);
+    			  territories.setArmies(territories.getArmies() - attackerLostUnits);
     		  }
     	  }  
     	  for(Territory territories : territories){  
     		  if(territories.getName().equals(labelToStr)){
-    			  territories.setArmies(territories.getArmies() - lostUnits);
-    			  if(territories.getArmies() != 0){
+    			  territories.setArmies(territories.getArmies() - defenderLostUnits);
+    			  if(territories.getArmies() <= 0){
     				  //Elfoglalva
     				  conqueared = true;
     				  territories.setPlayer(attacker);
-    				  
+    				  territories.addArmies(5);
     				  //Egy egység átvitele
     				  //TODO: mindegyikre alkalmazza
-    				  territories.addArmies(5);
-    				  //System.out.println(jgui.getLabelToName());
+    				  
+    				  System.out.println(jgui.getLabelToName());
     			  }
     			  
     		  }  
