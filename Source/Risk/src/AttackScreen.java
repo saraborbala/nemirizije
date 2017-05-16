@@ -163,8 +163,9 @@ public class AttackScreen extends JFrame {
 	public void calculateWinner(){ 
 		if((attackerResult != null) & (defenderResult != null)){
 			Collections.sort(attackerResult);
-			//System.out.println(attackerResult);		
+			System.out.println(attackerResult);		
 			Collections.sort(defenderResult);
+			System.out.println(defenderResult);		
 			if(attackerResult.get(2) - defenderResult.get(1) <= 0){
 				jgui.setAttackerLostUnits(jgui.getAttackerLostUnits() + 1);
 			}

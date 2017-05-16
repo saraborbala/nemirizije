@@ -221,13 +221,16 @@ public class Motor {
     	 //A honnan terület egységeit csökkenteni a vivendõvel
     	  for(Territory territories : territories){	
     		  if(territories.getName().equals(from)){
-    			  territories.setArmies(jgui.getAvailableUnits() - jgui.getUnitsToMove());	  
+    			  
+    			  territories.setArmies(jgui.getAvailableUnits() - numberToMove);
+    			  
+    			  
     		  }
-    		  if(territories.getName().equals(to)){
-    			  int actArmy = territories.getArmies();
-    			  territories.setArmies(actArmy + jgui.getUnitsToMove());
-    		  }
-    	  }
+	    		  if(territories.getName().equals(to)){
+	    			  int actArmy = territories.getArmies();
+	    			  territories.setArmies(actArmy + numberToMove);
+	    		  }
+    		  }  
       }
      
       //Gyõztes kiszámítása 
@@ -256,11 +259,14 @@ public class Motor {
     			  
     			  if(territories.getArmies() <= 0){
     				  //Elfoglalva
-    				  conqueared = true;
+    				  //conqueared = true;
+    				  territories.setArmies(0);
     				  territories.setPlayer(attacker);
-    				  while(territories.getArmies() < 1){
+    				  System.out.println(labelFromStr + "\n" + labelToStr );
+    				  moveUnits(labelFromStr, labelToStr, 1);
+    				  /*while(territories.getArmies() < 1){
     					  territories.addArmies(1);
-    				  }
+    				  }*/
     				  
     				  //Egy egység átvitele
     				  //TODO: mindegyikre alkalmazza
@@ -269,14 +275,15 @@ public class Motor {
     			  }
     			  
     		  }  
-    		  if(conqueared){
-    			  if(territories.getName().equals(labelFromStr)){
+    		  //if(conqueared){
+    			  
+    			  /*if(territories.getName().equals(labelFromStr)){
     				  //Eredeti területrõl egy egység levonása
-    				  int actarmy = territories.getArmies();
+    				  //int actarmy = territories.getArmies();
         			  //territories.setArmies(actarmy - 1);
-        			  moveUnits(labelFromStr, labelToStr, 1);
-        		  }
-    		  }
+        			  
+        		  }*/
+    		  //}
     	  } 
     	  jgui.setAttackerLostUnits(0);
     	  jgui.setDefenderLostUnits(0);

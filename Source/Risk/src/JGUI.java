@@ -979,8 +979,10 @@ public class JGUI extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//if(availableUnits > unitsToMoveNum){
+				if(jgui.getAvailableUnits() - unitsToMoveNum >= 2){
 					unitsToMoveNum += 1;
 					lblUnitNum.setText(unitsToMoveNum.toString());
+				}
 				//}
 			}
 		});
@@ -1040,7 +1042,7 @@ public class JGUI extends JFrame {
 							//circlevalue.setText("13");	
 						}					
 				}
-				
+				unitsToMoveNum = 0;
 				//System.out.println(x);
 				movementPanel.setVisible(false);
 			}
