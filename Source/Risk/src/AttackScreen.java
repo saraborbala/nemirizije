@@ -104,32 +104,15 @@ public class AttackScreen extends JFrame {
 				int High = 6;
 				int Result = r.nextInt(High-Low) + Low;
 				attackerResult.add(Result);
-				switch(Result){
-						case 1: {lblAttDice1.setIcon(Dice1icon); break;}
-						case 2: {lblAttDice1.setIcon(Dice2icon); break;}
-						case 3: {lblAttDice1.setIcon(Dice3icon); break;}
-						case 4: {lblAttDice1.setIcon(Dice4icon); break;}
-						case 5: {lblAttDice1.setIcon(Dice5icon); break;}
-						case 6:	{lblAttDice1.setIcon(Dice6icon); break;}		
-				}
+				setDiceIcon(attackerResult.get(0), lblAttDice1);
 		}
-		
 		else if(throwCntrAtt == 2){
-
 				Random r = new Random();
 				int Low = 1;
 				int High = 7;
 				int Result = r.nextInt(High-Low) + Low;
 				attackerResult.add(Result);
-				switch(Result){
-						case 1: {lblAttDice2.setIcon(Dice1icon); break;}
-						case 2: {lblAttDice2.setIcon(Dice2icon); break;}
-						case 3: {lblAttDice2.setIcon(Dice3icon); break;}
-						case 4: {lblAttDice2.setIcon(Dice4icon); break;}
-						case 5: {lblAttDice2.setIcon(Dice5icon); break;}
-						case 6:	{lblAttDice2.setIcon(Dice6icon); break;}
-						case 7:	{lblAttDice2.setText("baj");; break;}
-					}
+				setDiceIcon(attackerResult.get(1), lblAttDice2);
 		}
 		else if(throwCntrAtt == 3){
 				AttackDice = false;
@@ -138,15 +121,7 @@ public class AttackScreen extends JFrame {
 				int High = 6;
 				int Result = r.nextInt(High-Low) + Low;;
 				attackerResult.add(Result);
-				switch(Result){
-						case 1: {lblAttDice3.setIcon(Dice1icon); break;}
-						case 2: {lblAttDice3.setIcon(Dice2icon); break;}
-						case 3: {lblAttDice3.setIcon(Dice3icon); break;}
-						case 4: {lblAttDice3.setIcon(Dice4icon); break;}
-						case 5: {lblAttDice3.setIcon(Dice5icon); break;}
-						case 6:	{lblAttDice3.setIcon(Dice6icon); break;}		
-				}
-				
+				setDiceIcon(attackerResult.get(2), lblAttDice3);	
 		}
 	}
 	
@@ -157,14 +132,7 @@ public class AttackScreen extends JFrame {
 			int High = 7;
 			int Result = r.nextInt(High-Low) + Low;
 			defenderResult.add(Result);
-			switch(Result){
-					case 1: {lblDefDice1.setIcon(Dice1icon); break;}
-					case 2: {lblDefDice1.setIcon(Dice2icon); break;}
-					case 3: {lblDefDice1.setIcon(Dice3icon); break;}
-					case 4: {lblDefDice1.setIcon(Dice4icon); break;}
-					case 5: {lblDefDice1.setIcon(Dice5icon); break;}
-					case 6:	{lblDefDice1.setIcon(Dice6icon); break;}		
-			}
+			setDiceIcon(defenderResult.get(0), lblDefDice1);
 	}
 	
 		else if(throwCntrDef == 2){
@@ -172,21 +140,13 @@ public class AttackScreen extends JFrame {
 			int Low = 1;
 			int High = 7;
 			int Result = r.nextInt(High-Low) + Low;
-			defenderResult.add(Result);
-			switch(Result){
-					case 1: {lblDefDice2.setIcon(Dice1icon); break;}
-					case 2: {lblDefDice2.setIcon(Dice2icon); break;}
-					case 3: {lblDefDice2.setIcon(Dice3icon); break;}
-					case 4: {lblDefDice2.setIcon(Dice4icon); break;}
-					case 5: {lblDefDice2.setIcon(Dice5icon); break;}
-					case 6:	{lblDefDice2.setIcon(Dice6icon); break;}
-					case 7:	{lblDefDice2.setText("baj");; break;}
-				}
+			defenderResult.add(Result);		
+			setDiceIcon(defenderResult.get(1), lblDefDice2);
 			DefDice = false;
 			//calculateWinner();
 		}
 	}
-
+	//Gyõztes számítása: bukott egységes kiszámítása és JGUI-ba állítás
 	public void calculateWinner(){ 
 		if((attackerResult != null) & (defenderResult != null)){
 			Collections.sort(attackerResult);
@@ -204,6 +164,28 @@ public class AttackScreen extends JFrame {
 		}
 		
     }
+	//Attackscreen frissítése
+	public void setDiceIcon(Integer result, JLabel label){
+		switch(result){
+		case 1: {label.setIcon(Dice1icon); break;}
+		case 2: {label.setIcon(Dice2icon); break;}
+		case 3: {label.setIcon(Dice3icon); break;}
+		case 4: {label.setIcon(Dice4icon); break;}
+		case 5: {label.setIcon(Dice5icon); break;}
+		case 6:	{label.setIcon(Dice6icon); break;}
+		}
+	}
+	
+	public void refreshAttackScreen(){
+		//Támadó
+		setDiceIcon(attackerResult.get(0), lblAttDice1);
+		setDiceIcon(attackerResult.get(1), lblAttDice2);
+		setDiceIcon(attackerResult.get(2), lblAttDice3);
+		//Védekezõ
+		setDiceIcon(defenderResult.get(0), lblDefDice1);
+		setDiceIcon(defenderResult.get(1), lblDefDice2);
+	}
+	
 	/**
 	 * Create the frame.
 	 */
