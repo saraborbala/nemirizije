@@ -47,11 +47,7 @@ public class JGUI extends JFrame {
 	private String labelFromName;
 	private String labelToName;
 	private boolean attackEnded = false;
-	private Player actPlayer;
-	
-	public void setActPlayer(Player player){
-		actPlayer = player;
-	}
+	public Integer actGUIPlayerIndex = 0; // 0, ha szerver, 1 ha kliens
 	
 	public void setAttackEnded(boolean value){
 		attackEnded = value;
@@ -947,12 +943,25 @@ public class JGUI extends JFrame {
 			lblPlayerName1.setText(Motor.players.elementAt(0).getName());
 			lblPlayerName2.setText(Motor.players.elementAt(1).getName());
 		}
-		
+//----HÁLÓZAT----------------------------------------------------------------------------	
 		JButton btnNewButton = new JButton("K\u00F6r v\u00E9ge");
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				GameState gs = new GameState();
+				System.out.println("A mostani játékos: " + actGUIPlayerIndex.toString());
+				
+
+				// Átállítjuk az aktuális playert
+				
+				if(motor.getActPlayer().getPlayerIndex() == 0){
+					gs.actPlayer = 1;
+				}
+				else{
+					gs.actPlayer = 0;
+				}			
+				System.out.println("A következõ játékos: " +gs.actPlayer.toString());
 				gs.msg = "Kör vége!";
 				gs.state = 0; // new_turn
 				gs.territories = motor.territories;
@@ -960,6 +969,7 @@ public class JGUI extends JFrame {
 				motor.sendGameState(gs);
 			}
 		});
+//----HÁLÓZAT-----------------------------------------------------------------------------
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnNewButton.setBounds(1135, 606, 166, 76);
 		Mainpanel.add(btnNewButton);
@@ -1345,9 +1355,12 @@ public class JGUI extends JFrame {
 		});*/
 		
 		}
-
-	
 }
+
+	private boolean isMyTurn(){
+		return (actGUIPlayerIndex == motor.getActPlayer().getPlayerIndex());
+		// TODO
+	}
 	// ------------------ Adatok frissítése serveren keresztül
 	public void refreshMap(){ // void? 
 		//SwingUtilities.updateComponentTreeUI(this);

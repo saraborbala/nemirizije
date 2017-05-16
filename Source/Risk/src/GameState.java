@@ -12,7 +12,7 @@ public class GameState implements java.io.Serializable{
 	public String msg = ""; // teszt
 	public Vector<Territory> territories ;
 	public Vector<Player> players;
-	public Player actPlayer;
+	public Integer actPlayer;
 	public int state;
 	
 	public int connected = 0;
