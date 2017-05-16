@@ -47,7 +47,7 @@ public class JGUI extends JFrame {
 	private String labelFromName;
 	private String labelToName;
 	private boolean attackEnded = false;
-<<<<<<< HEAD
+
 	private Player actPlayer;
 	private int unitToPlace = 0;
 	private boolean movementDone;
@@ -69,9 +69,9 @@ public class JGUI extends JFrame {
 	public void setActPlayer(Player player){
 		actPlayer = player;
 	}
-=======
+
 	public Integer actGUIPlayerIndex = 0; // 0, ha szerver, 1 ha kliens
->>>>>>> origin/master
+ 
 	
 	public void setAttackEnded(boolean value){
 		attackEnded = value;

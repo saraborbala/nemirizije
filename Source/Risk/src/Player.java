@@ -41,7 +41,7 @@ public class Player implements java.io.Serializable {
 	public int getNumberOfArmies(){
 		return armies;
 	}
-	
+	 
 	public int getBonusUnit(){
 		return bonusUnit;
 	}

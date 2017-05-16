@@ -892,7 +892,7 @@ public class Motor {
   					territories.get(i).setContinent(4);break; //:(
   				}
   			}
-      	  
+      	   
       	//-------- Madagascar
       	  for ( int i =0; i <41; i++ ){
   				if (territories.get(i).getName().equals("Madagascar")){

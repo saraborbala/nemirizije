@@ -157,7 +157,7 @@ public class NewPlayer extends JFrame {
 					 //jgui. = motor.players.get(1);
 					 
 				}
-				
+				 
 				//Új játékos létrehozása név alapján
 				//String newPlayerName = textField_Name.getText();
 				//Motor.addPlayer(newPlayerName);
