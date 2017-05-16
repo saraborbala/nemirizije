@@ -40,7 +40,13 @@ public class Player implements java.io.Serializable {
 		return armies;
 	}
 	
-
+	public int getBonusUnit(){
+		return bonusUnit;
+	}
+	public void setBonusUnit(int n){
+		bonusUnit = 0;
+	}
+	
 	//SD
 	public Vector<Territory> getOccupiedTerritories(){
 		return occupiedTerritories;

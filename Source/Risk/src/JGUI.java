@@ -48,6 +48,14 @@ public class JGUI extends JFrame {
 	private String labelToName;
 	private boolean attackEnded = false;
 	private Player actPlayer;
+	private int unitToPlace = 0;
+	
+	public void setUnitToPlace(int i){
+		unitToPlace = i;
+	}
+	public int getUnitToPlace(){
+		return unitToPlace;
+	}
 	
 	public void setActPlayer(Player player){
 		actPlayer = player;
@@ -916,8 +924,87 @@ public class JGUI extends JFrame {
 		
 		JLabel lblInfo = new JLabel("");
 		lblInfo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblInfo.setBounds(10, 362, 219, 153);
+		lblInfo.setBounds(10, 303, 219, 116);
 		PlayerStatus.add(lblInfo);
+		
+		JPanel bonusUnitPanel = new JPanel();
+		bonusUnitPanel.setVisible(false);
+		bonusUnitPanel.setBounds(10, 430, 219, 125);
+		PlayerStatus.add(bonusUnitPanel);
+		bonusUnitPanel.setLayout(null);
+		
+		JLabel lblBonusUnitText = new JLabel("Ennyi elemet helyezek le:");
+		lblBonusUnitText.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBonusUnitText.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblBonusUnitText.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		lblBonusUnitText.setBounds(10, 0, 199, 31);
+		bonusUnitPanel.add(lblBonusUnitText);
+		
+		JLabel lblBonusUnitNum = new JLabel("");
+		lblBonusUnitNum.setBounds(40, 34, 46, 31);
+		bonusUnitPanel.add(lblBonusUnitNum);
+		
+		JButton btnUnitAdd = new JButton("+");
+		btnUnitAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int bonusUnitAvailable = 0;
+				for(Territory territories : motor.territories){
+					if(territories.getName().equals(labelFromName)){
+						Player tempplayer = territories.getPlayer();
+						bonusUnitAvailable = tempplayer.getBonusUnit();
+					}		
+				}
+				if(getUnitToPlace() < bonusUnitAvailable){
+				setUnitToPlace(getUnitToPlace() +1);
+				Integer actarmy = getUnitToPlace();
+				lblBonusUnitNum.setText(actarmy.toString());
+				}
+			}
+		});
+		btnUnitAdd.setBounds(100, 32, 41, 35);
+		bonusUnitPanel.add(btnUnitAdd);
+		
+		JButton btnUnitMin = new JButton("-");
+		btnUnitMin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if((getUnitToPlace() - 1) > 0){
+				setUnitToPlace(getUnitToPlace() - 1);
+				}
+				Integer actarmy = getUnitToPlace();
+				lblBonusUnitNum.setText(actarmy.toString());
+			}
+		});
+		btnUnitMin.setBounds(151, 32, 41, 35);
+		bonusUnitPanel.add(btnUnitMin);
+		
+		JButton btnUnitDone = new JButton("K\u00E9sz!");
+		btnUnitDone.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int bonusUnitAvailable = 0;
+				for(Territory territories : motor.territories){	 
+					if(territories.getName().equals(labelFromName)){
+						territories.setArmies(territories.getArmies() + getUnitToPlace() );
+						Player tempplayer = territories.getPlayer();
+						//Bonus értékének aktualizálása
+						tempplayer.setBonusUnit(tempplayer.getBonusUnit() - getUnitToPlace());
+						bonusUnitAvailable = tempplayer.getBonusUnit();
+					}
+				}
+				
+				if(bonusUnitAvailable == 0){
+				statusmove = StatusMove.STARTED;
+				bonusUnitPanel.setVisible(false);
+				refreshMap();
+				}
+				else{
+				statusmove = StatusMove.PLACE_UNIT;
+				refreshMap();	
+				}
+				
+			}
+		});
+		btnUnitDone.setBounds(68, 76, 89, 35);
+		bonusUnitPanel.add(btnUnitDone);
 		
 		//TODO: Megoldani, hogy a játékosok indexe 0 és 1 legyen
 		//Szélességek beállítása a játékosok egységeinek függvényében
@@ -1155,7 +1242,7 @@ public class JGUI extends JFrame {
     		circlevalue.setHorizontalTextPosition(lblWestUSInd.CENTER);
     		//------
 		    //Indikátorok listenerjei
-    		statusmove = StatusMove.STARTED;
+    		statusmove = StatusMove.PLACE_UNIT;
     		    		
     		circlevalue.addMouseListener(new MouseAdapter() {
 		    	public void mouseEntered(MouseEvent e) {
@@ -1177,15 +1264,17 @@ public class JGUI extends JFrame {
 					Player labelFromPlayer = null;
 					Player labelToPlayer = null;
 					boolean isAdjacent = false;
+					
 					switch(statusmove){
 						case STARTED: {
+							
 							labelFromName = circlekey;
 							for(Territory territories : motor.territories){	
 								if(territories.getName().equals(labelFromName)){
 									labelFromPlayer = territories.getPlayer();	
 								}
 							}
-							
+														
 							//if(labelFromPlayer.equals())
 							statusmove = StatusMove.FIRST_SELECTED;
 							System.out.println(statusmove);
@@ -1239,6 +1328,20 @@ public class JGUI extends JFrame {
 							break;
 							}
 						case PLACE_UNIT:{
+							labelFromName = circlekey;
+							for(Territory territories : motor.territories){	
+								if(territories.getName().equals(labelFromName)){
+									labelFromPlayer = territories.getPlayer();	
+								}
+							}
+							
+							bonusUnitPanel.setVisible(true);
+							
+							/*for(Territory territories : motor.territories){	
+								if(territories.getName().equals(labelFromName)){
+									labelFromPlayer = territories.getPlayer();	
+								}
+							}*/
 							
 						}
 						
