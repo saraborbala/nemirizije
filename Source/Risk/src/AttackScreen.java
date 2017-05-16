@@ -36,6 +36,8 @@ public class AttackScreen extends JFrame {
 	private Motor motor;
 	private boolean AttackDice = true;
 	private boolean DefDice = true;
+	private int maxThrowNum = 1;
+	private boolean resultCalculable = false;
 	//
 	/**
 	 * Launch the application.
@@ -130,29 +132,59 @@ public class AttackScreen extends JFrame {
 		return result;
 	}
 	
-	private void throwDiceAttack(){
+	private void setAttackerMaxThrowNum(){
+		for(Territory territories : motor.territories){
+			if(territories.getName().equals(jgui.getLabelFromName())){
+				if(territories.getArmies() == 2){
+					maxThrowNum = 1;
+				}
+				else if(territories.getArmies() == 3){
+					maxThrowNum = 2;
+				}
+				else{
+					maxThrowNum = 3;
+				}
+			}
+		}
+	}
+	private void setDefenderMaxThrowNum(){
+		for(Territory territories : motor.territories){
+			if(territories.getName().equals(jgui.getLabelToName())){
+				if(territories.getArmies() == 1){
+					maxThrowNum = 1;
+				}
+				else{
+					maxThrowNum = 2;
+				}
+			}
+		}
+	}
+	
+	private void throwDiceAttack(int maxThrowNum){
 		if(throwCntrAtt == 1){
 				attackerResult.add(generateRandom());
 				setDiceIcon(attackerResult.get(0), lblAttDice1);
+				if(maxThrowNum == 1){AttackDice = false;}
 		}
 		else if(throwCntrAtt == 2){
 				attackerResult.add(generateRandom());
 				setDiceIcon(attackerResult.get(1), lblAttDice2);
+				if(maxThrowNum == 2){AttackDice = false;}
 		}
-		else if(throwCntrAtt == 3){
+		else if(throwCntrAtt == maxThrowNum){
 				AttackDice = false;
 				attackerResult.add(generateRandom());
 				setDiceIcon(attackerResult.get(2), lblAttDice3);	
 		}
 	}
 	
-	private void throwDiceDef(){
+	private void throwDiceDef(int maxThrowNum){
 		if(throwCntrDef == 1){
 			defenderResult.add(generateRandom());
 			setDiceIcon(defenderResult.get(0), lblDefDice1);
 	}
 	
-		else if(throwCntrDef == 2){
+		else if(throwCntrDef == maxThrowNum){
 			defenderResult.add(generateRandom());		
 			setDiceIcon(defenderResult.get(1), lblDefDice2);
 			DefDice = false;
@@ -166,15 +198,20 @@ public class AttackScreen extends JFrame {
 			System.out.println(attackerResult);		
 			Collections.sort(defenderResult);
 			System.out.println(defenderResult);		
-			if(attackerResult.get(2) - defenderResult.get(1) <= 0){
+			int maxSizeAttack = attackerResult.size();
+			int maxSizeDef = defenderResult.size();
+			
+			if(attackerResult.get(maxSizeAttack -1) - defenderResult.get(maxSizeDef -1) <= 0){
 				jgui.setAttackerLostUnits(jgui.getAttackerLostUnits() + 1);
 			}
 			else{jgui.setDefenderLostUnits(jgui.getDefenderLostUnits() + 1);}
 			
-			if(attackerResult.get(1) - defenderResult.get(0) <= 0){
+			if(maxSizeAttack -1 != 0 & (maxSizeDef -1 != 0)){
+			if(attackerResult.get(maxSizeAttack - 1) - defenderResult.get(maxSizeDef - 1) <= 0){
 				jgui.setAttackerLostUnits(jgui.getAttackerLostUnits() + 1);
 			}
 			else{jgui.setDefenderLostUnits(jgui.getDefenderLostUnits() + 1);}
+			}
 		}
 		
     }
@@ -235,16 +272,16 @@ public class AttackScreen extends JFrame {
 		
 		JButton btnAttack = new JButton("T\u00E1mad\u00E1s!");
 		btnAttack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(AttackDice){
-				throwDiceAttack();
-				throwCntrAtt += 1;
-				}
-				//if()
-				
-				//lblAttDice1.setIcon(Dice1icon);
-				//lblAttDice2.setIcon(Dice2icon);
-			}
+			public void actionPerformed(ActionEvent arg0) {	
+							setAttackerMaxThrowNum();
+							if(maxThrowNum == 0){AttackDice = false;}
+							if(AttackDice){
+								throwDiceAttack(maxThrowNum);
+								throwCntrAtt += 1;
+							}
+						}
+					
+
 		});
 		btnAttack.setBounds(153, 254, 133, 31);
 		getContentPane().add(btnAttack);
@@ -253,6 +290,7 @@ public class AttackScreen extends JFrame {
 		btnEndAttack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//lblAttDice3.setIcon(Dice1icon);
+				//TODO: vizsgálni, hogy vannak-e dobások
 				calculateWinner();
 				motor.upDateUnitsAfterAttack();				
 				//Gyõztes visszaadása
@@ -281,13 +319,14 @@ public class AttackScreen extends JFrame {
 		
 		btnDefend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setDefenderMaxThrowNum();
 				if(DefDice){
-				throwDiceDef();
+				throwDiceDef(maxThrowNum);
 				throwCntrDef += 1;
 				
 				if(throwCntrAtt == 3 & throwCntrDef == 2){
 					//calculate result
-					
+					resultCalculable = true;
 				}
 			}
 			}

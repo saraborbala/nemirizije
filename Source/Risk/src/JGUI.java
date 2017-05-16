@@ -920,6 +920,11 @@ public class JGUI extends JFrame {
 		PlayerStatus.add(lblPlayerName2);
 		toBeRefreshed.put("lblPlayerName2", lblPlayerName2);
 		
+		JLabel lblInfo = new JLabel("");
+		lblInfo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblInfo.setBounds(10, 362, 219, 153);
+		PlayerStatus.add(lblInfo);
+		
 		//TODO: Megoldani, hogy a játékosok indexe 0 és 1 legyen
 		//Szélességek beállítása a játékosok egységeinek függvényében
 		//TODO: fusson le, amikor 2 játékos érkezik
@@ -1223,13 +1228,15 @@ public class JGUI extends JFrame {
 							if(!(labelFromPlayer.equals(labelToPlayer))){
 								//ATTACK
 								//Create attackframe
+								if(availableUnits != 1){
 								AttackScreen frame = new AttackScreen(jgui, motor);
 								frame.setBounds(32, 62, 765, 325);
 								frame.setLocation(new Point(300,300));
 								frame.setResizable(false);
 								//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 								frame.setVisible(true);	
-								
+								}
+								else{lblInfo.setText("<html>Legalább 2 egység<br>szükséges!</html>");}
 							}
 							else{//MOVE
 								movementPanel.setVisible(true);
