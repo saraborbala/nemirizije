@@ -64,35 +64,11 @@ public class Territory implements java.io.Serializable{
 	              return false;
 	        return true;
 	    }
-	    
-	    
-	    //adott játékos támadhatja-e
-	    // TODO
-	    public boolean isTamadhato(Player p){	//szomszédos területem van ezzel
-	    	//+ nem az enyém kell legyen
-	    	if ( !p.isMyTerritory(this) && ( p.getPlayerIndex() != player.getPlayerIndex()))
-	    		return true;
-	    	return false;
-	    }
-	    
-		
-	    
+	    	    
 	    //katonás cuma:
 		public void addArmies(int n){
 			armies+=n;
 		}
-
-/*	    public void addArmy(){
-	        armies++;
-	    }
-		
-		public void looseArmy(){
-			armies--;
-		}
-
-	    public void looseArmies(int a){
-	        armies -= a;
-	    }
-	*/    
+ 
 }
 

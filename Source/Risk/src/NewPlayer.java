@@ -142,29 +142,34 @@ public class NewPlayer extends JFrame {
 				
 				if(rdbtnServer.isSelected()){
 					motor.startServer();
+					//jgui.actPlayer = motor.players.get(0);
 				}
 				if(rdbtnClient.isSelected()){
 					 motor.startClient();
+					 //jgui. = motor.players.get(1);
+					 
 				}
 				
 				//Új játékos létrehozása név alapján
 				//String newPlayerName = textField_Name.getText();
 				//Motor.addPlayer(newPlayerName);
-				int playerNum = Motor.players.size();
+				/*int playerNum = Motor.players.size();
 				String playerName = textField_Name.getText();				
-				Player newPlayer = new Player(playerName, playerNum+1);
+				Player newPlayer = new Player(playerName, playerNum+1);*/
+				
+					
 				
 				//Csak 2 játékos adható összesen hozzá
-				if(playerNum < 2){
-				Motor.players.add(newPlayer);
-				}
+				/*if(playerNum < 2){
+				motor.players.add(newPlayer);
+				}*/
 				
 				// Játékos színének beállítása -> PlayerColor változóban a szín
-				for(Player player : Motor.players){
+				/*for(Player player : Motor.players){
 					if(player.getName() == playerName){
 						player.setColor(playerColor);
 					}
-				}
+				}*/
 				//Bezárás
 				dispose();			
 			}

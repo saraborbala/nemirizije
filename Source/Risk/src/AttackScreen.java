@@ -310,7 +310,7 @@ public class AttackScreen extends JFrame {
 				System.out.println(jgui.getAttackerLostUnits());
 				
 				//Ablak bezárása
-				dispose();	
+				dispose();
 			}
 		});
 		btnEndAttack.setBounds(606, 254, 133, 31);

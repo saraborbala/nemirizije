@@ -47,6 +47,11 @@ public class JGUI extends JFrame {
 	private String labelFromName;
 	private String labelToName;
 	private boolean attackEnded = false;
+	private Player actPlayer;
+	
+	public void setActPlayer(Player player){
+		actPlayer = player;
+	}
 	
 	public void setAttackEnded(boolean value){
 		attackEnded = value;
@@ -79,7 +84,7 @@ public class JGUI extends JFrame {
 	}
 	
 	private enum StatusMove {
-		STARTED, FIRST_SELECTED, BOTH_SELECTED, ATTACK_ENDED 
+		STARTED, FIRST_SELECTED, BOTH_SELECTED, ATTACK_ENDED, PLACE_UNIT 
 	}
 	
 	private StatusMove statusmove;
@@ -147,8 +152,9 @@ public class JGUI extends JFrame {
 		
 		this.motor = motor;	// motor és GUI összekapcsolása
 		
-		//Teszt
 		
+		
+		//Teszt
 		
 		//Teszt játékos
 		/*Player newPlayer1 = new Player("tesztname", 0);
@@ -284,28 +290,16 @@ public class JGUI extends JFrame {
 		Menu.add(Exit);
 		
 		//Egységek mozgatás
-		JMenu Move = new JMenu("Mozgatás");
+		JMenu Move = new JMenu("Egység elhelyezése");
 		Move.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			//TODO: Egységmozgatáshoz szükséges pl üzenetek megjelenítése 
+			//TODO: Egység elhelyezése
+			statusmove = StatusMove.PLACE_UNIT;
 			}
 		});
 		upperMenu.add(Move);
 		JGUI jgui = this;
-		JMenu AttackMenu = new JMenu("Támadás");	
-		AttackMenu.addMouseListener(new MouseAdapter() {
-			@Override
-			
-			public void mouseClicked(MouseEvent e) {
-				AttackScreen frame = new AttackScreen(jgui, motor);
-				frame.setBounds(32, 62, 765, 325);
-				frame.setLocation(new Point(300,300));
-				frame.setResizable(false);
-				//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-				frame.setVisible(true);	
-			}
-		}); 
-		upperMenu.add(AttackMenu);
+		
 		
 		// Menu vége
 		//------------------------------------------------------------------------------------
@@ -1064,21 +1058,6 @@ public class JGUI extends JFrame {
 		btnNewButton_2.setBounds(21, 100, 89, 23);
 		Mainpanel.add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("Greenland");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				for(Territory territories : motor.territories){
-					if(territories.getName().equals("Greeland")){
-						Player test = new Player("test", 1);
-						test.setColor(Color.ORANGE);
-						territories.setPlayer(test);
-					}
-				}
-			}
-		});
-		btnNewButton_3.setBounds(21, 131, 89, 23);
-		Mainpanel.add(btnNewButton_3);
-		
 		movementPanel.setVisible(false);
 		//listenerek
 		
@@ -1197,22 +1176,30 @@ public class JGUI extends JFrame {
 				public void mouseClicked(MouseEvent arg0) {
 					Player labelFromPlayer = null;
 					Player labelToPlayer = null;
+					boolean isAdjacent = false;
 					switch(statusmove){
 						case STARTED: {
 							labelFromName = circlekey;
 							for(Territory territories : motor.territories){	
 								if(territories.getName().equals(labelFromName)){
-									labelFromPlayer = territories.getPlayer();
+									labelFromPlayer = territories.getPlayer();	
 								}
 							}
 							
-							
+							//if(labelFromPlayer.equals())
 							statusmove = StatusMove.FIRST_SELECTED;
 							System.out.println(statusmove);
 							break;
 						}
 						case FIRST_SELECTED: {						
 							labelToName = circlekey;
+							for(Territory territories : motor.territories){
+								if(territories.getName().equals(circlekey)){
+									isAdjacent = territories.isAdjacent(labelFromName);
+								}
+							}
+							}
+						if(isAdjacent){
 							for(Territory territories : motor.territories){	
 					    		  if(territories.getName().equals(labelFromName)){
 					    			  availableUnits = territories.getArmies();
@@ -1233,6 +1220,7 @@ public class JGUI extends JFrame {
 								frame.setBounds(32, 62, 765, 325);
 								frame.setLocation(new Point(300,300));
 								frame.setResizable(false);
+								frame.setTitle("Támadás");
 								//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 								frame.setVisible(true);	
 								}
@@ -1247,23 +1235,22 @@ public class JGUI extends JFrame {
 							statusmove = StatusMove.BOTH_SELECTED;
 							System.out.println(statusmove);
 							statusmove = StatusMove.STARTED;
-							//Függvényhíváv labelFrommal és labelTo-val
-							
-							
-							
-							
-							//statusmove = StatusMove.STARTED;
+
 							break;
+							}
+						case PLACE_UNIT:{
+							
 						}
+						
 						/*case BOTH_SELECTED: {
 							statusmove = StatusMove.STARTED;
 						}*/
-					default:
-						break;
+						default:
+							break;
 						
-					}
-					
+						}
 				}
+				
 				
 		    });		
     		
