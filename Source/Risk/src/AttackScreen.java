@@ -174,7 +174,14 @@ public class AttackScreen extends JFrame {
 		else if(throwCntrAtt == maxThrowNum){
 				AttackDice = false;
 				attackerResult.add(generateRandom());
-				setDiceIcon(attackerResult.get(2), lblAttDice3);	
+				setDiceIcon(attackerResult.get(2), lblAttDice3);
+				// Hálózati kommunkikáció
+				GameState gs = new GameState();
+				gs.state = 1;
+				gs.msg = "Támadás alatt";
+				gs.territories = motor.territories;
+				gs.players = motor.players;
+				motor.sendGameState(gs);
 		}
 	}
 	

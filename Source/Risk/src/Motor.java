@@ -1220,9 +1220,19 @@ public class Motor {
 			for (Player players : players){
 				players.continentBonus();
 			}
+			jgui.refreshMap();
+		}
+		if(gs.state == 1){ // Támadás alatt
+			System.out.println(gs.msg);
+			this.territories = gs.territories;
+			this.players = gs.players;
+			AttackScreen aScreen = new AttackScreen(jgui,this);
+			aScreen.refreshAttackScreen();
+			
+			
 		}
 		
-		jgui.refreshMap();
+		
 		
 	}
 
