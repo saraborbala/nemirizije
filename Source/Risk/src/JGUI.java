@@ -231,14 +231,7 @@ public class JGUI extends JFrame {
 		//Elemek hozzáadása
 		JMenuItem NewPlayer = new JMenuItem("Új játékos");
 		NewPlayer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				NewPlayer NewPlayerFrame = new NewPlayer();
-				NewPlayerFrame.setBounds(100, 100, 481, 338);
-				NewPlayerFrame.setLocation(new Point(300,300));
-				NewPlayerFrame.setResizable(false);
-				//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-				NewPlayerFrame.setVisible(true);				
-				
+			public void actionPerformed(ActionEvent e) {				
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {

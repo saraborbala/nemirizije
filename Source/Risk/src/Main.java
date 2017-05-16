@@ -16,10 +16,10 @@ public class Main {
 					motor.assignAdjacentsandContinent();			
 					motor.setPlayerTerritories();
 					motor.assignArmies();
-					for(Territory territories : motor.territories){
+					/*for(Territory territories : motor.territories){
 						System.out.println(territories.getName());
 						System.out.println(territories.getArmies());
-					}
+					}*/
 				} 
 				catch (Exception e) {
 				e.printStackTrace();

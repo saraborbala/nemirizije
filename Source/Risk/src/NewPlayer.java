@@ -27,45 +27,8 @@ public class NewPlayer extends JFrame {
 	private JTextField textField_Name;
 
 	private Motor motor;
-
-/*	// Hálózat
-	private Network net = null;
-	private String ip = "localhost";
-	private Motor motor;*/
-
-	//Játékos kiválasztott színének eltárolása
 	String playerColorStr;
 	Color playerColor;
-	
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					NewPlayer frame = new NewPlayer(motor);
-					frame.setVisible(true);
-					frame.setTitle("Játékos hozzáadása");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
-	} 
-	
-	
-	/*
-	 * Create the frame.
-	 */
-	public NewPlayer() {
-		
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public NewPlayer(Motor motor) {
 		this.motor = motor;
 
@@ -202,13 +165,11 @@ public class NewPlayer extends JFrame {
 						player.setColor(playerColor);
 					}
 				}
-				
-				//debug
-				System.out.println(Motor.players);
+			
 				
 				//}
 				//Bezárás
-				dispose();				
+				dispose();			
 			}
 		});
 		btnNewGame.setFont(new Font("Tahoma", Font.BOLD, 14));
