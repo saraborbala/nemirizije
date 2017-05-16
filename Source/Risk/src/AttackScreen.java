@@ -96,51 +96,63 @@ public class AttackScreen extends JFrame {
 		DefDice = true;
 		
 	}
+	public void setDiceIcon(Integer result, JLabel label){
+		switch(result){
+		case 1: {label.setIcon(Dice1icon); break;}
+		case 2: {label.setIcon(Dice2icon); break;}
+		case 3: {label.setIcon(Dice3icon); break;}
+		case 4: {label.setIcon(Dice4icon); break;}
+		case 5: {label.setIcon(Dice5icon); break;}
+		case 6:	{label.setIcon(Dice6icon); break;}
+		}
+	}
+	
+	public void refreshAttackScreen(){
+		if(attackerResult != null & defenderResult != null){
+		//Támadó
+		setDiceIcon(attackerResult.get(0), lblAttDice1);
+		setDiceIcon(attackerResult.get(1), lblAttDice2);
+		setDiceIcon(attackerResult.get(2), lblAttDice3);
+		//Védekezõ
+		setDiceIcon(defenderResult.get(0), lblDefDice1);
+		setDiceIcon(defenderResult.get(1), lblDefDice2);
+		}
+		else{System.out.println("Nincsenek eredmények");}
+	}
+	
+	private int generateRandom(){
+		//Random szám 1-tõl 6-ig
+		Random r = new Random();
+		int low = 1;
+		int high = 6;
+		int result = r.nextInt(high-low) + low;
+		return result;
+	}
 	
 	private void throwDiceAttack(){
 		if(throwCntrAtt == 1){
-				Random r = new Random();
-				int Low = 1;
-				int High = 6;
-				int Result = r.nextInt(High-Low) + Low;
-				attackerResult.add(Result);
+				attackerResult.add(generateRandom());
 				setDiceIcon(attackerResult.get(0), lblAttDice1);
 		}
 		else if(throwCntrAtt == 2){
-				Random r = new Random();
-				int Low = 1;
-				int High = 7;
-				int Result = r.nextInt(High-Low) + Low;
-				attackerResult.add(Result);
+				attackerResult.add(generateRandom());
 				setDiceIcon(attackerResult.get(1), lblAttDice2);
 		}
 		else if(throwCntrAtt == 3){
 				AttackDice = false;
-				Random r = new Random();
-				int Low = 1;
-				int High = 6;
-				int Result = r.nextInt(High-Low) + Low;;
-				attackerResult.add(Result);
+				attackerResult.add(generateRandom());
 				setDiceIcon(attackerResult.get(2), lblAttDice3);	
 		}
 	}
 	
 	private void throwDiceDef(){
 		if(throwCntrDef == 1){
-			Random r = new Random();
-			int Low = 1;
-			int High = 7;
-			int Result = r.nextInt(High-Low) + Low;
-			defenderResult.add(Result);
+			defenderResult.add(generateRandom());
 			setDiceIcon(defenderResult.get(0), lblDefDice1);
 	}
 	
 		else if(throwCntrDef == 2){
-			Random r = new Random();
-			int Low = 1;
-			int High = 7;
-			int Result = r.nextInt(High-Low) + Low;
-			defenderResult.add(Result);		
+			defenderResult.add(generateRandom());		
 			setDiceIcon(defenderResult.get(1), lblDefDice2);
 			DefDice = false;
 			//calculateWinner();
@@ -165,26 +177,7 @@ public class AttackScreen extends JFrame {
 		
     }
 	//Attackscreen frissítése
-	public void setDiceIcon(Integer result, JLabel label){
-		switch(result){
-		case 1: {label.setIcon(Dice1icon); break;}
-		case 2: {label.setIcon(Dice2icon); break;}
-		case 3: {label.setIcon(Dice3icon); break;}
-		case 4: {label.setIcon(Dice4icon); break;}
-		case 5: {label.setIcon(Dice5icon); break;}
-		case 6:	{label.setIcon(Dice6icon); break;}
-		}
-	}
 	
-	public void refreshAttackScreen(){
-		//Támadó
-		setDiceIcon(attackerResult.get(0), lblAttDice1);
-		setDiceIcon(attackerResult.get(1), lblAttDice2);
-		setDiceIcon(attackerResult.get(2), lblAttDice3);
-		//Védekezõ
-		setDiceIcon(defenderResult.get(0), lblDefDice1);
-		setDiceIcon(defenderResult.get(1), lblDefDice2);
-	}
 	
 	/**
 	 * Create the frame.
