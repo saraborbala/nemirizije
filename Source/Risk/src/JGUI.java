@@ -954,7 +954,13 @@ public class JGUI extends JFrame {
 				
 
 				// Átállítjuk az aktuális playert
-				
+				System.out.println(isMyTurn());
+				if (actGUIPlayerIndex == 0){
+					actGUIPlayerIndex = 1;
+				}
+				else{
+					actGUIPlayerIndex = 0;
+				}
 				if(motor.getActPlayer().getPlayerIndex() == 0){
 					gs.actPlayer = 1;
 				}
@@ -962,11 +968,13 @@ public class JGUI extends JFrame {
 					gs.actPlayer = 0;
 				}			
 				System.out.println("A következõ játékos: " +gs.actPlayer.toString());
+				
 				gs.msg = "Kör vége!";
 				gs.state = 0; // new_turn
 				gs.territories = motor.territories;
 				gs.players = motor.players;
 				motor.sendGameState(gs);
+				System.out.println(isMyTurn());
 			}
 		});
 //----HÁLÓZAT-----------------------------------------------------------------------------
@@ -1359,7 +1367,6 @@ public class JGUI extends JFrame {
 
 	private boolean isMyTurn(){
 		return (actGUIPlayerIndex == motor.getActPlayer().getPlayerIndex());
-		// TODO
 	}
 	// ------------------ Adatok frissítése serveren keresztül
 	public void refreshMap(){ // void? 

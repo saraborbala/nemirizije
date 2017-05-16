@@ -70,7 +70,7 @@ public class NewPlayer extends JFrame {
 		Details.add(lblColor);
 		
 		JComboBox comboBoxColor = new JComboBox();
-		
+		playerColor = Color.RED.darker();
 		comboBoxColor.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				playerColorStr = comboBoxColor.getSelectedItem().toString();
@@ -142,10 +142,17 @@ public class NewPlayer extends JFrame {
 				//Kliens vagy szerver? 
 				
 				if(rdbtnServer.isSelected()){
+					// SZERVER 
+					motor.setActPlayer(motor.players.get(0));
+					motor.players.get(0).setName(textField_Name.getText());
+					motor.players.get(0).setColor(playerColor);
 					motor.startServer();
 					//jgui.actPlayer = motor.players.get(0);
 				}
 				if(rdbtnClient.isSelected()){
+					motor.setActPlayer(motor.players.get(1));
+					motor.players.get(1).setName(textField_Name.getText());
+					motor.players.get(1).setColor(playerColor);
 					 motor.startClient();
 					 //jgui. = motor.players.get(1);
 					 

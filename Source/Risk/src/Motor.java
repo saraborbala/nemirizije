@@ -27,6 +27,15 @@ public class Motor {
     public static final int GAME_OVER = 20;	//játék vége---!! IDE MÉG NEM NAGYON VAN SEMMI!!
     
     static private int gameState;
+    private Player actPlayer;
+    
+    public void setActPlayer (Player actPlayer){
+    	this.actPlayer = actPlayer;
+    }
+    public Player getActPlayer(){
+    	return this.actPlayer;
+    }
+    
     
     
         
@@ -83,8 +92,8 @@ public class Motor {
      
      //Initial players
      public void initPlayers(){
-    	 Player player1 = new Player("Player1", 100);
-    	 Player player2 = new Player("Player2", 40);
+    	 Player player1 = new Player("Player1", 0);
+    	 Player player2 = new Player("Player2", 1);
     	 
     	 player1.setColor(Color.ORANGE);
     	 player2.setColor(Color.GREEN);
@@ -1221,6 +1230,7 @@ public class Motor {
 			for (Player players : players){
 				players.continentBonus();
 			}
+			jgui.actGUIPlayerIndex = gs.actPlayer;
 			jgui.refreshMap();
 		}
 		if(gs.state == 1){ // Támadás alatt
@@ -1232,10 +1242,5 @@ public class Motor {
 			
 			
 		}
-		
-		
-		
 	}
-
-
 }

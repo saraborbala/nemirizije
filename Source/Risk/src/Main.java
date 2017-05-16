@@ -21,7 +21,7 @@ public class Main {
 						System.out.println(territories.getName());
 						System.out.println(territories.getArmies());
 					}*/
-					
+					motor.setActPlayer(motor.players.get(0));
 				} 
 				catch (Exception e) {
 				e.printStackTrace();
