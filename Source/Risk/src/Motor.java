@@ -1,8 +1,10 @@
 
 import java.awt.Color;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;	
 import java.util.Collections;//dobás
+import java.util.List;
 import java.util.Random;	//dobás
 import java.util.Vector;	//vektorok
 import java.util.concurrent.ThreadLocalRandom;
@@ -1237,7 +1239,19 @@ public class Motor {
 			System.out.println(gs.msg);
 			this.territories = gs.territories;
 			this.players = gs.players;
+			
 			AttackScreen aScreen = new AttackScreen(jgui,this);
+			aScreen.setAttackerResult(gs.attackerResult);
+			List<Integer> defenderResult = new ArrayList<>();
+			defenderResult.add(0);
+			defenderResult.add(0);
+			aScreen.setDefenderResult(defenderResult);
+			aScreen.setBounds(32, 62, 765, 325);
+			aScreen.setLocation(new Point(300,300));
+			aScreen.setResizable(false);
+			aScreen.setTitle("Támadás");
+			//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+			aScreen.setVisible(true);	
 			aScreen.refreshAttackScreen();
 			
 			

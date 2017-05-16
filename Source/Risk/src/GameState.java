@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Vector;
 
 public class GameState implements java.io.Serializable{
@@ -14,6 +15,9 @@ public class GameState implements java.io.Serializable{
 	public Vector<Player> players;
 	public Integer actPlayer;
 	public int state;
+	
+	public List<Integer> defenderResult;
+	public List<Integer> attackerResult;
 	
 	public int connected = 0;
 	public int isGameOver = 0;

@@ -32,6 +32,14 @@ public class AttackScreen extends JFrame {
 	public List<Integer> getDefenderResult(){
 		return defenderResult;
 	}
+	
+	public void setAttackerResult(List<Integer> attackerResult){
+		this.attackerResult = attackerResult;
+	}
+	
+	public void setDefenderResult(List<Integer> defenderResult){
+		this.defenderResult = defenderResult;
+	}
 	private JGUI jgui; 
 	private Motor motor;
 	private boolean AttackDice = true;
@@ -117,8 +125,8 @@ public class AttackScreen extends JFrame {
 		setDiceIcon(attackerResult.get(1), lblAttDice2);
 		setDiceIcon(attackerResult.get(2), lblAttDice3);
 		//Védekezõ
-		setDiceIcon(defenderResult.get(0), lblDefDice1);
-		setDiceIcon(defenderResult.get(1), lblDefDice2);
+		//setDiceIcon(defenderResult.get(0), lblDefDice1);
+		//setDiceIcon(defenderResult.get(1), lblDefDice2);
 		}
 		else{System.out.println("Nincsenek eredmények");}
 	}
@@ -181,6 +189,8 @@ public class AttackScreen extends JFrame {
 				gs.msg = "Támadás alatt";
 				gs.territories = motor.territories;
 				gs.players = motor.players;
+				gs.defenderResult = this.defenderResult;
+				gs.attackerResult = this.attackerResult;
 				motor.sendGameState(gs);
 		}
 	}
