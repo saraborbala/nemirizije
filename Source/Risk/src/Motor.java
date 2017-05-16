@@ -510,7 +510,6 @@ public class Motor {
       
       //ELFOGLALÁS:
 
-// TODO ha armies == 0, swap player
       public void assignPlayer(){
     	  // Az egyes területekhez hozzárendel egy-egy játékost.
     	  // Összesen 41 terület van, 41/2 = 20 terület jut az elsõ játékosnak
@@ -728,7 +727,7 @@ public class Motor {
 				}
 			}
     	  
-        	//-------- Western Europe TODO: kijavítani
+        	//-------- Western Europe: kijavítani
       	  for ( int i =0; i <41; i++ ){
   				if (territories.get(i).getName().equals("Western Europe")){
   					Vector<String> adjs = new Vector<String>();
@@ -1082,6 +1081,19 @@ public class Motor {
   				}
   			} 	  
       }
+      
+      public void setPlayerTerritories(){
+    	  for(Territory territories : territories){
+    		  if(territories.getPlayer()==players.get(0)){
+    			  // ha az elsõ játékosé
+    			  players.get(0).setOccTerritory(territories);
+    		  }
+    		  else{
+    			  players.get(1).setOccTerritory(territories);
+    	  }
+    	  }
+      }
+      //-------------------------------------------
       
       public void capture(){
           int armies = defNum;

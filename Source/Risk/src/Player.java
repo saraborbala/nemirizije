@@ -55,9 +55,56 @@ public class Player {
 		occupiedTerritories.add(territory);
 	}
 	
+	public void ContinentBonus(){
+		// kontinens bónusz, minden kör végén meg kell hívni,
+		// a bónuszváltozót állítja annak függvényében, mennyi kontinense van
+		// Bónuszok: 
+		// Észak-Amerika(1) -> 5
+		// Dél-Amerika(2)	-> 3
+		// Európa(3)		-> 5 
+		// Afrika(4)		-> 4
+		// Ázsia(5)			-> 7
+		// Ausztália és Óceánia(6) -> 3
+		// Elv: tudjuk hány darab kell az adott kontinesbõl, nem kell külön kontinens osztály
+		
+		
+		int nAmerica_count = 0;
+		int sAmerica_count = 0;
+		int europe_count = 0;
+		int asia_count = 0;
+		int africa_count = 0;
+		int australia_count = 0;
+		bonusUnit = 0;
+		
+		for(Territory territories : occupiedTerritories){
+			switch (territories.getContinent()){
+				case 1:  nAmerica_count++; break;
+				case 2:  sAmerica_count++; break;
+				case 3:  europe_count++; break;
+				case 4:  asia_count++; break;
+				case 5:  africa_count++; break;
+				case 6:  australia_count++; break;
+			}
+		}
+		if (nAmerica_count == 8)
+			bonusUnit+=5;
+		if (sAmerica_count == 4)
+			bonusUnit+=3;
+		if (europe_count == 7)
+			bonusUnit+=5;
+		if (asia_count == 12)
+			bonusUnit+=7;
+		if (africa_count == 6)
+			bonusUnit+=4;
+		if (australia_count == 4)
+			bonusUnit+=3;
+		
+	}
+	
 	//----------------------------------
 	
-	//katonás csökken-nõ
+	
+	//tonás csökken-nõ
 	public void addArmies(int a){
 		armies += a;
 	}
