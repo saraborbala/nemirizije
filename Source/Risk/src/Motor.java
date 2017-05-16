@@ -246,6 +246,7 @@ public class Motor {
     			  attacker = territories.getPlayer();
     			  int actarmy = territories.getArmies();
     			  territories.setArmies(actarmy - attackerLostUnits);
+    			  
     		  }
     	  }  
     	  for(Territory territories : territories){  
@@ -272,11 +273,13 @@ public class Motor {
     			  if(territories.getName().equals(labelFromStr)){
     				  //Eredeti területrõl egy egység levonása
     				  int actarmy = territories.getArmies();
-        			  territories.setArmies(actarmy - 1);
+        			  //territories.setArmies(actarmy - 1);
+        			  moveUnits(labelFromStr, labelToStr, 1);
         		  }
     		  }
     	  } 
-    	  
+    	  jgui.setAttackerLostUnits(0);
+    	  jgui.setDefenderLostUnits(0);
     	  jgui.refreshMap();
       }
     	  
