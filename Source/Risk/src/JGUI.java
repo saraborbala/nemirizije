@@ -49,6 +49,14 @@ public class JGUI extends JFrame {
 	private boolean attackEnded = false;
 	private Player actPlayer;
 	private int unitToPlace = 0;
+	private boolean movementDone;
+	
+	public void setMovementDone(boolean state){
+		movementDone = state;
+	}
+	public boolean getMovementDone(){
+		return movementDone;
+	}
 	
 	public void setUnitToPlace(int i){
 		unitToPlace = i;
@@ -1128,6 +1136,10 @@ public class JGUI extends JFrame {
 							//circlevalue.setText("13");	
 						}					
 				}
+				setMovementDone(true);
+				
+				lblInfo.setText("");
+				lblUnitNum.setText("0");
 				unitsToMoveNum = 0;
 				//System.out.println(x);
 				movementPanel.setVisible(false);
@@ -1242,7 +1254,7 @@ public class JGUI extends JFrame {
     		circlevalue.setHorizontalTextPosition(lblWestUSInd.CENTER);
     		//------
 		    //Indikátorok listenerjei
-    		statusmove = StatusMove.PLACE_UNIT;
+    		statusmove = StatusMove.STARTED;
     		    		
     		circlevalue.addMouseListener(new MouseAdapter() {
 		    	public void mouseEntered(MouseEvent e) {
@@ -1267,17 +1279,17 @@ public class JGUI extends JFrame {
 					
 					switch(statusmove){
 						case STARTED: {
-							
 							labelFromName = circlekey;
 							for(Territory territories : motor.territories){	
 								if(territories.getName().equals(labelFromName)){
 									labelFromPlayer = territories.getPlayer();	
 								}
 							}
-														
+							
 							//if(labelFromPlayer.equals())
 							statusmove = StatusMove.FIRST_SELECTED;
 							System.out.println(statusmove);
+							lblInfo.setText("");
 							break;
 						}
 						case FIRST_SELECTED: {						
@@ -1318,30 +1330,15 @@ public class JGUI extends JFrame {
 							else{//MOVE
 								movementPanel.setVisible(true);
 							}
-							
-
-							
+	
 							statusmove = StatusMove.BOTH_SELECTED;
 							System.out.println(statusmove);
+							
 							statusmove = StatusMove.STARTED;
-
+							
 							break;
 							}
 						case PLACE_UNIT:{
-							labelFromName = circlekey;
-							for(Territory territories : motor.territories){	
-								if(territories.getName().equals(labelFromName)){
-									labelFromPlayer = territories.getPlayer();	
-								}
-							}
-							
-							bonusUnitPanel.setVisible(true);
-							
-							/*for(Territory territories : motor.territories){	
-								if(territories.getName().equals(labelFromName)){
-									labelFromPlayer = territories.getPlayer();	
-								}
-							}*/
 							
 						}
 						
@@ -1355,7 +1352,7 @@ public class JGUI extends JFrame {
 				}
 				
 				
-		    });		
+		    });			
     		
 		//Listenerek hozzáadása az országok labeljeihez		
 		for(Map.Entry<String, JLabel> labelitem : labels.entrySet()) {
