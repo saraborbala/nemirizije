@@ -28,6 +28,8 @@ public class Player implements java.io.Serializable {
 		this.name = name; 
 	}
 	
+	
+	
 	public String getName(){
 		return name;
 	}
