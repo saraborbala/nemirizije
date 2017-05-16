@@ -257,7 +257,10 @@ public class Motor {
     				  //Elfoglalva
     				  conqueared = true;
     				  territories.setPlayer(attacker);
-    				  territories.addArmies(5);
+    				  while(territories.getArmies() < 1){
+    					  territories.addArmies(1);
+    				  }
+    				  
     				  //Egy egység átvitele
     				  //TODO: mindegyikre alkalmazza
     				  

@@ -1237,6 +1237,7 @@ public class JGUI extends JFrame {
 							
 							statusmove = StatusMove.BOTH_SELECTED;
 							System.out.println(statusmove);
+							statusmove = StatusMove.STARTED;
 							//Függvényhíváv labelFrommal és labelTo-val
 							
 							
@@ -1245,7 +1246,9 @@ public class JGUI extends JFrame {
 							//statusmove = StatusMove.STARTED;
 							break;
 						}
-
+						/*case BOTH_SELECTED: {
+							statusmove = StatusMove.STARTED;
+						}*/
 					default:
 						break;
 						
