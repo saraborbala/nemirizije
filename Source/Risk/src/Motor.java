@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;//dobás
 import java.util.Random;	//dobás
 import java.util.Vector;	//vektorok
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Motor {
@@ -1092,6 +1093,13 @@ public class Motor {
     		  else{
     			  players.get(1).setOccTerritory(territories);
     	  }
+    	  }
+      }
+      
+      public void assignArmies(){
+    	  for(Territory territories : territories){
+    		  territories.setArmies(ThreadLocalRandom.current().nextInt(1, 4 + 1));
+    		  //territories.setArmies(1 + (int)(Math.random() * 4));
     	  }
       }
       //-------------------------------------------

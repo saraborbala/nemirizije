@@ -1093,7 +1093,7 @@ public class JGUI extends JFrame {
 		    Territory actualTerritory  = new Territory(circlekey);
 		    //actualTerritory.setPlayer(newPlayer1);
 		    motor.territories.add(actualTerritory);
-		    actualTerritory.setArmies(1);
+		    //actualTerritory.setArmies(1);
 		    
 		    //teszt TODO: remove
 		    
