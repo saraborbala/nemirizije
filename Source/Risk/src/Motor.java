@@ -34,6 +34,7 @@ public class Motor {
     static public Vector<Territory> territories = new Vector<Territory>();
     public Territory aTerritory;	//tám ter
     public Territory dTerritory;	//véd ter
+    
         
         
         static public Vector<Player> players = new Vector<Player>(2);

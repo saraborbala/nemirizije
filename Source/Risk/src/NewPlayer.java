@@ -70,6 +70,7 @@ public class NewPlayer extends JFrame {
 		Details.add(lblColor);
 		
 		JComboBox comboBoxColor = new JComboBox();
+		
 		comboBoxColor.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				playerColorStr = comboBoxColor.getSelectedItem().toString();
