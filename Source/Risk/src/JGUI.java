@@ -1497,7 +1497,10 @@ public class JGUI extends JFrame implements java.io.Serializable{
 }
 
 	private boolean isMyTurn(){
+		if(motor.getActPlayer() != null){
 		return (actGUIPlayerIndex == motor.getActPlayer().getPlayerIndex());
+		}
+		else {return true;}
 	}
 	// ------------------ Adatok frissítése serveren keresztül
 	public void refreshMap(){ // void? 
