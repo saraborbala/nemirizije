@@ -1305,15 +1305,23 @@ public class JGUI extends JFrame implements java.io.Serializable{
 					
 					switch(statusmove){
 						case STARTED: {
+							//actGUIPlayerIndex
+							
 							labelFromName = circlekey;
 							for(Territory territories : motor.territories){	
+							isMyTurn();	
+								
 								if(territories.getName().equals(labelFromName)){
-									labelFromPlayer = territories.getPlayer();	
+									if(territories.getPlayer().getPlayerIndex() == actGUIPlayerIndex){
+										labelFromPlayer = territories.getPlayer();
+										statusmove = StatusMove.FIRST_SELECTED;
+									}
+									else{System.out.println("Nem a te területed!");}
 								}
 							}
 							
 							//if(labelFromPlayer.equals())
-							statusmove = StatusMove.FIRST_SELECTED;
+							
 							System.out.println(statusmove);
 							lblInfo.setText("");
 							break;
@@ -1325,7 +1333,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 									isAdjacent = territories.isAdjacent(labelFromName);
 								}
 							}
-							}
+							} 
 						if(isAdjacent){
 							for(Territory territories : motor.territories){	
 					    		  if(territories.getName().equals(labelFromName)){

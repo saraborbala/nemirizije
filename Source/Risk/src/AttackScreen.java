@@ -241,7 +241,7 @@ public class AttackScreen extends JFrame {
 		}
 	}
 	//Gyõztes számítása: bukott egységes kiszámítása és JGUI-ba állítás
-<<<<<<< HEAD
+
 	public void calculateWinner(){
 		if (attackdone){
 		GameState gs = new GameState();
@@ -252,11 +252,9 @@ public class AttackScreen extends JFrame {
 		return;
 		}
 		
-		if((attackerResult != null) & (defenderResult != null)){
-=======
-	public void calculateWinner(){ 
+
 		if(!(attackerResult.isEmpty() & defenderResult.isEmpty())){
->>>>>>> origin/master
+
 			Collections.sort(attackerResult);
 			System.out.println(attackerResult);		
 			Collections.sort(defenderResult);
@@ -354,7 +352,7 @@ public class AttackScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//lblAttDice3.setIcon(Dice1icon);
 				//TODO: vizsgálni, hogy vannak-e dobások
-<<<<<<< HEAD
+
 				if (attackdone){
 					calculateWinner();
 					dispose();
@@ -362,12 +360,7 @@ public class AttackScreen extends JFrame {
 				}
 				
 				motor.upDateUnitsAfterAttack();				
-=======
-				if(!(attackerResult.isEmpty() & defenderResult.isEmpty())){
-				calculateWinner();
-				motor.upDateUnitsAfterAttack();	
-				}
->>>>>>> origin/master
+
 				//Gyõztes visszaadása
 				//Territory tulajdonosának beállítása
 				
