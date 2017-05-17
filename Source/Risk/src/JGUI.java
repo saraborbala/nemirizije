@@ -1551,7 +1551,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 			String circlekey = circleitem.getKey();
 		    JLabel circlevalue = circleitem.getValue();
 				
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		    for(Territory territories : motor.territories){
 		    	//Integer armyNum = territories.getArmies();
 		    	//circlevalue.setText(armyNum.toString());
@@ -1570,26 +1570,8 @@ public class JGUI extends JFrame implements java.io.Serializable{
 			    		
 			    		int colorID = 0; 
 			    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
-=======
-			    for(Territory territories : motor.territories){
-			    	//Integer armyNum = territories.getArmies();
-			    	//circlevalue.setText(armyNum.toString());
-			    	//circlevalue.validate();
-			    	
-			    	
-		    		//Ha egyezik a kör labelje az adott terület nevével	
-			    	if(territories.getName().equals(circlekey))
-				    {
-				    	Player actualPlayer;
-				    		
-				    	actualPlayer = territories.getPlayer();
-				    		//actualColor = actualPlayer.getColor();
-				    	System.out.println(actualPlayer.getName());
-				    	System.out.println(actualPlayer.getColor().toString());
-				    		
-				    	int colorID = 0; 
-				    	//Játékos színe alapján colorID beállítása a következõ sw.c-hez
->>>>>>> origin/master
+
+
 						if(actualPlayer.getColor().equals(Color.RED.darker())) 		{colorID = 1;}
 						if(actualPlayer.getColor().equals(Color.CYAN))				{colorID = 2;}
 						if(actualPlayer.getColor().equals(Color.GREEN))				{colorID = 3;}
@@ -1612,5 +1594,6 @@ public class JGUI extends JFrame implements java.io.Serializable{
 	
 		  
 		}
+	}
 	}
 }
