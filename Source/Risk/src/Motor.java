@@ -1265,6 +1265,22 @@ public class Motor {
 				this.defenderResult = gs.defenderResult;
 				aScreen.refreshAttackScreen();
 			}
+			if (gs.state == 3){ //synch, szerver
+				this.territories = gs.territories;
+				this.players.set(1, gs.client);
+				jgui.refreshMap();
+				// Kliens felé küldés egybõl
+				GameState gs_tosend = new GameState();
+				gs_tosend.state = 4; //synch
+				gs_tosend.territories = this.territories;
+				gs_tosend.players = this.players;
+				sendGameState(gs_tosend);
+			}
+			if(gs.state ==4){ //Támadás vége
+				this.territories = gs.territories;
+				this.players = gs.players;
+				jgui.refreshMap();				
+			}
 			
 			
 		}

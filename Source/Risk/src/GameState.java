@@ -24,6 +24,7 @@ public class GameState implements java.io.Serializable{
 	public int connected = 0;
 	public int isGameOver = 0;
 	private String errorMsg;
+	public Player client;
 	
 	
 	public String getErrorMsg() {

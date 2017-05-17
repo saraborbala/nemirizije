@@ -113,16 +113,6 @@ public class NewPlayer extends JFrame {
 
 
 		boolean isServerAvailable = false;
-
-		/*boolean isServerAvailable = true;
-
-		/*boolean isServerAvailable = true;
-
->>>>>>> origin/master
-		if(isServerAvailable){
-			rdbtnServer.setEnabled(false);
-		}*/
-		
 		JRadioButton rdbtnClient = new JRadioButton("Kliens");
 		rdbtnClient.setOpaque(false);
 		rdbtnClient.setBounds(253, 109, 83, 23);
@@ -147,14 +137,19 @@ public class NewPlayer extends JFrame {
 					motor.players.get(0).setName(textField_Name.getText());
 					motor.players.get(0).setColor(playerColor);
 					motor.startServer();
-					//jgui.actPlayer = motor.players.get(0);
 				}
 				if(rdbtnClient.isSelected()){
 					motor.setActPlayer(motor.players.get(1));
 					motor.players.get(1).setName(textField_Name.getText());
 					motor.players.get(1).setColor(playerColor);
-					 motor.startClient();
-					 //jgui. = motor.players.get(1);
+					motor.startClient();
+					//Kezdeti szinkrnizáció 
+					GameState gs = new GameState();
+					gs.msg = "Kezdeti szinkronizáció!";
+					gs.state = 3; // synch
+					gs.territories = motor.territories;
+					gs.client = motor.players.get(0);
+					motor.sendGameState(gs);
 					 
 				}
 				 

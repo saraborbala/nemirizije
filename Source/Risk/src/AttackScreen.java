@@ -348,8 +348,12 @@ public class AttackScreen extends JFrame {
 				
 				jgui.setAttackEnded(true);
 				
-				//Játékos megszerzett területének beállítása
-				//jgui.refreshMap();
+				GameState gs = new GameState();
+				gs.state = 4; //synch
+				gs.territories = motor.territories;
+				gs.players = motor.players;
+				motor.sendGameState(gs);
+				jgui.refreshMap();
 				//System.out.println(jgui.getAttackerLostUnits());
 				
 				//Ablak bezárása
