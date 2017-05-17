@@ -1239,20 +1239,30 @@ public class Motor {
 			System.out.println(gs.msg);
 			this.territories = gs.territories;
 			this.players = gs.players;
+		 
 			
 			AttackScreen aScreen = new AttackScreen(jgui,this);
 			aScreen.setAttackerResult(gs.attackerResult);
 			List<Integer> defenderResult = new ArrayList<>();
-			defenderResult.add(0);
-			defenderResult.add(0);
+			//defenderResult.add(0);
+			//	defenderResult.add(0);
 			aScreen.setDefenderResult(defenderResult);
 			aScreen.setBounds(32, 62, 765, 325);
 			aScreen.setLocation(new Point(300,300));
 			aScreen.setResizable(false);
 			aScreen.setTitle("Támadás");
 			//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-			aScreen.setVisible(true);	
+			aScreen.setVisible(true);
+			aScreen.setAttackerMaxThrowNum();
+			aScreen.setDefenderMaxThrowNum();
+			aScreen.setMaxThrowNum(gs.maxThrowNum);
+			aScreen.attackdone = true;
 			aScreen.refreshAttackScreen();
+			if(gs.state == 2){ // Védekezõ eremdényei jöttek
+				System.out.println(gs.msg);
+				aScreen.setDefenderResult(defenderResult);
+				aScreen.refreshAttackScreen();
+			}
 			
 			
 		}

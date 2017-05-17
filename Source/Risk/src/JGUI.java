@@ -28,7 +28,7 @@ import javax.swing.event.MenuKeyListener;
 import javax.swing.event.MenuKeyEvent;
 
 @SuppressWarnings("serial")
-public class JGUI extends JFrame {
+public class JGUI extends JFrame implements java.io.Serializable{
 	private Motor motor;
 	private Point p1 = new Point(0, 0); 
 	public int teszt = 1;

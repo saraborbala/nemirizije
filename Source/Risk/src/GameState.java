@@ -18,6 +18,8 @@ public class GameState implements java.io.Serializable{
 	
 	public List<Integer> defenderResult;
 	public List<Integer> attackerResult;
+	//public JGUI jgui;
+	public int maxThrowNum;
 	
 	public int connected = 0;
 	public int isGameOver = 0;
