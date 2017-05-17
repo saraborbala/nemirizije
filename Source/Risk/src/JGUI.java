@@ -929,6 +929,8 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		PlayerStatus.setLayout(null);
 		
 		JLabel lblPlayerName1 = new JLabel("New label");
+		lblPlayerName1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblPlayerName1.setHorizontalAlignment(SwingConstants.CENTER);
 		//TODO: Keret színének beállítása (második argumentum)- mindhárom kerethez
 		lblPlayerName1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		lblPlayerName1.setBounds(10, 5, 219, 35);
@@ -938,6 +940,8 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		
 		
 		JLabel lblPlayerName2 = new JLabel("New label");
+		lblPlayerName2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblPlayerName2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlayerName2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		lblPlayerName2.setBounds(10, 189, 219, 35);
 		PlayerStatus.add(lblPlayerName2);
@@ -1534,9 +1538,11 @@ public class JGUI extends JFrame implements java.io.Serializable{
 				
 				if(infoitemkey.equals("lblPlayerName1")){
 					infoitemvalue.setText(motor.players.get(0).getName());
+					infoitemvalue.setBorder(new EtchedBorder(EtchedBorder.LOWERED, motor.players.get(0).getColor(), motor.players.get(0).getColor()));
 				}
 				if(infoitemkey.equals("lblPlayerName2")){
 					infoitemvalue.setText(motor.players.get(1).getName());
+					infoitemvalue.setBorder(new EtchedBorder(EtchedBorder.LOWERED, motor.players.get(1).getColor(), motor.players.get(1).getColor()));
 				}
 				if(infoitemkey.equals("InfoLabel")){
 					infoitemvalue.setText(getInfoLabelText());
@@ -1557,35 +1563,35 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		    	
 		    	if(territories.getPlayer().getPlayerIndex() != -1){	
 	    		//Ha egyezik a kör labelje az adott terület nevével	
-	    		if(territories.getName().equals(circlekey))
-		    	{
-		    		Player actualPlayer;
-		    		
-		    		actualPlayer = territories.getPlayer();
-		    		//actualColor = actualPlayer.getColor();
-		    		//System.out.println(circlekey);
-		    		
-		    		int colorID = 0; 
-		    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
-					if(actualPlayer.getColor().equals(Color.RED.darker())) 		{colorID = 1;}
-					if(actualPlayer.getColor().equals(Color.CYAN))				{colorID = 2;}
-					if(actualPlayer.getColor().equals(Color.GREEN))				{colorID = 3;}
-					if(actualPlayer.getColor().equals(Color.ORANGE))			{colorID = 4;}
-					if(actualPlayer.getColor().equals(Color.MAGENTA.darker()))	{colorID = 5;}
-					
-					//Megfelelõ színû kör kiválasztása és beállítása
-				    switch(colorID){
-						case 1: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG"))); break;}
-						case 2: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG"))); break;}
-						case 3: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/green_dot.PNG"))); break;}
-						case 4: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/orange_dot.PNG"))); break;}
-						case 5: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/magenta_dot.PNG"))); break;}		
-						default: {circlevalue.setIcon(null);}
-				    }	    
-				    
-		    	}
+		    		if(territories.getName().equals(circlekey))
+			    	{
+			    		Player actualPlayer;
+			    		
+			    		actualPlayer = territories.getPlayer();
+			    		//actualColor = actualPlayer.getColor();
+			    		//System.out.println(circlekey);
+			    		
+			    		int colorID = 0; 
+			    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
+						if(actualPlayer.getColor().equals(Color.RED.darker())) 		{colorID = 1;}
+						if(actualPlayer.getColor().equals(Color.CYAN))				{colorID = 2;}
+						if(actualPlayer.getColor().equals(Color.GREEN))				{colorID = 3;}
+						if(actualPlayer.getColor().equals(Color.ORANGE))			{colorID = 4;}
+						if(actualPlayer.getColor().equals(Color.MAGENTA.darker()))	{colorID = 5;}
+						
+						//Megfelelõ színû kör kiválasztása és beállítása
+					    switch(colorID){
+							case 1: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG"))); break;}
+							case 2: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG"))); break;}
+							case 3: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/green_dot.PNG"))); break;}
+							case 4: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/orange_dot.PNG"))); break;}
+							case 5: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/magenta_dot.PNG"))); break;}		
+							default: {circlevalue.setIcon(null);}
+					    }	    
+					    
+			    	}
 	    		
-		    }
+		    	}
 	
 		  }
 		}
