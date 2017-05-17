@@ -119,7 +119,7 @@ public class AttackScreen extends JFrame {
 	}
 	
 	public void refreshAttackScreen(){
-		if(attackerResult != null & defenderResult != null){
+		if(!(attackerResult.isEmpty() & defenderResult.isEmpty())){
 		//Támadó
 		setDiceIcon(attackerResult.get(0), lblAttDice1);
 		setDiceIcon(attackerResult.get(1), lblAttDice2);
