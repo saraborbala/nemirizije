@@ -106,12 +106,17 @@ public class AttackScreen extends JFrame {
 	}
 	
 	public void refreshAttackScreen(){
+		
 		if(!(motor.attackerResult.isEmpty() & motor.defenderResult.isEmpty())){
 		//Támadó
 		setDiceIcon(motor.attackerResult.get(0), lblAttDice1);
 		setDiceIcon(motor.attackerResult.get(1), lblAttDice2);
 		setDiceIcon(motor.attackerResult.get(2), lblAttDice3);
-		if (!motor.defenderResult.isEmpty()){			
+		if(attackdone){
+			lblDefDice1.setIcon(null);
+			lblDefDice2.setIcon(null);
+		}
+		else if (!motor.defenderResult.isEmpty()){			
 			setDiceIcon(motor.defenderResult.get(0), lblDefDice1);
 			setDiceIcon(motor.defenderResult.get(1), lblDefDice2);
 		}
