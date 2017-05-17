@@ -30,7 +30,8 @@ public class AttackScreen extends JFrame {
 	private Motor motor;
 	private boolean AttackDice = true;
 	private boolean DefDice = true;
-	private int maxThrowNum = 1;
+	private int maxThrowNumAttacker = 1;
+	private int maxThrowNumDefender = 1;
 	private boolean resultCalculable = false;
 	public boolean attackdone = false;
 	//
@@ -132,13 +133,13 @@ public class AttackScreen extends JFrame {
 		for(Territory territories : motor.territories){
 			if(territories.getName().equals(jgui.getLabelFromName())){
 				if(territories.getArmies() == 2){
-					maxThrowNum = 1;
+					maxThrowNumAttacker = 1;
 				}
 				else if(territories.getArmies() == 3){
-					maxThrowNum = 2;
+					maxThrowNumAttacker = 2;
 				}
 				else{
-					maxThrowNum = 3;
+					maxThrowNumAttacker = 3;
 				}
 			}
 		}
@@ -147,10 +148,10 @@ public class AttackScreen extends JFrame {
 		for(Territory territories : motor.territories){
 			if(territories.getName().equals(jgui.getLabelToName())){
 				if(territories.getArmies() == 1){
-					maxThrowNum = 1;
+					maxThrowNumDefender = 1;
 				}
 				else{
-					maxThrowNum = 2;
+					maxThrowNumDefender = 2;
 				}
 			}
 		}
@@ -210,8 +211,11 @@ public class AttackScreen extends JFrame {
 		}
 	}
 	
-	public void setMaxThrowNum(int maxThrowNum){		
-		this.maxThrowNum = maxThrowNum;
+	public void setAttackerMaxThrowNum(int maxThrowNum){		
+		this.maxThrowNumAttacker = maxThrowNum;
+	}
+	public void setDefenderMaxThrowNum(int maxThrowNum){		
+		this.maxThrowNumDefender = maxThrowNum;
 	}
 	
 	private void throwDiceDef(int maxThrowNum){
@@ -318,9 +322,9 @@ public class AttackScreen extends JFrame {
 		btnAttack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
 							setAttackerMaxThrowNum();
-							if(maxThrowNum == 0){AttackDice = false;}
+							if(maxThrowNumAttacker == 0){AttackDice = false;}
 							if(AttackDice){
-								throwDiceAttack(maxThrowNum);
+								throwDiceAttack(maxThrowNumAttacker);
 								throwCntrAtt += 1;
 							}
 						}
@@ -375,7 +379,7 @@ public class AttackScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setDefenderMaxThrowNum();
 				if(DefDice){
-				throwDiceDef(maxThrowNum);
+				throwDiceDef(maxThrowNumDefender);
 				throwCntrDef += 1;
 				
 				if(throwCntrAtt == 3 & throwCntrDef == 2){
