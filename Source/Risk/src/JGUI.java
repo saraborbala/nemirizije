@@ -1495,6 +1495,8 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		//SwingUtilities.updateComponentTreeUI(this);
 		//revalidate();
 		//repaint();
+		
+		
 			for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
 				String circlekey = circleitem.getKey();
 				JLabel circlevalue = circleitem.getValue();
@@ -1516,6 +1518,13 @@ public class JGUI extends JFrame implements java.io.Serializable{
 				String infoitemkey = infoitem.getKey();
 				JLabel infoitemvalue = infoitem.getValue();
 				infoitemvalue.setText(infoitemvalue.getText());
+				
+				if(infoitemkey.equals("lblPlayerName1")){
+					infoitemvalue.setText(motor.players.get(0).getName());
+				}
+				if(infoitemkey.equals("lblPlayerName2")){
+					infoitemvalue.setText(motor.players.get(1).getName());
+				}
 		    }
 		    //////////////////////////////////////////////////////////////////////
 			

@@ -163,7 +163,7 @@ public class AttackScreen extends JFrame {
 				if(maxThrowNum == 1){
 					AttackDice = false;
 					motor.attackerResult.add(generateRandom());
-					setDiceIcon(motor.attackerResult.get(2), lblAttDice3);
+					setDiceIcon(motor.attackerResult.get(1), lblAttDice3);
 					// Hálózati kommunkikáció
 					GameState gs = new GameState();
 					gs.state = 1;
