@@ -1280,6 +1280,7 @@ public class Motor {
 			if(gs.state ==4){ //Támadás vége
 				this.territories = gs.territories;
 				this.players = gs.players;
+				
 				jgui.refreshMap();				
 			}
 			
