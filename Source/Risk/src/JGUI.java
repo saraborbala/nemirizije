@@ -1323,11 +1323,13 @@ public class JGUI extends JFrame implements java.io.Serializable{
 								if(territories.getName().equals(labelFromName)){
 									if(territories.getPlayer().getPlayerIndex() == actGUIPlayerIndex){
 											labelFromPlayer = territories.getPlayer();
-											lblInfo.setText("");
+											setInfoLabelText("");
+											refreshMap();
 											statusmove = StatusMove.FIRST_SELECTED;
 									}
 										else{
-											lblInfo.setText("Nem a te területed!");
+											setInfoLabelText("Nem a te területed!");
+											refreshMap();
 											System.out.println("Nem a te területed!");
 											}
 								}
@@ -1336,7 +1338,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 							//if(labelFromPlayer.equals())
 							
 							System.out.println(statusmove);
-							lblInfo.setText("");
+							//lblInfo.setText("");
 							break;
 						}
 						case FIRST_SELECTED: {						
@@ -1373,7 +1375,10 @@ public class JGUI extends JFrame implements java.io.Serializable{
 								//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 								frame.setVisible(true);	
 								}
-								else{lblInfo.setText("<html>Legalább 2 egység<br>szükséges!</html>");}
+								else{
+									setInfoLabelText("<html>Legalább 2 egység<br>szükséges!</html>");
+									refreshMap();
+								}
 							}
 							else{//MOVE
 								movementPanel.setVisible(true);
@@ -1533,6 +1538,10 @@ public class JGUI extends JFrame implements java.io.Serializable{
 				if(infoitemkey.equals("lblPlayerName2")){
 					infoitemvalue.setText(motor.players.get(1).getName());
 				}
+				if(infoitemkey.equals("InfoLabel")){
+					infoitemvalue.setText(getInfoLabelText());
+				}
+				
 		    }
 		    //////////////////////////////////////////////////////////////////////
 			
