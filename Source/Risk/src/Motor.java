@@ -566,7 +566,7 @@ public class Motor {
       
       public void assignAdjacentsandContinent(){
     	  //Hozzárendeli az összes országhoz a szomszédait. Egyesével. Eretvágok.
-    	  // Nagyon csúnya, kérlet el se olvasd
+    	  // Nagyon csúnya, kérlek el se olvasd
     	  // Kontinensek:
     	  // 1 - Észak-Amerika
     	  // 2 - Dél-Amerika
@@ -1268,6 +1268,7 @@ public class Motor {
 			if (gs.state == 3){ //synch, szerver
 				this.territories = gs.territories;
 				this.players.set(1, gs.client);
+				assignPlayer();
 				jgui.refreshMap();
 				// Kliens felé küldés egybõl
 				GameState gs_tosend = new GameState();

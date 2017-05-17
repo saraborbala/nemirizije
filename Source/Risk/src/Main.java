@@ -12,15 +12,15 @@ public class Main {
 					frame.setTitle("Rizikó");
 					motor.setGUI(frame);
 					motor.initPlayers(); // játkosok létrehozása
-					motor.assignPlayer();
+					//motor.assignPlayer();
 					motor.assignAdjacentsandContinent();			
 					motor.setPlayerTerritories();
 					motor.assignArmies();
 					frame.refreshMap();
-					/*for(Territory territories : motor.territories){
+					for(Territory territories : motor.territories){
 						System.out.println(territories.getName());
-						System.out.println(territories.getArmies());
-					}*/
+						System.out.println(territories.getPlayer());
+					}
 					motor.setActPlayer(motor.players.get(0));
 				} 
 				catch (Exception e) {

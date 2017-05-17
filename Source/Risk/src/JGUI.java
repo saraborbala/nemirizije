@@ -1568,6 +1568,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 			    		Player actualPlayer;
 			    		
 			    		actualPlayer = territories.getPlayer();
+			    		System.out.println(actualPlayer.getName());
 			    		//actualColor = actualPlayer.getColor();
 			    		//System.out.println(circlekey);
 			    		
