@@ -44,6 +44,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 	Map<String, JLabel> labels = new HashMap<String,JLabel>();
 	Map<String, JLabel> circles = new HashMap<String,JLabel>();
 	Map<String, JLabel> toBeRefreshed = new HashMap<String,JLabel>();
+
 	private String labelFromName;
 	private String labelToName;
 	private boolean attackEnded = false;
@@ -938,6 +939,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		lblInfo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblInfo.setBounds(10, 303, 219, 116);
 		PlayerStatus.add(lblInfo);
+		toBeRefreshed.put("InfoLabel", lblInfo);
 		
 		JPanel bonusUnitPanel = new JPanel();
 		bonusUnitPanel.setVisible(false);
@@ -1309,15 +1311,17 @@ public class JGUI extends JFrame implements java.io.Serializable{
 							
 							labelFromName = circlekey;
 							for(Territory territories : motor.territories){	
-							isMyTurn();	
-								
+							isMyTurn();		
 								if(territories.getName().equals(labelFromName)){
 									if(territories.getPlayer().getPlayerIndex() == actGUIPlayerIndex){
-										labelFromPlayer = territories.getPlayer();
-										lblInfo.setText("");
-										statusmove = StatusMove.FIRST_SELECTED;
+											labelFromPlayer = territories.getPlayer();
+											lblInfo.setText("");
+											statusmove = StatusMove.FIRST_SELECTED;
 									}
-									else{lblInfo.setText("Nem a te területed!");}
+										else{
+											lblInfo.setText("Nem a te területed!");
+											System.out.println("Nem a te területed!");
+											}
 								}
 							}
 							
@@ -1507,6 +1511,13 @@ public class JGUI extends JFrame implements java.io.Serializable{
 			String circlekey = circleitem.getKey();
 		    JLabel circlevalue = circleitem.getValue();
 		    
+		    //RefreshLabels///////////////////////////////////////////////////////
+		    for(Map.Entry<String, JLabel> infoitem : toBeRefreshed.entrySet()) {
+				String infoitemkey = infoitem.getKey();
+				JLabel infoitemvalue = infoitem.getValue();
+				infoitemvalue.setText(infoitemvalue.getText());
+		    }
+		    //////////////////////////////////////////////////////////////////////
 			
 		    //this.pack();
 		    //this.repaint();
