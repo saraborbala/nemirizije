@@ -1344,6 +1344,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 								//Create attackframe
 								if(availableUnits != 1){
 								AttackScreen frame = new AttackScreen(jgui, motor);
+								motor.setAScreen(frame);
 								frame.setBounds(32, 62, 765, 325);
 								frame.setLocation(new Point(300,300));
 								frame.setResizable(false);
