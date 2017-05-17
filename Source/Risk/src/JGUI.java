@@ -44,7 +44,8 @@ public class JGUI extends JFrame implements java.io.Serializable{
 	Map<String, JLabel> labels = new HashMap<String,JLabel>();
 	Map<String, JLabel> circles = new HashMap<String,JLabel>();
 	Map<String, JLabel> toBeRefreshed = new HashMap<String,JLabel>();
-
+	
+	private String infoLabelText;
 	private String labelFromName;
 	private String labelToName;
 	private boolean attackEnded = false;
@@ -52,6 +53,13 @@ public class JGUI extends JFrame implements java.io.Serializable{
 	private Player actPlayer;
 	private int unitToPlace = 0;
 	private boolean movementDone;
+	
+	public void setInfoLabelText(String info){
+		infoLabelText = info;
+	}
+	public String getInfoLabelText(){
+		return infoLabelText;
+	}
 	
 	public void setMovementDone(boolean state){
 		movementDone = state;
