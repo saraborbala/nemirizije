@@ -1251,9 +1251,10 @@ public class Motor {
 			dScreen.setBounds(32, 62, 765, 325);
 			dScreen.setLocation(new Point(300,300));
 			dScreen.setResizable(false);
-			dScreen.setTitle("Támadás");
+			dScreen.setTitle("Megtámadtak!");
 			//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 			dScreen.setVisible(true);
+			
 			this.attackerResult = gs.attackerResult;
 			//dScreen.setDefenderMaxThrowNum();
 			dScreen.setMaxThrowNum(gs.maxThrowNum);
@@ -1262,7 +1263,9 @@ public class Motor {
 		}
 			if(gs.state == 2){ // Védekezõ eremdényei jöttek
 				System.out.println(gs.msg);
+				
 				this.defenderResult = gs.defenderResult;
+				aScreen.attackdone = false;
 				aScreen.refreshAttackScreen();
 			}
 			if (gs.state == 3){ //synch, szerver

@@ -147,7 +147,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		}
 	}
 	
-	private JPanel contentPane;
+	public JPanel contentPane;
 		
 	/**
 	 * Launch the application.
@@ -258,7 +258,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		upperMenu.setBorder(UIManager.getBorder("InternalFrame.border"));
 		upperMenu.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		upperMenu.setMargin(new Insets(3, 3, 3, 3));
-		upperMenu.setBounds(0, 0, 167, 34);
+		upperMenu.setBounds(0, 0, 58, 34);
 		MenuBar.add(upperMenu);
 		
 		JMenu Menu = new JMenu("Menu");
@@ -319,14 +319,6 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		Menu.add(Exit);
 		
 		//Egységek mozgatás
-		JMenu Move = new JMenu("Egység elhelyezése");
-		Move.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			//TODO: Egység elhelyezése
-			statusmove = StatusMove.PLACE_UNIT;
-			}
-		});
-		upperMenu.add(Move);
 		JGUI jgui = this;
 		
 		
@@ -1085,12 +1077,13 @@ public class JGUI extends JFrame implements java.io.Serializable{
 					gs.actPlayer = 0;
 				}			
 				System.out.println("A következõ játékos: " +gs.actPlayer.toString());
-				
+				refreshMap();
 				gs.msg = "Kör vége!";
 				gs.state = 0; // new_turn
 				gs.territories = motor.territories;
 				gs.players = motor.players;
 				motor.sendGameState(gs);
+				
 				System.out.println(isMyTurn());
 			}
 		});
@@ -1171,8 +1164,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 							}
 							if(circlekey.equals(labelToName)){
 								circlevalue.setText(toMove);
-							}
-								
+							}		
 							//circlevalue.setText("13");	
 						}					
 				}
@@ -1512,7 +1504,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		//SwingUtilities.updateComponentTreeUI(this);
 		//revalidate();
 		//repaint();
-		
+			
 		
 			for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
 				String circlekey = circleitem.getKey();
@@ -1542,11 +1534,24 @@ public class JGUI extends JFrame implements java.io.Serializable{
 				}
 				if(infoitemkey.equals("InfoLabel")){
 					infoitemvalue.setText(getInfoLabelText());
+					if(!isMyTurn()){
+						infoitemvalue.setBackground(Color.RED);
+						infoitemvalue.setText("Nem te jössz!");
+					}
+					
 				}
 				
 		    }
 		    //////////////////////////////////////////////////////////////////////
+			if(!isMyTurn()){
+				contentPane.setVisible(false);
+			}
+			else{
+				contentPane.setVisible(true);
+			}
 			
+	
+			//--------------------------
 			for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
 			String circlekey = circleitem.getKey();
 		    JLabel circlevalue = circleitem.getValue();

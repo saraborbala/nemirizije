@@ -238,6 +238,7 @@ public class AttackScreen extends JFrame {
 				motor.sendGameState(gs);
 				return;
 				}
+			
 			Collections.sort(motor.attackerResult);
 			System.out.println(motor.attackerResult);		
 			Collections.sort(motor.defenderResult);
@@ -335,26 +336,36 @@ public class AttackScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//lblAttDice3.setIcon(Dice1icon);
 				//TODO: vizsgálni, hogy vannak-e dobások
-				if (attackdone){
+				/*if (attackdone){
 					calculateWinner();
 					dispose();
 					return;
+				}*/
+				if(attackdone){
+					GameState gs = new GameState();
+					gs.state = 2; //synch
+					gs.defenderResult = motor.defenderResult;
+
+					motor.sendGameState(gs);
+				}
+				else{
+					calculateWinner();
+					motor.upDateUnitsAfterAttack();
+					jgui.refreshMap();
+					GameState gs = new GameState();
+					gs.state = 4; //synch
+					gs.territories = motor.territories;
+					gs.players = motor.players;
+					motor.sendGameState(gs);
+
+					jgui.setAttackEnded(true);
+					//motor.defenderResult.clear();
+					//motor.attackerResult.clear();
 				}
 				
-				motor.upDateUnitsAfterAttack();				
-
-				//Gyõztes visszaadása
-				//Territory tulajdonosának beállítása
-				
-				jgui.setAttackEnded(true);
-				
-				GameState gs = new GameState();
-				gs.state = 4; //synch
-				gs.territories = motor.territories;
-				gs.players = motor.players;
-				motor.sendGameState(gs);
 				jgui.refreshMap();
 				//System.out.println(jgui.getAttackerLostUnits());
+				
 				
 				//Ablak bezárása
 				dispose();
