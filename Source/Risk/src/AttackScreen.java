@@ -22,9 +22,9 @@ public class AttackScreen extends JFrame {
 	private int throwCntrAtt = 0;
 	private int throwCntrDef = 0;
 	//Támadó dobásainak tárolása
-	private List<Integer> attackerResult = new ArrayList<>();
+	private List<Integer> attackerResult = new ArrayList<>(0);
 	//Védekezõ dobásainak tárolása
-	private List<Integer> defenderResult = new ArrayList<>();
+	private List<Integer> defenderResult = new ArrayList<>(0);
 	
 	public List<Integer> getAttackerResult(){
 		return attackerResult;
@@ -120,7 +120,7 @@ public class AttackScreen extends JFrame {
 	}
 	
 	public void refreshAttackScreen(){
-		if(attackerResult != null & defenderResult != null){
+		if(!(attackerResult.isEmpty() & defenderResult.isEmpty())){
 		//Támadó
 		setDiceIcon(attackerResult.get(0), lblAttDice1);
 		setDiceIcon(attackerResult.get(1), lblAttDice2);
@@ -241,6 +241,7 @@ public class AttackScreen extends JFrame {
 		}
 	}
 	//Gyõztes számítása: bukott egységes kiszámítása és JGUI-ba állítás
+<<<<<<< HEAD
 	public void calculateWinner(){
 		if (attackdone){
 		GameState gs = new GameState();
@@ -252,6 +253,10 @@ public class AttackScreen extends JFrame {
 		}
 		
 		if((attackerResult != null) & (defenderResult != null)){
+=======
+	public void calculateWinner(){ 
+		if(!(attackerResult.isEmpty() & defenderResult.isEmpty())){
+>>>>>>> origin/master
 			Collections.sort(attackerResult);
 			System.out.println(attackerResult);		
 			Collections.sort(defenderResult);
@@ -349,6 +354,7 @@ public class AttackScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//lblAttDice3.setIcon(Dice1icon);
 				//TODO: vizsgálni, hogy vannak-e dobások
+<<<<<<< HEAD
 				if (attackdone){
 					calculateWinner();
 					dispose();
@@ -356,14 +362,20 @@ public class AttackScreen extends JFrame {
 				}
 				
 				motor.upDateUnitsAfterAttack();				
+=======
+				if(!(attackerResult.isEmpty() & defenderResult.isEmpty())){
+				calculateWinner();
+				motor.upDateUnitsAfterAttack();	
+				}
+>>>>>>> origin/master
 				//Gyõztes visszaadása
 				//Territory tulajdonosának beállítása
 				
 				jgui.setAttackEnded(true);
 				
 				//Játékos megszerzett területének beállítása
-				jgui.refreshMap();
-				System.out.println(jgui.getAttackerLostUnits());
+				//jgui.refreshMap();
+				//System.out.println(jgui.getAttackerLostUnits());
 				
 				//Ablak bezárása
 				dispose();
