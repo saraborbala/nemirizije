@@ -44,8 +44,13 @@ public class Motor {
   ///  public Vector<Continent> continents = new Vector<Continent>();
     static public Vector<Territory> territories = new Vector<Territory>();
     public Territory aTerritory;	//tám ter
-    public Territory dTerritory;	//véd ter
-    
+    public Territory dTerritory;	//véd ter7
+    private AttackScreen aScreen;
+    public void setAScreen( AttackScreen aScreen){
+    	this.aScreen = aScreen;
+    }
+    List<Integer> attackerResult = new ArrayList<>();
+    List<Integer> defenderResult = new ArrayList<>();
         
         
         static public Vector<Player> players = new Vector<Player>(2);
@@ -1222,8 +1227,7 @@ public class Motor {
 			return;
 		net.sendGameState(gs);
 	}
-	public void GameStateRecieved(GameState gs){
-		//TODO error handling
+	public void GameStateRecieved(GameState gs){	
 		if(gs.state == 0){
 			System.out.println(gs.msg);
 			this.territories = gs.territories;
@@ -1241,30 +1245,27 @@ public class Motor {
 			this.players = gs.players;
 		 
 			
-			AttackScreen aScreen = new AttackScreen(jgui,this);
-			aScreen.setAttackerResult(gs.attackerResult);
-			List<Integer> defenderResult = new ArrayList<>();
+			AttackScreen dScreen = new AttackScreen(jgui,this);
 			//defenderResult.add(0);
 			//	defenderResult.add(0);
-			aScreen.setDefenderResult(defenderResult);
-			aScreen.setBounds(32, 62, 765, 325);
-			aScreen.setLocation(new Point(300,300));
-			aScreen.setResizable(false);
-			aScreen.setTitle("Támadás");
+			dScreen.setBounds(32, 62, 765, 325);
+			dScreen.setLocation(new Point(300,300));
+			dScreen.setResizable(false);
+			dScreen.setTitle("Támadás");
 			//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-			aScreen.setVisible(true);
-			aScreen.setAttackerMaxThrowNum();
-			aScreen.setDefenderMaxThrowNum();
-			aScreen.setMaxThrowNum(gs.maxThrowNum);
-			aScreen.attackdone = true;
-			aScreen.refreshAttackScreen();
+			dScreen.setVisible(true);
+			this.attackerResult = gs.attackerResult;
+			//dScreen.setDefenderMaxThrowNum();
+			dScreen.setMaxThrowNum(gs.maxThrowNum);
+			dScreen.attackdone = true;
+			dScreen.refreshAttackScreen();
+		}
 			if(gs.state == 2){ // Védekezõ eremdényei jöttek
 				System.out.println(gs.msg);
-				aScreen.setDefenderResult(defenderResult);
+				this.defenderResult = gs.defenderResult;
 				aScreen.refreshAttackScreen();
 			}
 			
 			
 		}
 	}
-}

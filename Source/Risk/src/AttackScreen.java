@@ -22,24 +22,10 @@ public class AttackScreen extends JFrame {
 	private int throwCntrAtt = 0;
 	private int throwCntrDef = 0;
 	//Támadó dobásainak tárolása
-	private List<Integer> attackerResult = new ArrayList<>(0);
+	//private List<Integer> attackerResult = new ArrayList<>(0);
 	//Védekezõ dobásainak tárolása
-	private List<Integer> defenderResult = new ArrayList<>(0);
-	
-	public List<Integer> getAttackerResult(){
-		return attackerResult;
-	}
-	public List<Integer> getDefenderResult(){
-		return defenderResult;
-	}
-	
-	public void setAttackerResult(List<Integer> attackerResult){
-		this.attackerResult = attackerResult;
-	}
-	
-	public void setDefenderResult(List<Integer> defenderResult){
-		this.defenderResult = defenderResult;
-	}
+	//private List<Integer> defenderResult = new ArrayList<>(0);
+
 	private JGUI jgui; 
 	private Motor motor;
 	private boolean AttackDice = true;
@@ -101,8 +87,8 @@ public class AttackScreen extends JFrame {
 		lblDefDice2.setIcon(null);
 		throwCntrAtt = 0;
 		throwCntrDef = 0;
-		attackerResult.clear();
-		defenderResult.clear();
+		motor.attackerResult.clear();
+		motor.defenderResult.clear();
 		AttackDice = true;
 		DefDice = true;
 		
@@ -120,14 +106,14 @@ public class AttackScreen extends JFrame {
 	}
 	
 	public void refreshAttackScreen(){
-		if(!(attackerResult.isEmpty() & defenderResult.isEmpty())){
+		if(!(motor.attackerResult.isEmpty() & motor.defenderResult.isEmpty())){
 		//Támadó
-		setDiceIcon(attackerResult.get(0), lblAttDice1);
-		setDiceIcon(attackerResult.get(1), lblAttDice2);
-		setDiceIcon(attackerResult.get(2), lblAttDice3);
-		if (!defenderResult.isEmpty()){			
-			setDiceIcon(defenderResult.get(0), lblDefDice1);
-			setDiceIcon(defenderResult.get(1), lblDefDice2);
+		setDiceIcon(motor.attackerResult.get(0), lblAttDice1);
+		setDiceIcon(motor.attackerResult.get(1), lblAttDice2);
+		setDiceIcon(motor.attackerResult.get(2), lblAttDice3);
+		if (!motor.defenderResult.isEmpty()){			
+			setDiceIcon(motor.defenderResult.get(0), lblDefDice1);
+			setDiceIcon(motor.defenderResult.get(1), lblDefDice2);
 		}
 		}
 		else{System.out.println("Nincsenek eredmények");}
@@ -168,57 +154,57 @@ public class AttackScreen extends JFrame {
 				}
 			}
 		}
-	}
+	} 
 	
 	private void throwDiceAttack(int maxThrowNum){
 		if(throwCntrAtt == 1){
-				attackerResult.add(generateRandom());
-				setDiceIcon(attackerResult.get(0), lblAttDice1);
+				motor.attackerResult.add(generateRandom());
+				setDiceIcon(motor.attackerResult.get(0), lblAttDice1);
 				if(maxThrowNum == 1){
 					AttackDice = false;
-					attackerResult.add(generateRandom());
-					setDiceIcon(attackerResult.get(2), lblAttDice3);
+					motor.attackerResult.add(generateRandom());
+					setDiceIcon(motor.attackerResult.get(2), lblAttDice3);
 					// Hálózati kommunkikáció
 					GameState gs = new GameState();
 					gs.state = 1;
 					gs.msg = "Támadás alatt";
 					gs.territories = motor.territories;
 					gs.players = motor.players;
-					gs.defenderResult = this.defenderResult;
-					gs.attackerResult = this.attackerResult;
+					gs.defenderResult = motor.defenderResult;
+					gs.attackerResult = motor.attackerResult;
 					gs.maxThrowNum = maxThrowNum;
 					motor.sendGameState(gs);}
 		}
 		else if(throwCntrAtt == 2){
-				attackerResult.add(generateRandom());
-				setDiceIcon(attackerResult.get(1), lblAttDice2);
+				motor.attackerResult.add(generateRandom());
+				setDiceIcon(motor.attackerResult.get(1), lblAttDice2);
 				if(maxThrowNum == 2){
 					AttackDice = false;
-					attackerResult.add(generateRandom());
-					setDiceIcon(attackerResult.get(2), lblAttDice3);
+					motor.attackerResult.add(generateRandom());
+					setDiceIcon(motor.attackerResult.get(2), lblAttDice3);
 					// Hálózati kommunkikáció
 					GameState gs = new GameState();
 					gs.state = 1;
 					gs.msg = "Támadás alatt";
 					gs.territories = motor.territories;
 					gs.players = motor.players;
-					gs.defenderResult = this.defenderResult;
-					gs.attackerResult = this.attackerResult;
+					gs.defenderResult = motor.defenderResult;
+					gs.attackerResult = motor.attackerResult;
 					gs.maxThrowNum = maxThrowNum;
 					motor.sendGameState(gs);}
 		}
 		else if(throwCntrAtt == maxThrowNum){
 				AttackDice = false;
-				attackerResult.add(generateRandom());
-				setDiceIcon(attackerResult.get(2), lblAttDice3);
+				motor.attackerResult.add(generateRandom());
+				setDiceIcon(motor.attackerResult.get(2), lblAttDice3);
 				// Hálózati kommunkikáció
 				GameState gs = new GameState();
 				gs.state = 1;
 				gs.msg = "Támadás alatt";
 				gs.territories = motor.territories;
 				gs.players = motor.players;
-				gs.defenderResult = this.defenderResult;
-				gs.attackerResult = this.attackerResult;
+				gs.defenderResult = motor.defenderResult;
+				gs.attackerResult = motor.attackerResult;
 				gs.maxThrowNum = maxThrowNum;
 				motor.sendGameState(gs);
 		}
@@ -230,45 +216,42 @@ public class AttackScreen extends JFrame {
 	
 	private void throwDiceDef(int maxThrowNum){
 		if(throwCntrDef == 1 ||(throwCntrDef == 0)){
-			defenderResult.add(generateRandom());
-			setDiceIcon(defenderResult.get(0), lblDefDice1);
+			motor.defenderResult.add(generateRandom());
+			setDiceIcon(motor.defenderResult.get(0), lblDefDice1);
 	}
 	
 		else if(throwCntrDef == maxThrowNum){
-			defenderResult.add(generateRandom());		
-			setDiceIcon(defenderResult.get(1), lblDefDice2);
+			motor.defenderResult.add(generateRandom());		
+			setDiceIcon(motor.defenderResult.get(1), lblDefDice2);
 			DefDice = false;
 		}
 	}
 	//Gyõztes számítása: bukott egységes kiszámítása és JGUI-ba állítás
 
-	public void calculateWinner(){
-		if (attackdone){
-		GameState gs = new GameState();
-		gs.state = 2; //
-		gs.msg = "Védési eredmények!";
-		gs.defenderResult = defenderResult;
-		motor.sendGameState(gs);
-		return;
-		}
-		
-
-		if(!(attackerResult.isEmpty() & defenderResult.isEmpty())){
-
-			Collections.sort(attackerResult);
-			System.out.println(attackerResult);		
-			Collections.sort(defenderResult);
-			System.out.println(defenderResult);		
-			int maxSizeAttack = attackerResult.size();
-			int maxSizeDef = defenderResult.size();
+	public void calculateWinner(){		
+		if(!(motor.attackerResult.isEmpty() & motor.defenderResult.isEmpty())){
+			if (attackdone){
+				GameState gs = new GameState();
+				gs.state = 2; //
+				gs.msg = "Védési eredmények!";
+				gs.defenderResult = motor.defenderResult;
+				motor.sendGameState(gs);
+				return;
+				}
+			Collections.sort(motor.attackerResult);
+			System.out.println(motor.attackerResult);		
+			Collections.sort(motor.defenderResult);
+			System.out.println(motor.defenderResult);		
+			int maxSizeAttack = motor.attackerResult.size();
+			int maxSizeDef = motor.defenderResult.size();
 			
-			if(attackerResult.get(maxSizeAttack -1) - defenderResult.get(maxSizeDef -1) <= 0){
+			if(motor.attackerResult.get(maxSizeAttack -1) - motor.defenderResult.get(maxSizeDef -1) <= 0){
 				jgui.setAttackerLostUnits(jgui.getAttackerLostUnits() + 1);
 			}
 			else{jgui.setDefenderLostUnits(jgui.getDefenderLostUnits() + 1);}
 			
 			if(maxSizeAttack -1 != 0 & (maxSizeDef -1 != 0)){
-			if(attackerResult.get(maxSizeAttack - 1) - defenderResult.get(maxSizeDef - 1) <= 0){
+			if(motor.attackerResult.get(maxSizeAttack - 1) - motor.defenderResult.get(maxSizeDef - 1) <= 0){
 				jgui.setAttackerLostUnits(jgui.getAttackerLostUnits() + 1);
 			}
 			else{jgui.setDefenderLostUnits(jgui.getDefenderLostUnits() + 1);}
@@ -279,7 +262,7 @@ public class AttackScreen extends JFrame {
 	//Attackscreen frissítése
 	
 	
-	/**
+	/**s
 	 * Create the frame.
 	 */
 	public AttackScreen(JGUI jgui, Motor motor) {
@@ -352,7 +335,6 @@ public class AttackScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//lblAttDice3.setIcon(Dice1icon);
 				//TODO: vizsgálni, hogy vannak-e dobások
-
 				if (attackdone){
 					calculateWinner();
 					dispose();

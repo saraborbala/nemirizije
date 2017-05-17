@@ -1314,9 +1314,10 @@ public class JGUI extends JFrame implements java.io.Serializable{
 								if(territories.getName().equals(labelFromName)){
 									if(territories.getPlayer().getPlayerIndex() == actGUIPlayerIndex){
 										labelFromPlayer = territories.getPlayer();
+										lblInfo.setText("");
 										statusmove = StatusMove.FIRST_SELECTED;
 									}
-									else{System.out.println("Nem a te területed!");}
+									else{lblInfo.setText("Nem a te területed!");}
 								}
 							}
 							
@@ -1352,6 +1353,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 								//Create attackframe
 								if(availableUnits != 1){
 								AttackScreen frame = new AttackScreen(jgui, motor);
+								motor.setAScreen(frame);
 								frame.setBounds(32, 62, 765, 325);
 								frame.setLocation(new Point(300,300));
 								frame.setResizable(false);
