@@ -148,7 +148,7 @@ public class NewPlayer extends JFrame {
 					gs.msg = "Kezdeti szinkronizáció!";
 					gs.state = 3; // synch
 					gs.territories = motor.territories;
-					gs.client = motor.players.get(0);
+					gs.client = motor.players.get(1);
 					motor.sendGameState(gs);
 					 
 				}
