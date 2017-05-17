@@ -429,7 +429,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		
 			
 		
-		lblWestUSInd.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG")));
+		lblWestUSInd.setIcon(null);
 		lblWestUSInd.setBounds(118, 182, 30, 30);	
 		//TODO: Mapben leimplementálni, ez a pilot
 		//lblWestUSInd.setText("25");
@@ -1551,7 +1551,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 			String circlekey = circleitem.getKey();
 		    JLabel circlevalue = circleitem.getValue();
 				
-//<<<<<<< HEAD
+
 		    for(Territory territories : motor.territories){
 		    	//Integer armyNum = territories.getArmies();
 		    	//circlevalue.setText(armyNum.toString());
@@ -1564,7 +1564,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 			    		Player actualPlayer;
 			    		
 			    		actualPlayer = territories.getPlayer();
-			    		System.out.println(actualPlayer.getName());
+			    		//System.out.println(actualPlayer.getName());
 			    		//actualColor = actualPlayer.getColor();
 			    		//System.out.println(circlekey);
 			    		
