@@ -1126,10 +1126,10 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		JButton button = new JButton("-");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//if(unitsToMoveNum > 0){
+				if(unitsToMoveNum > 0){
 					unitsToMoveNum -= 1;
 					lblUnitNum.setText(unitsToMoveNum.toString());
-				//}
+				}
 					
 			}
 		});
@@ -1526,11 +1526,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 				}
 		
 			}
-			for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
-			String circlekey = circleitem.getKey();
-		    JLabel circlevalue = circleitem.getValue();
-		    
-		    //RefreshLabels///////////////////////////////////////////////////////
+			//RefreshLabels///////////////////////////////////////////////////////
 		    for(Map.Entry<String, JLabel> infoitem : toBeRefreshed.entrySet()) {
 				String infoitemkey = infoitem.getKey();
 				JLabel infoitemvalue = infoitem.getValue();
@@ -1551,49 +1547,49 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		    }
 		    //////////////////////////////////////////////////////////////////////
 			
-		    //this.pack();
-		    //this.repaint();
-		    //lblPlayerName1.setText(motor.players.elementAt(0).getName());
-			//lblPlayerName2.setText(motor.players.elementAt(1).getName());
+			for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
+			String circlekey = circleitem.getKey();
+		    JLabel circlevalue = circleitem.getValue();
 				
-		    for(Territory territories : motor.territories){
-		    	//Integer armyNum = territories.getArmies();
-		    	//circlevalue.setText(armyNum.toString());
-		    	//circlevalue.validate();
-		    	
-		    	if(territories.getPlayer().getPlayerIndex() != -1){	
-	    		//Ha egyezik a kör labelje az adott terület nevével	
-		    		if(territories.getName().equals(circlekey))
-			    	{
-			    		Player actualPlayer;
-			    		
-			    		actualPlayer = territories.getPlayer();
-			    		//actualColor = actualPlayer.getColor();
-			    		//System.out.println(circlekey);
-			    		
-			    		int colorID = 0; 
-			    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
+			    for(Territory territories : motor.territories){
+			    	//Integer armyNum = territories.getArmies();
+			    	//circlevalue.setText(armyNum.toString());
+			    	//circlevalue.validate();
+			    	
+			    	
+		    		//Ha egyezik a kör labelje az adott terület nevével	
+			    	if(territories.getName().equals(circlekey))
+				    {
+				    	Player actualPlayer;
+				    		
+				    	actualPlayer = territories.getPlayer();
+				    		//actualColor = actualPlayer.getColor();
+				    	System.out.println(actualPlayer.getName());
+				    	System.out.println(actualPlayer.getColor().toString());
+				    		
+				    	int colorID = 0; 
+				    	//Játékos színe alapján colorID beállítása a következõ sw.c-hez
 						if(actualPlayer.getColor().equals(Color.RED.darker())) 		{colorID = 1;}
 						if(actualPlayer.getColor().equals(Color.CYAN))				{colorID = 2;}
 						if(actualPlayer.getColor().equals(Color.GREEN))				{colorID = 3;}
 						if(actualPlayer.getColor().equals(Color.ORANGE))			{colorID = 4;}
 						if(actualPlayer.getColor().equals(Color.MAGENTA.darker()))	{colorID = 5;}
-						
+							
 						//Megfelelõ színû kör kiválasztása és beállítása
-					    switch(colorID){
+						switch(colorID){
 							case 1: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG"))); break;}
 							case 2: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG"))); break;}
 							case 3: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/green_dot.PNG"))); break;}
 							case 4: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/orange_dot.PNG"))); break;}
 							case 5: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/magenta_dot.PNG"))); break;}		
 							default: {circlevalue.setIcon(null);}
-					    }	    
-					    
-			    	}
-	    		
-		    	}
+						}	    
+						    
+				    }
+		    		
+			    }
 	
-		  }
+		  
 		}
 	}
 }
