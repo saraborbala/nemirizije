@@ -77,6 +77,7 @@ public class Client extends Network{
 			return;
 		System.out.println("Sending GameState");
 		try{
+			out.reset();
 			out.writeObject(gs);
 			out.flush();
 		}

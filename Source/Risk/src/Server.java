@@ -110,6 +110,7 @@ public class Server extends Network{
 			return;
 		System.out.println("Sending GameState");
 		try{
+			out.reset(); // 10 órás debuggolás eredménye :((((((((((	
 			out.writeObject(gs);
 			out.flush();
 		}
