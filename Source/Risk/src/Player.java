@@ -46,7 +46,7 @@ public class Player implements java.io.Serializable {
 		return bonusUnit;
 	}
 	public void setBonusUnit(int n){
-		bonusUnit = 0;
+		bonusUnit = n;
 	}
 	public Vector<Territory> getOccupiedTerritories(){
 		return occupiedTerritories;

@@ -839,9 +839,9 @@ public class Motor {
 			this.territories = gs.territories;
 			this.players = gs.players;
 			setPlayerTerritories();
-			for (Player players : players){
+			/*for (Player players : players){
 				players.continentBonus();
-			}
+			}*/
 			jgui.actGUIPlayerIndex = gs.actPlayer;
 			jgui.refreshMap();
 			break;

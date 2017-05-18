@@ -903,11 +903,20 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		JButton btnUnitMin = new JButton("-");
 		btnUnitMin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int bonusUnitAvailable = 0;
+				for(Territory territories : motor.territories){
+					if(territories.getName().equals(labelFromName)){
+						Player tempplayer = territories.getPlayer();
+						bonusUnitAvailable = tempplayer.getBonusUnit();
+					}		
+				}
+				if(getUnitToPlace() <= bonusUnitAvailable){
 				if((getUnitToPlace() - 1) > 0){
 				setUnitToPlace(getUnitToPlace() - 1);
 				}
 				Integer actarmy = getUnitToPlace();
-				lblBonusUnitNum.setText(actarmy.toString());
+				lblBonusUnitNum.setText(actarmy.toString());}
+				else{lblBonusUnitNum.setText("0");}
 			}
 		});
 		btnUnitMin.setBounds(151, 32, 41, 35);
@@ -920,12 +929,14 @@ public class JGUI extends JFrame implements java.io.Serializable{
 				for(Territory territories : motor.territories){	 
 					if(territories.getName().equals(labelFromName)){
 						territories.setArmies(territories.getArmies() + getUnitToPlace() );
-						Player tempplayer = territories.getPlayer();
+						
 						//Bonus értékének aktualizálása
-						tempplayer.setBonusUnit(tempplayer.getBonusUnit() - getUnitToPlace());
-						bonusUnitAvailable = tempplayer.getBonusUnit();
+						territories.getPlayer().setBonusUnit(territories.getPlayer().getBonusUnit() - getUnitToPlace());
+						bonusUnitAvailable = territories.getPlayer().getBonusUnit();
+						setUnitToPlace(0);
 					}
 				}
+				lblBonusUnitNum.setText("0");
 				
 				if(bonusUnitAvailable == 0){
 				statusmove = StatusMove.STARTED;
@@ -933,6 +944,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 				refreshMap();
 				}
 				else{
+				bonusUnitPanel.setVisible(false);
 				statusmove = StatusMove.PLACE_UNIT;
 				refreshMap();	
 				}
@@ -964,6 +976,13 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				for(Player players : motor.players){
+					if(players.getPlayerIndex() == actGUIPlayerIndex){
+					players.setBonusUnit(2);
+					}
+				}
+				
 				// Kör vége gomb, átküldi az összes változtatást
 				GameState gs = new GameState();
 				// Átállítjuk az aktuális playert
@@ -1080,15 +1099,6 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		btnDoneMoveSelect.setBounds(476, 0, 89, 35);
 		movementPanel.add(btnDoneMoveSelect);
 		
-		JButton btnNewButton_2 = new JButton("refresh");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				jgui.refreshMap();
-			}
-		});
-		btnNewButton_2.setBounds(21, 100, 89, 23);
-		Mainpanel.add(btnNewButton_2);
-		
 		movementPanel.setVisible(false);
 		//listenerek	
 		//Játékos indikátor körök listenerje  
@@ -1132,6 +1142,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
 					switch(statusmove){
 						case STARTED: {
 							//actGUIPlayerIndex
+							if(motor.players.get(actGUIPlayerIndex).getBonusUnit() != 0){
+								statusmove = StatusMove.PLACE_UNIT;
+							}
 							
 							labelFromName = circlekey;
 							for(Territory territories : motor.territories){	
@@ -1198,6 +1211,16 @@ public class JGUI extends JFrame implements java.io.Serializable{
 							
 							break;
 							}
+						case PLACE_UNIT:{
+							labelFromName = circlekey;
+							for(Territory territories : motor.territories){	
+								if(territories.getName().equals(labelFromName)){
+									labelFromPlayer = territories.getPlayer();	
+								}
+							}
+							
+							bonusUnitPanel.setVisible(true);
+						}
 						default:
 							break;
 						
