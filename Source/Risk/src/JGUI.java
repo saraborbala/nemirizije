@@ -985,7 +985,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 				
 				for(Player players : motor.players){
 					if(players.getPlayerIndex() == actGUIPlayerIndex){
-					players.setBonusUnit(2);
+					players.setBonusUnit(players.getBonusUnit()+2);
 					}
 				}
 				
