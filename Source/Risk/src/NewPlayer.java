@@ -71,6 +71,7 @@ public class NewPlayer extends JFrame {
 		
 		JComboBox comboBoxColor = new JComboBox();
 		playerColor = Color.RED.darker();
+		contentPane.setBackground(Color.RED.darker());
 		comboBoxColor.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				playerColorStr = comboBoxColor.getSelectedItem().toString();
@@ -107,12 +108,6 @@ public class NewPlayer extends JFrame {
 		rdbtnServer.setBounds(338, 109, 90, 23);
 		Details.add(rdbtnServer);
 		rdbtnServer.setBackground(contentPane.getBackground());
-		
-		//Szerver ne legyen választható, ha már van szerver
-		//TODO van-e szerver feltétel? 
-
-
-		boolean isServerAvailable = false;
 		JRadioButton rdbtnClient = new JRadioButton("Kliens");
 		rdbtnClient.setOpaque(false);
 		rdbtnClient.setBounds(253, 109, 83, 23);
@@ -126,11 +121,7 @@ public class NewPlayer extends JFrame {
 				
 		JButton btnNewGame = new JButton("Kezd\u0151dj\u00F6n a harc!");
 		btnNewGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//Funkciók implementálása TODO
-				
-				//Kliens vagy szerver? 
-				
+			public void actionPerformed(ActionEvent arg0) {				
 				if(rdbtnServer.isSelected()){
 					// SZERVER 
 					motor.setActPlayer(motor.players.get(0));
@@ -139,6 +130,7 @@ public class NewPlayer extends JFrame {
 					motor.startServer();
 				}
 				if(rdbtnClient.isSelected()){
+					// Klines
 					motor.setActPlayer(motor.players.get(1));
 					motor.players.get(1).setName(textField_Name.getText());
 					motor.players.get(1).setColor(playerColor);
@@ -152,28 +144,6 @@ public class NewPlayer extends JFrame {
 					motor.sendGameState(gs);
 					 
 				}
-				 
-				//Új játékos létrehozása név alapján
-				//String newPlayerName = textField_Name.getText();
-				//Motor.addPlayer(newPlayerName);
-				/*int playerNum = Motor.players.size();
-				String playerName = textField_Name.getText();				
-				Player newPlayer = new Player(playerName, playerNum+1);*/
-				
-					
-				
-				//Csak 2 játékos adható összesen hozzá
-				/*if(playerNum < 2){
-				motor.players.add(newPlayer);
-				}*/
-				
-				// Játékos színének beállítása -> PlayerColor változóban a szín
-				/*for(Player player : Motor.players){
-					if(player.getName() == playerName){
-						player.setColor(playerColor);
-					}
-				}*/
-				//Bezárás
 				dispose();			
 			}
 		});

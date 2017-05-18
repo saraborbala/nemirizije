@@ -18,25 +18,11 @@ public class GameState implements java.io.Serializable{
 	
 	public List<Integer> defenderResult;
 	public List<Integer> attackerResult;
-	//public JGUI jgui;
 	public int maxThrowNum;
 	
 	public int connected = 0;
 	public int isGameOver = 0;
 	private String errorMsg;
 	public Player client;
-	
-	
-	public String getErrorMsg() {
-		return errorMsg;
-	}
-	public void setErrorMsg(String errorMsg) {
-		this.errorMsg = errorMsg;
-	}
-	
 	GameState(){}; 
-
 }
-
-//TODO
-//Átküldeni: Motorból: players, territories

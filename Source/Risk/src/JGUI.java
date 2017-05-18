@@ -1038,10 +1038,10 @@ public class JGUI extends JFrame implements java.io.Serializable{
 			//Szélesség kiszámítása
 			int width = (int) (300*widthPercentage);
 					
-			System.out.println(widthPercentage);
-			System.out.println(width);
-			System.out.println(Motor.players.get(0).getNumberOfArmies());
-			System.out.println(Motor.players.get(1).getNumberOfArmies());
+			//System.out.println(widthPercentage);
+			//System.out.println(width);
+			//System.out.println(Motor.players.get(0).getNumberOfArmies());
+			//System.out.println(Motor.players.get(1).getNumberOfArmies());
 					
 			Player1Units.setBounds(414, 10, (width), 20);
 			Player1Units.setBackground(playerInd1Color);
@@ -1057,13 +1057,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				// Kör vége gomb, átküldi az összes változtatást
 				GameState gs = new GameState();
-				System.out.println("A mostani játékos: " + actGUIPlayerIndex.toString());
-				
-
 				// Átállítjuk az aktuális playert
-				System.out.println(isMyTurn());
 				if (actGUIPlayerIndex == 0){
 					actGUIPlayerIndex = 1;
 				}
@@ -1076,15 +1072,12 @@ public class JGUI extends JFrame implements java.io.Serializable{
 				else{
 					gs.actPlayer = 0;
 				}			
-				System.out.println("A következõ játékos: " +gs.actPlayer.toString());
 				refreshMap();
 				gs.msg = "Kör vége!";
 				gs.state = 0; // new_turn
 				gs.territories = motor.territories;
 				gs.players = motor.players;
 				motor.sendGameState(gs);
-				
-				System.out.println(isMyTurn());
 			}
 		});
 //----HÁLÓZAT-----------------------------------------------------------------------------
@@ -1140,7 +1133,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		JButton btnDoneMoveSelect = new JButton("Kész!");
 		btnDoneMoveSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(unitsToMoveNum);
+				//System.out.println(unitsToMoveNum);
 				
 				motor.moveUnits(labelFromName, labelToName, unitsToMoveNum);
 				
@@ -1333,7 +1326,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 							
 							//if(labelFromPlayer.equals())
 							
-							System.out.println(statusmove);
+							//System.out.println(statusmove);
 							//lblInfo.setText("");
 							break;
 						}
@@ -1381,7 +1374,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 							}
 	
 							statusmove = StatusMove.BOTH_SELECTED;
-							System.out.println(statusmove);
+							//System.out.println(statusmove);
 							
 							statusmove = StatusMove.STARTED;
 							

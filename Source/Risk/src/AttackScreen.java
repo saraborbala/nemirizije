@@ -33,24 +33,6 @@ public class AttackScreen extends JFrame {
 	private int maxThrowNum = 1;
 	private boolean resultCalculable = false;
 	public boolean attackdone = false;
-	//
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AttackScreen frame = new AttackScreen(jgui);
-					frame.setVisible(true);
-				    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-	 
 	//Reading dice images
 	public void DiceRead(){
 	try{
@@ -364,14 +346,8 @@ public class AttackScreen extends JFrame {
 					motor.sendGameState(gs);
 
 					jgui.setAttackEnded(true);
-					//motor.defenderResult.clear();
-					//motor.attackerResult.clear();
-				}
-				
+				}				
 				jgui.refreshMap();
-				//System.out.println(jgui.getAttackerLostUnits());
-				
-				
 				//Ablak bezárása
 				dispose();
 			}

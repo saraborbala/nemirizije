@@ -41,7 +41,6 @@ public class Server extends Network{
 				out.flush();  // memóriaszemét eltüntetés
 			} catch (IOException e) {
 				System.err.println("Error while getting streams.");
-				// TODO: errorMsg
 				disconnect();
 				return;
 			}
@@ -53,7 +52,6 @@ public class Server extends Network{
 			} catch (Exception ex) {
 				System.out.println(ex.getMessage());
 				System.err.println("Client disconnected!");
-				// TODO: errorMsg
 			} finally {
 				disconnect();
 			}
@@ -69,7 +67,6 @@ public class Server extends Network{
 			try {
 				serverSocket.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -80,7 +77,6 @@ public class Server extends Network{
 			recieve.start();
 		} catch (IOException e) {
 			System.err.println("Port no. 7555 is probably not open.");
-			// TODO: errorMsg-be tenni
 		}
 		
 	}
@@ -97,9 +93,7 @@ public class Server extends Network{
 			if (serverSocket != null)
 				serverSocket.close();
 		} catch (IOException ex) {
-			//Logger.getLogger(SerialServer.class.getName()).log(Level.SEVERE,null, ex);
 			System.err.println("Could not disconnect");
-			// TODO: errorMsg-be tenni
 		}
 		
 	}
@@ -116,7 +110,6 @@ public class Server extends Network{
 		}
 	 catch (IOException ex) {
 		System.err.println("Send error.");
-		// TODO errorMsg
 	}
 		
 		

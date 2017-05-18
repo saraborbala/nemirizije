@@ -16,7 +16,7 @@ public class Player implements java.io.Serializable {
 		name = n;
 		index = i;
 		occupiedTerritories = new Vector<Territory>();
-		armies = 10; //mennyivel kezd?
+		armies = 10;
 		color = Color.BLACK;
 	}
 		 
@@ -48,13 +48,10 @@ public class Player implements java.io.Serializable {
 	public void setBonusUnit(int n){
 		bonusUnit = 0;
 	}
-	
-	//SD
 	public Vector<Territory> getOccupiedTerritories(){
 		return occupiedTerritories;
 	}
-	
-	//Strau - setterek
+
 	public void setColor(Color playercolor){
 		color = playercolor;
 	}
@@ -112,7 +109,7 @@ public class Player implements java.io.Serializable {
 	//----------------------------------
 	
 	
-	//tonás csökken-nõ
+	//katonás csökken-nõ
 	public void addArmies(int a){
 		armies += a;
 	}
