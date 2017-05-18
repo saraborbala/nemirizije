@@ -859,7 +859,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		
 		JLabel lblInfo = new JLabel("");
 		lblInfo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblInfo.setBounds(10, 303, 219, 116);
+		lblInfo.setBounds(10, 262, 219, 116);
 		PlayerStatus.add(lblInfo);
 		toBeRefreshed.put("InfoLabel", lblInfo);
 		
@@ -953,6 +953,12 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		});
 		btnUnitDone.setBounds(68, 76, 89, 35);
 		bonusUnitPanel.add(btnUnitDone);
+		
+		JLabel lblBonusinfo = new JLabel("B\u00F3nusz egys\u00E9g:");
+		lblBonusinfo.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblBonusinfo.setBounds(10, 391, 219, 28);
+		PlayerStatus.add(lblBonusinfo);
+		toBeRefreshed.put("bonusNum", lblBonusinfo);
 
 		if((Motor.players.size() == 2)){
 			Color playerInd1Color;
@@ -1212,12 +1218,29 @@ public class JGUI extends JFrame implements java.io.Serializable{
 							break;
 							}
 						case PLACE_UNIT:{
-							labelFromName = circlekey;
+
 							for(Territory territories : motor.territories){	
+							isMyTurn();		
+							if(territories.getName().equals(labelFromName)){
 								if(territories.getName().equals(labelFromName)){
 									labelFromPlayer = territories.getPlayer();	
 								}
+								if(territories.getPlayer().getPlayerIndex() == actGUIPlayerIndex){
+										labelFromPlayer = territories.getPlayer();
+										setInfoLabelText("");
+										refreshMap();
+										statusmove = StatusMove.FIRST_SELECTED;
+								}
+									else{
+										setInfoLabelText("Nem a te területed!");
+										refreshMap();
+										System.out.println("Nem a te területed!");
+										}
 							}
+							labelFromName = circlekey;								
+							}
+						
+							
 							
 							bonusUnitPanel.setVisible(true);
 						}
