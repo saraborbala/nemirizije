@@ -954,7 +954,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		btnUnitDone.setBounds(68, 76, 89, 35);
 		bonusUnitPanel.add(btnUnitDone);
 		
-		JLabel lblBonusinfo = new JLabel("B\u00F3nusz egys\u00E9g:");
+		JLabel lblBonusinfo = new JLabel("");
 		lblBonusinfo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblBonusinfo.setBounds(10, 391, 219, 28);
 		PlayerStatus.add(lblBonusinfo);
@@ -1304,6 +1304,8 @@ public class JGUI extends JFrame implements java.io.Serializable{
 					}
 				}	
 			}
+			
+			
 			//RefreshLabels///////////////////////////////////////////////////////
 		    for(Map.Entry<String, JLabel> infoitem : toBeRefreshed.entrySet()) {
 				String infoitemkey = infoitem.getKey();
@@ -1323,10 +1325,12 @@ public class JGUI extends JFrame implements java.io.Serializable{
 					if(!isMyTurn()){
 						infoitemvalue.setBackground(Color.RED);
 						infoitemvalue.setText("Nem te jössz!");
-					}
-					
+					}	
 				}
-				
+				if(infoitemkey.equals("bonusNum")){
+					infoitemvalue.setText(getInfoLabelText());
+					infoitemvalue.setText("Bónusz egységek: " + motor.players.get(actGUIPlayerIndex).getBonusUnit());
+				}
 		    }
 		    //////////////////////////////////////////////////////////////////////
 			if(!isMyTurn()){
