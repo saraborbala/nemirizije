@@ -149,69 +149,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
 	
 	public JPanel contentPane;
 		
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JGUI frame = new JGUI();
-					frame.setVisible(true);						
-					frame.repaint();
-					frame.revalidate();
-					frame.setTitle("Rizikó");
-					NewPlayer newPlayerframe = new NewPlayer();
-					newPlayerframe.setVisible(true);
-					newPlayerframe.setTitle("Új játékos hozzáadása");
-					
-				} 
-				catch (Exception e) {
-				e.printStackTrace();
-				}
-			}
-		});
-	}*/ 
-
-
-	/**
-	 * Create the frame.
-	 */
 	public JGUI(Motor motor) {
 		
 		this.motor = motor;	// motor és GUI összekapcsolása
-		
-		
-		
-		//Teszt
-		
-		//Teszt játékos
-		/*Player newPlayer1 = new Player("tesztname", 0);
-		//Player newPlayer2 = new Player("tesztname2", 1);
-		
-		Territory newTerritory1 = new Territory(1, "Alasca", 2, 4, 5);
-		Territory newTerritory2 = new Territory(1, "Congo", 2, 4, 5);
-		
-		newTerritory1.setPlayer(newPlayer1);
-		//newTerritory2.setPlayer(newPlayer2);
-		
-		Motor.territories.add(newTerritory1);
-		Motor.territories.add(newTerritory2);
-		
-		newPlayer1.setOccTerritory(newTerritory1);
-		newPlayer1.setColor(Color.GREEN);
-		
-		newPlayer1.addArmies(0);
-		//newPlayer2.addArmies(10);
-		
-		Motor.players.add(newPlayer1);
-		*/
-		//newPlayer2.setOccTerritory(newTerritory2);
-		//newPlayer2.setColor(Color.RED);
-		//Motor.players.add(newPlayer2);	
-		
-		
-		//-------------		
 		
 		setResizable(false);
 		
@@ -288,23 +228,6 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		});
 		
 		//
-		JMenuItem NewGame = new JMenuItem("Új játék");
-		//TODO: Megoldandó feladatok: területek szétosztása játékosok között, random. 
-		//új játék kezdése: korábbit reseteli
-		
-		/*JMenuItem Attack = new JMenuItem("Támadás");
-		Attack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AttackScreen frame = new AttackScreen(this);
-				frame.setBounds(32, 62, 765, 325);
-				frame.setLocation(new Point(300,300));
-				frame.setResizable(false);
-				//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-				frame.setVisible(true);	
-			}
-		});*/ 
-		 
-
 		JMenuItem Exit = new JMenuItem("Kilépés");
 		Exit.addActionListener(new ActionListener() {
 			@Override
@@ -314,13 +237,10 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		});
 		upperMenu.add(Menu);
 		Menu.add(NewPlayer);
-		Menu.add(NewGame);
-		//Menu.add(Attack);
 		Menu.add(Exit);
 		
 		//Egységek mozgatás
 		JGUI jgui = this;
-		
 		
 		// Menu vége
 		//------------------------------------------------------------------------------------
@@ -418,9 +338,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		circles.put(Alberta, lblAlbertaInd);
 		
 		JLabel lblWestUSInd = new JLabel("");
-		
 			
-		
 		lblWestUSInd.setIcon(null);
 		lblWestUSInd.setBounds(118, 182, 30, 30);	
 		//TODO: Mapben leimplementálni, ez a pilot
@@ -1023,12 +941,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		});
 		btnUnitDone.setBounds(68, 76, 89, 35);
 		bonusUnitPanel.add(btnUnitDone);
-		
-		//TODO: Megoldani, hogy a játékosok indexe 0 és 1 legyen
-		//Szélességek beállítása a játékosok egységeinek függvényében
-		//TODO: fusson le, amikor 2 játékos érkezik
-		
-		
+
 		if((Motor.players.size() == 2)){
 			Color playerInd1Color;
 			Color playerInd2Color;
@@ -1036,13 +949,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 			playerInd1Color = Motor.players.get(0).getColor();
 			playerInd2Color = Motor.players.get(1).getColor();
 			//Szélesség kiszámítása
-			int width = (int) (300*widthPercentage);
-					
-			//System.out.println(widthPercentage);
-			//System.out.println(width);
-			//System.out.println(Motor.players.get(0).getNumberOfArmies());
-			//System.out.println(Motor.players.get(1).getNumberOfArmies());
-					
+			int width = (int) (300*widthPercentage);		
 			Player1Units.setBounds(414, 10, (width), 20);
 			Player1Units.setBackground(playerInd1Color);
 			Player2Units.setBackground(playerInd2Color);
@@ -1183,8 +1090,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		Mainpanel.add(btnNewButton_2);
 		
 		movementPanel.setVisible(false);
-		//listenerek
-		
+		//listenerek	
 		//Játékos indikátor körök listenerje  
 		for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
 			String circlekey = circleitem.getKey();
@@ -1194,86 +1100,8 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		    circlevalue.setToolTipText(circlekey);
 		    //Territories feltöltése
 		    Territory actualTerritory  = new Territory(circlekey);
-		    //actualTerritory.setPlayer(newPlayer1);
 		    motor.territories.add(actualTerritory);
-		    //actualTerritory.setArmies(1);
-		    
-		    //teszt TODO: remove
-		    
-		    /*for(Territory territories : motor.territories){
-		    if(territories.getPlayer().getPlayerIndex() != -1){	
-	    		//Ha egyezik a kör labelje az adott terület nevével	
-	    		if(territories.getName().equals(circlekey))
-		    	{
-		    		Player actualPlayer;
-		    		
-		    		actualPlayer = territories.getPlayer();
-		    		actualColor = actualPlayer.getColor();
-		    		System.out.println(circlekey);
-		    		
-		    		int colorID = 0; 
-		    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
-					if(actualColor.equals(Color.RED.darker())) 		{colorID = 1;}
-					if(actualColor.equals(Color.CYAN))				{colorID = 2;}
-					if(actualColor.equals(Color.GREEN))				{colorID = 3;}
-					if(actualColor.equals(Color.ORANGE))			{colorID = 4;}
-					if(actualColor.equals(Color.MAGENTA.darker()))	{colorID = 5;}
-					
-					//Megfelelõ színû kör kiválasztása és beállítása
-				    switch(colorID){
-						case 1: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG"))); break;}
-						case 2: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG"))); break;}
-						case 3: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/green_dot.PNG"))); break;}
-						case 4: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/orange_dot.PNG"))); break;}
-						case 5: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/magenta_dot.PNG"))); break;}		
-						default: {circlevalue.setIcon(null);}
-				    }	    
-				    System.out.println(circlevalue);
-		    		}
-		    }*/
-		    //Területhez tartozó játékos kikeresése
-		    
-		    //Játékos színe alapján beállítás
-		    
-		    //Teszt Sára kódja alapján - indikátorok színének beállítása
-		    /*for(Territory territories : motor.territories){	    		    		    	
-		    	//Kezdetben minden területhez 1 játékos
-		    	//territories.addArmies(1);
-		    	actualCircleUnits = territories.getArmies();
-		    	//Ha tartozik a területhez játékos
-		    	if(territories.getPlayer().getPlayerIndex() != -1){	
-		    		//Ha egyezik a kör labelje az adott terület nevével	
-		    		if(territories.getName().equals(circlekey))
-			    	{
-			    		Player actualPlayer;
-			    		
-			    		actualPlayer = territories.getPlayer();
-			    		actualColor = actualPlayer.getColor();
-			    		System.out.println(circlekey);
-			    		
-			    		int colorID = 0; 
-			    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
-						if(actualColor.equals(Color.RED.darker())) 		{colorID = 1;}
-						if(actualColor.equals(Color.CYAN))				{colorID = 2;}
-						if(actualColor.equals(Color.GREEN))				{colorID = 3;}
-						if(actualColor.equals(Color.ORANGE))			{colorID = 4;}
-						if(actualColor.equals(Color.MAGENTA.darker()))	{colorID = 5;}
-						
-						//Megfelelõ színû kör kiválasztása és beállítása
-					    switch(colorID){
-							case 1: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG"))); break;}
-							case 2: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG"))); break;}
-							case 3: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/green_dot.PNG"))); break;}
-							case 4: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/orange_dot.PNG"))); break;}
-							case 5: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/magenta_dot.PNG"))); break;}		
-							default: {circlevalue.setIcon(null);}
-					    }	    
-					    System.out.println(circlevalue);
-			    		}
-			    }
-		    }*/
-		    
-		    //circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG")));
+
     		//TODO: Mapben leimplementálni, ez a pilot
     		circlevalue.setText(actualCircleUnits.toString());
     		circlevalue.setHorizontalTextPosition(lblWestUSInd.CENTER);
@@ -1295,8 +1123,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 					lblActCntryName.setText("");
 					
 				}
-				
-				
+
 				public void mouseClicked(MouseEvent arg0) {
 					Player labelFromPlayer = null;
 					Player labelToPlayer = null;
@@ -1323,11 +1150,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 											}
 								}
 							}
-							
-							//if(labelFromPlayer.equals())
-							
-							//System.out.println(statusmove);
-							//lblInfo.setText("");
+
 							break;
 						}
 						case FIRST_SELECTED: {						
@@ -1348,9 +1171,6 @@ public class JGUI extends JFrame implements java.io.Serializable{
 					    			  labelToPlayer = territories.getPlayer();
 					    		  }
 							}
-							//System.out.println(labelFromName);
-							//System.out.println(labelToName);
-							//lblUnitNum.setText(unitsToMoveNum.toString());
 							if(!(labelFromPlayer.equals(labelToPlayer))){
 								//ATTACK
 								//Create attackframe
@@ -1361,7 +1181,6 @@ public class JGUI extends JFrame implements java.io.Serializable{
 								frame.setLocation(new Point(300,300));
 								frame.setResizable(false);
 								frame.setTitle("Támadás");
-								//frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 								frame.setVisible(true);	
 								}
 								else{
@@ -1375,18 +1194,10 @@ public class JGUI extends JFrame implements java.io.Serializable{
 	
 							statusmove = StatusMove.BOTH_SELECTED;
 							//System.out.println(statusmove);
-							
 							statusmove = StatusMove.STARTED;
 							
 							break;
 							}
-						case PLACE_UNIT:{
-							
-						}
-						
-						/*case BOTH_SELECTED: {
-							statusmove = StatusMove.STARTED;
-						}*/
 						default:
 							break;
 						
@@ -1424,69 +1235,8 @@ public class JGUI extends JFrame implements java.io.Serializable{
 
 		};
 		
-		//listener vége -----------------------------------------------------------------------------
-		/*MapPanel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {		
-				if((Motor.players.size() == 2)){
-					Color playerInd1Color;
-					Color playerInd2Color;
-					float widthPercentage = ((float)(Motor.players.get(0).getNumberOfArmies())) / ((float)(Motor.players.get(1).getNumberOfArmies()) + (float)(Motor.players.get(0).getNumberOfArmies()));
-					playerInd1Color = Motor.players.get(0).getColor();
-					playerInd2Color = Motor.players.get(1).getColor();
-					//Szélesség kiszámítása
-					int width = (int) (300*widthPercentage);
-							
-					//System.out.println(widthPercentage);
-					//System.out.println(width);
-					//System.out.println(Motor.players.get(0).getNumberOfArmies());
-					//System.out.println(Motor.players.get(1).getNumberOfArmies());
-							
-					Player1Units.setBounds(414, 10, (width), 20);
-					Player1Units.setBackground(playerInd1Color);
-					Player2Units.setBackground(playerInd2Color);
-					Player2Units.setBounds((414+(width)), 10, (300-width), 20);
-					
-					//Nevek beállítása
-					lblPlayerName1.setText(Motor.players.elementAt(0).getName());
-					lblPlayerName2.setText(Motor.players.elementAt(1).getName());	
-					for(Territory territories : motor.territories){
-					if(territories.getPlayer().getPlayerIndex() != -1){	
-			    		//Ha egyezik a kör labelje az adott terület nevével	
-			    		if(territories.getName().equals(circlekey))
-				    	{
-				    		Player actualPlayer;
-				    		
-				    		actualPlayer = territories.getPlayer();
-				    		//actualColor = actualPlayer.getColor();
-				    		//System.out.println(circlekey);
-				    		
-				    		int colorID = 0; 
-				    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
-							if(actualPlayer.getColor().equals(Color.RED.darker())) 		{colorID = 1;}
-							if(actualPlayer.getColor().equals(Color.CYAN))				{colorID = 2;}
-							if(actualPlayer.getColor().equals(Color.GREEN))				{colorID = 3;}
-							if(actualPlayer.getColor().equals(Color.ORANGE))			{colorID = 4;}
-							if(actualPlayer.getColor().equals(Color.MAGENTA.darker()))	{colorID = 5;}
-							
-							//Megfelelõ színû kör kiválasztása és beállítása
-						    switch(colorID){
-								case 1: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/red_dot.PNG"))); break;}
-								case 2: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/blue_dot.PNG"))); break;}
-								case 3: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/green_dot.PNG"))); break;}
-								case 4: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/orange_dot.PNG"))); break;}
-								case 5: {circlevalue.setIcon(new ImageIcon(JGUI.class.getResource("/Indicators/magenta_dot.PNG"))); break;}		
-								default: {circlevalue.setIcon(null);}
-						    }	    
-						    //System.out.println(circlevalue);
-				    		}
-				    }
-					
-				}}
-			}
-		});*/
-		
-		}
+		//listener vége -----------------------------------------------------------------------------		
+	}
 }
 
 	private boolean isMyTurn(){
@@ -1496,12 +1246,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		else {return true;}
 	}
 	// ------------------ Adatok frissítése serveren keresztül
-	public void refreshMap(){ // void? 
-		//SwingUtilities.updateComponentTreeUI(this);
-		//revalidate();
-		//repaint();
-			
-		
+	public void refreshMap(){ // void? 		
 			for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
 				String circlekey = circleitem.getKey();
 				JLabel circlevalue = circleitem.getValue();
@@ -1511,8 +1256,7 @@ public class JGUI extends JFrame implements java.io.Serializable{
 						Integer actarmy = territories.getArmies();
 						circlevalue.setText(actarmy.toString());
 					}
-				}
-		
+				}	
 			}
 			//RefreshLabels///////////////////////////////////////////////////////
 		    for(Map.Entry<String, JLabel> infoitem : toBeRefreshed.entrySet()) {
@@ -1554,25 +1298,14 @@ public class JGUI extends JFrame implements java.io.Serializable{
 				
 
 		    for(Territory territories : motor.territories){
-		    	//Integer armyNum = territories.getArmies();
-		    	//circlevalue.setText(armyNum.toString());
-		    	//circlevalue.validate();
-		    	
 		    	if(territories.getPlayer().getPlayerIndex() != -1){	
 	    		//Ha egyezik a kör labelje az adott terület nevével	
 		    		if(territories.getName().equals(circlekey))
 			    	{
-			    		Player actualPlayer;
-			    		
+			    		Player actualPlayer;		    		
 			    		actualPlayer = territories.getPlayer();
-			    		//System.out.println(actualPlayer.getName());
-			    		//actualColor = actualPlayer.getColor();
-			    		//System.out.println(circlekey);
-			    		
 			    		int colorID = 0; 
 			    		//Játékos színe alapján colorID beállítása a következõ sw.c-hez
-
-
 						if(actualPlayer.getColor().equals(Color.RED.darker())) 		{colorID = 1;}
 						if(actualPlayer.getColor().equals(Color.CYAN))				{colorID = 2;}
 						if(actualPlayer.getColor().equals(Color.GREEN))				{colorID = 3;}

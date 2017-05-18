@@ -48,6 +48,7 @@ public class NewPlayer extends JFrame {
 		
 		JPanel Details = new JPanel();
 		Details.setBounds(10, 62, 455, 180);
+		Details.setBackground(Color.RED.darker());
 		contentPane.add(Details);
 		Details.setLayout(null);
 
