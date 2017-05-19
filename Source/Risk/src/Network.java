@@ -1,6 +1,8 @@
-/* 
+/**
  * Abstract Network osztály
  * Ebbõl származik le a kliens és a szerver is
+ * @author Tamaskaa
+ *
  */
 public abstract class Network {
 	protected Motor motor;

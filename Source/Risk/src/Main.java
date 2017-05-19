@@ -1,5 +1,12 @@
 import java.awt.EventQueue;
-
+/**
+ * Main osztály
+ * Elindítja a GUI és a Motort
+ * Összekapcsolja a GUIT és a hozzátartozó Motort
+ * Inicializálja a játékot: kiosztja a területeket, beállítja az aktuális játékost
+ * @author Tamaskaa
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {

@@ -1,7 +1,10 @@
 import java.util.Vector;
-
-
-
+/**
+ * Egyes területeke tároló osztály
+ * Tárolja a nevét és a szomszédait
+ * @author Tamaskaa
+ *
+ */
 public class Territory implements java.io.Serializable{
 		private String name;
 		private Player player;

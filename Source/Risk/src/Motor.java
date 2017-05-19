@@ -8,7 +8,12 @@ import java.util.List;
 import java.util.Random;	//dobás
 import java.util.Vector;	//vektorok
 import java.util.concurrent.ThreadLocalRandom;
-
+/**
+ * Motor osztály, tárolja az egyes területeket, és a hozzájuk tartozó játékosokat
+ * Ebben az osztályban vannak a játék menetéhez elengedhetetlen függvények implementálva
+ * @author Tamaskaa
+ *
+ */
 
 public class Motor {
 	private JGUI jgui;
@@ -69,15 +74,10 @@ public class Motor {
         
      public Motor(){}
      
-  /*   static public boolean addPlayer(String nm){
-         int size = players.size();
-         if (size > 3)	//hányjátékoslehet- max 3
-             return false;		//ide kéne vmi hibaüzi?! ha többet akarunk csinálni
-         Player p = new Player(nm, size);
-         players.add(p);							//beteszi az új játékost a listába
-             return true;
-     } */    
      //Initial players
+     /**
+      * Kezdeti játékosok beállítsa
+      */
      public void initPlayers(){
     	 Player player1 = new Player("Player1", 0);
     	 Player player2 = new Player("Player2", 1);
@@ -128,7 +128,12 @@ public class Motor {
       public void setDefend(int num){
     	  defNum = num;
       }
-     //SD: egységmozgatás 
+     /**
+      * Egységmozgatás ké terület között
+      * @param from: kezdeti terület neve
+      * @param to: cél területe neve
+      * @param numberToMove: átvivendõ katonák.
+      */
       public void moveUnits(String from, String to, int numberToMove){ 
     	 //A honnan terület egységeit csökkenteni a vivendõvel
     	  for(Territory territories : territories){	
@@ -145,7 +150,10 @@ public class Motor {
     		  }  
       }
      
-      //Gyõztes kiszámítása 
+      /**
+       * A csata eredményének kiszámítása
+       * Használja a dobások eredményét
+       */
       public void upDateUnitsAfterAttack(){
     	  //Játékosok egységszámainak frissítése a csata függvényében
     	  Player attacker = null;
@@ -187,25 +195,18 @@ public class Motor {
     			  }
     			  
     		  }  
-    		  //if(conqueared){
-    			  
-    			  /*if(territories.getName().equals(labelFromStr)){
-    				  //Eredeti területrõl egy egység levonása
-    				  //int actarmy = territories.getArmies();
-        			  //territories.setArmies(actarmy - 1);
-        			  
-        		  }*/
-    		  //}
     	  } 
     	  jgui.setAttackerLostUnits(0);
     	  jgui.setDefenderLostUnits(0);
     	  jgui.refreshMap();
       }
+   	  /** Az egyes területekhez hozzárendel egy-egy játékost.
+	  Összesen 41 terület van, 41/2 = 20 terület jut az elsõ játékosnak
+	  Elv: egy listában 41 elem, shuffle és az elsõ 20 elemhez rendeljük az elsõ playert
+	  **/
       public void assignPlayer(){
-    	  // Az egyes területekhez hozzárendel egy-egy játékost.
-    	  // Összesen 41 terület van, 41/2 = 20 terület jut az elsõ játékosnak
-    	  //Elv: egy listában 41 elem, shuffle és az elsõ 20 elemhez rendeljük az elsõ playert
-    	  int num = 41;
+ 
+    	  int num = 4;
     	  ArrayList<Integer> list = new ArrayList<Integer>();
           for (int i=0; i<num; i++) {
               list.add(new Integer(i));
@@ -218,18 +219,17 @@ public class Motor {
         	  territories.get(i).setPlayer(players.get(1));
           }
       }
-      
+	  /**
+	  Hozzárendeli az összes országhoz a szomszédait. Egyesével. 
+	   Kontinensek:
+	   1 - Észak-Amerika
+	   2 - Dél-Amerika
+	   3 - Európa
+	   4 - Afrika
+	   5 - Ázsia
+	   6 - Ausztália és Óceánia
+	  **/
       public void assignAdjacentsandContinent(){
-    	  //Hozzárendeli az összes országhoz a szomszédait. Egyesével. Eretvágok.
-    	  // Nagyon csúnya, kérlek el se olvasd
-    	  // Kontinensek:
-    	  // 1 - Észak-Amerika
-    	  // 2 - Dél-Amerika
-    	  // 3 - Európa
-    	  // 4 - Afrika
-    	  // 5 - Ázsia
-    	  // 6 - Ausztália és Óceánia
-    	  
     	  
     	  //-------- Alasca
     	  for ( int i =0; i <41; i++ ){
@@ -785,9 +785,10 @@ public class Motor {
     	  }
     	  }
       }
-      
+      /**
+       * Minden területhez véletlen egység hozzárandelése az elején
+       */
       public void assignArmies(){
-    	  // Minden területhez véletlen egység hozzárandelése az elején
     	  for(Territory territories : territories){
     		  territories.setArmies(ThreadLocalRandom.current().nextInt(1, 4 + 1));
     	  }
@@ -832,6 +833,11 @@ public class Motor {
 			return;
 		net.sendGameState(gs);
 	}
+	/**
+	 * Fogadja a kommunikáció alapjául szolgáló GameState osztályt
+	 * Az egyes gs.state-hez más akció hajtódik végre
+	 * @param gs: GamesState osztály 
+	 */
 	public void GameStateRecieved(GameState gs){	
 		switch(gs.state) {
 		case 0: // kör vége

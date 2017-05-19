@@ -3,8 +3,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
+/**
+ * Szervert kezelõ oszály
+ * Külön szálat nyit minden egyes indításkor
+ * @author Tamaskaa
+ *
+ */
 
 public class Server extends Network{
 	private ServerSocket serverSocket = null;
@@ -17,10 +21,11 @@ public class Server extends Network{
 	Server(Motor motor) {
 		super(motor);
 	}
-	// szálkezelõ subclass
-	// note: implements Runnable vs extends Thread
-	private class ReceiverRunnable implements Runnable {
 
+	private class ReceiverRunnable implements Runnable {
+		/**
+		 * Új szál nyitása, kliensre várás, adatok fogadása
+		 */
 		public void run() {
 			//while(true){
 			try {
@@ -99,6 +104,10 @@ public class Server extends Network{
 	}
 
 	@Override
+	/**
+	 * GameState osztályú objektum küldése
+	 * @param gs : küldendõ objektum
+	 */
 	void sendGameState(GameState gs) {
 		if (out == null)
 			return;

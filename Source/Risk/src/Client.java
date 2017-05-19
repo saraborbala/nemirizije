@@ -1,7 +1,12 @@
 import java.io.*;
 import java.net.*;
 import javax.swing.JOptionPane;
-
+/**
+ * Klienst implementáló osztály
+ * Új számban fut
+ * @author Tamaskaa
+ *
+ */
 public class Client extends Network{
 	private Socket socket = null;
 	private ObjectOutputStream out = null;
@@ -14,14 +19,16 @@ public class Client extends Network{
 	
 	// Szálkezelõ subclass
 	private class ReceiverRunnable implements Runnable {
-
+		/**
+		 * Új szál nyitása
+		 * Adatok fogadás szervertõl
+		 */
 		public void run() {
-			System.out.println("Waiting for input..."); // erõsen teszt jellegû
+			System.out.println("Waiting for input..."); 
 			try {
 				while (true) {
 					GameState received = (GameState) in.readObject();
 					motor.GameStateRecieved(received);
-					//TODO: motor GSRec osztályt megírni
 				}	
 			} catch (Exception ex) { // exepction kilép a while (true)ból
 				System.out.println(ex.getMessage());

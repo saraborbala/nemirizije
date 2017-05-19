@@ -59,18 +59,20 @@ public class Player implements java.io.Serializable {
 	public void setOccTerritory(Territory territory){
 		occupiedTerritories.add(territory);
 	}
-	
+	/**
+	 * 	 kontinens bónusz, minden kör végén meg kell hívni,
+		 a bónuszváltozót állítja annak függvényében, mennyi kontinense van
+		 Bónuszok: 
+		 Észak-Amerika(1) -> 5
+		 Dél-Amerika(2)	-> 3
+		 Európa(3)		-> 5 
+		 Afrika(4)		-> 4
+		 Ázsia(5)			-> 7
+		 Ausztália és Óceánia(6) -> 3
+		 Elv: tudjuk hány darab kell az adott kontinesbõl, nem kell külön kontinens osztály
+	 */
 	public void continentBonus(){
-		// kontinens bónusz, minden kör végén meg kell hívni,
-		// a bónuszváltozót állítja annak függvényében, mennyi kontinense van
-		// Bónuszok: 
-		// Észak-Amerika(1) -> 5
-		// Dél-Amerika(2)	-> 3
-		// Európa(3)		-> 5 
-		// Afrika(4)		-> 4
-		// Ázsia(5)			-> 7
-		// Ausztália és Óceánia(6) -> 3
-		// Elv: tudjuk hány darab kell az adott kontinesbõl, nem kell külön kontinens osztály
+
 		
 		
 		int nAmerica_count = 0;
