@@ -27,10 +27,10 @@ import javax.swing.JButton;
 import javax.swing.event.MenuKeyListener;
 import javax.swing.event.MenuKeyEvent;
 
-@SuppressWarnings("serial")
 /**
- * Térkép ablaka
+ * A JGUI osztály létrehozza a fõképernyõt a térképpel, beállítja az egyes JLabelöket.
  */
+@SuppressWarnings("serial")
 public class JGUI extends JFrame implements java.io.Serializable{
 	private Motor motor;
 	private Point p1 = new Point(0, 0); 

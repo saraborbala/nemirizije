@@ -14,10 +14,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-@SuppressWarnings("serial")
 /**
  * A játék során lefolytatott támadások esetén ez a képernyõ jelenik meg.
  */
+@SuppressWarnings("serial")
 public class AttackScreen extends JFrame {
  	
 	//Dice icons
