@@ -28,6 +28,9 @@ import javax.swing.event.MenuKeyListener;
 import javax.swing.event.MenuKeyEvent;
 
 @SuppressWarnings("serial")
+/**
+ * Térkép ablaka
+ */
 public class JGUI extends JFrame implements java.io.Serializable{
 	private Motor motor;
 	private Point p1 = new Point(0, 0); 
@@ -42,7 +45,13 @@ public class JGUI extends JFrame implements java.io.Serializable{
 	private Integer defenderLostUnits = 0;
 	
 	Map<String, JLabel> labels = new HashMap<String,JLabel>();
+	/**
+	 * Az indikátor köröket tartalmazó HashMap
+	 */
 	Map<String, JLabel> circles = new HashMap<String,JLabel>();
+	/**
+	 * Egyéb képernyõn frissítendõ elemek HashMapje
+	 */
 	Map<String, JLabel> toBeRefreshed = new HashMap<String,JLabel>();
 	
 	private String infoLabelText;
@@ -111,7 +120,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
 	public Integer getDefenderLostUnits(){
 		return defenderLostUnits;
 	}
-	
+	/**
+	 * Különbözõ állapotok definiálva az egyes mûveletekhez
+	 */
 	private enum StatusMove {
 		STARTED, FIRST_SELECTED, BOTH_SELECTED, ATTACK_ENDED, PLACE_UNIT 
 	}
@@ -132,7 +143,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
 	public Map<String, JLabel> getCircles() {
         return circles;
     }
-	
+	/**
+	 * A GUI jobb felén a játékosok nevének frissítése
+	 */
 	public void refreshPlayerName(){
 		for(Map.Entry<String, JLabel> toBeRefreshed : toBeRefreshed.entrySet()) {
 		    //String labelkey = toBeRefreshed.getKey();
@@ -142,13 +155,16 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		    	labelvalue.setText(Motor.players.elementAt(0).getName());
 		    }
 		    if(labelvalue.getName().equals("lblPlayerName2")){
-		    	labelvalue.setText(Motor.players.elementAt(0).getName());
+		    	labelvalue.setText(Motor.players.elementAt(1).getName());
 		    }
 		}
 	}
 	
 	public JPanel contentPane;
-		
+	/**
+	 * JGUI konstruktora, JLabelök létrehozása, actionListenerek hozzáadása	
+	 * @param motor
+	 */
 	public JGUI(Motor motor) {
 		
 		this.motor = motor;	// motor és GUI összekapcsolása
@@ -881,6 +897,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		bonusUnitPanel.add(lblBonusUnitNum);
 		
 		JButton btnUnitAdd = new JButton("+");
+		/**
+		 * Bónusz egységek elemszámának növelése
+		 */
 		btnUnitAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int bonusUnitAvailable = 0;
@@ -901,6 +920,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		bonusUnitPanel.add(btnUnitAdd);
 		
 		JButton btnUnitMin = new JButton("-");
+		/**
+		 * Bónusz egységek elemszámának csökkentése
+		 */
 		btnUnitMin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int bonusUnitAvailable = 0;
@@ -923,6 +945,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		bonusUnitPanel.add(btnUnitMin);
 		
 		JButton btnUnitDone = new JButton("K\u00E9sz!");
+		/**
+		 * Bónusz egységek elemszámváltoztatásának érvényre juttatása
+		 */
 		btnUnitDone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int bonusUnitAvailable = 0;
@@ -1028,6 +1053,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		movementPanel.add(lblUnitNum);
 		
 		JButton btnNewButton_1 = new JButton("+");
+		/**
+		 * Mozgatandó egységek számának növelése
+		 */
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//if(availableUnits > unitsToMoveNum){
@@ -1042,6 +1070,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		movementPanel.add(btnNewButton_1);
 		
 		JButton button = new JButton("-");
+		/**
+		 * Mozgatandó egységek számának csökkentése
+		 */
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(unitsToMoveNum > 0){
@@ -1063,6 +1094,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		
 		//Kész gomb
 		JButton btnDoneMoveSelect = new JButton("Kész!");
+		/**
+		 * Egységek mozgatása
+		 */
 		btnDoneMoveSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//System.out.println(unitsToMoveNum);
@@ -1124,7 +1158,9 @@ public class JGUI extends JFrame implements java.io.Serializable{
     		//------
 		    //Indikátorok listenerjei
     		statusmove = StatusMove.STARTED;
-    		    		
+    		/**
+    		 * Különbözõ kattintásokra az események lekezelése ebben az adapterben történik
+    		 */    		
     		circlevalue.addMouseListener(new MouseAdapter() {
 		    	public void mouseEntered(MouseEvent e) {
 		    		lblAktulisOrszg.setText("Aktuálisan kijelölt ország:");
@@ -1284,7 +1320,10 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		//listener vége -----------------------------------------------------------------------------		
 	}
 }
-
+	/**
+	 * Én következem-e?
+	 * @return Azzal tér vissza, hogy az aktuális instance-e a soron következõ játékos
+	 */
 	private boolean isMyTurn(){
 		if(motor.getActPlayer() != null){
 		return (actGUIPlayerIndex == motor.getActPlayer().getPlayerIndex());
@@ -1292,6 +1331,10 @@ public class JGUI extends JFrame implements java.io.Serializable{
 		else {return true;}
 	}
 	// ------------------ Adatok frissítése serveren keresztül
+	/**
+	 * Frissíti a térkép összes szükséges mezõjét az aktuális értékekkel.
+	 * Frissül: indikátorok, player jelzõk, infó label
+	 */
 	public void refreshMap(){ // void? 		
 			for(Map.Entry<String, JLabel> circleitem : circles.entrySet()) {
 				String circlekey = circleitem.getKey();

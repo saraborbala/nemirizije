@@ -15,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
+/**
+ * A játék során lefolytatott támadások esetén ez a képernyõ jelenik meg.
+ */
 public class AttackScreen extends JFrame {
  	
 	//Dice icons
@@ -34,6 +37,9 @@ public class AttackScreen extends JFrame {
 	private boolean resultCalculable = false;
 	public boolean attackdone = false;
 	//Reading dice images
+	/**
+	 * Kiolvassa az egyes dobások értékeihez a megfelelõ dobókocka képeket.
+	 */
 	public void DiceRead(){
 	try{
 		Dice1icon = new ImageIcon(AttackScreen.class.getResource("/Resized/Dice_images/Dice1.png"));
@@ -61,6 +67,9 @@ public class AttackScreen extends JFrame {
 	private final JLabel lblDefDice2 = new JLabel("");
 	private final JLabel lblDefDice1 = new JLabel("");
 	
+	/**
+	 * Törli az összes kocka ikonját, törli az eredményeket
+	 */
 	private void clearResults(){
 		lblAttDice1.setIcon(null);
 		lblAttDice2.setIcon(null);
@@ -75,6 +84,11 @@ public class AttackScreen extends JFrame {
 		DefDice = true;
 		
 	}
+	/**
+	 * Kocka ikonok beállítása
+	 * @param result - ennek függvényében (1-6ig) kiválasztásra kerül a kocka ikon
+	 * @param label - ennek a JLabelnek az ikonja frissül
+	 */
 	public void setDiceIcon(Integer result, JLabel label){
 		//Eredmény függvényében az ikon kiválasztása és beállítása
 		switch(result){
@@ -87,6 +101,9 @@ public class AttackScreen extends JFrame {
 		}
 	}
 	
+	/**
+	 * Támadási képernyõ frissítése a dobott eredmények alapján  
+	 */
 	public void refreshAttackScreen(){
 		
 		if(!(motor.attackerResult.isEmpty() & motor.defenderResult.isEmpty())){
@@ -106,6 +123,10 @@ public class AttackScreen extends JFrame {
 		else{System.out.println("Nincsenek eredmények");}
 	}
 	
+	/**
+	 * Random szám generálása 1 és 6 között
+	 * @return - visszatér a véletlenül generált dobási eredménnyel
+	 */
 	private int generateRandom(){
 		//Random szám 1-tõl 6-ig
 		Random r = new Random();
@@ -115,6 +136,9 @@ public class AttackScreen extends JFrame {
 		return result;
 	}
 	
+	/**
+	 * Támadó dobási számának beállítása
+	 */
 	public void setAttackerMaxThrowNum(){
 		for(Territory territories : motor.territories){
 			if(territories.getName().equals(jgui.getLabelFromName())){
@@ -130,6 +154,9 @@ public class AttackScreen extends JFrame {
 			}
 		}
 	}
+	/**
+	 * Védekezõ dobási számának beállítása
+	 */
 	public void setDefenderMaxThrowNum(){
 		for(Territory territories : motor.territories){
 			if(territories.getName().equals(jgui.getLabelToName())){
@@ -143,6 +170,10 @@ public class AttackScreen extends JFrame {
 		}
 	} 
 	
+	/**
+	 * Támadáskor támadó kockadobás
+	 * @param maxThrowNum - maximális dobás száma
+	 */
 	private void throwDiceAttack(int maxThrowNum){
 		if(throwCntrAtt == 1){
 				motor.attackerResult.add(generateRandom());
@@ -201,6 +232,10 @@ public class AttackScreen extends JFrame {
 		this.maxThrowNum = maxThrowNum;
 	}
 	
+	/**
+	 * Támadáskor védekezõ dobása
+	 * @param maxThrowNum - maximális dobás száma
+	 */
 	private void throwDiceDef(int maxThrowNum){
 		if(throwCntrDef == 1 ||(throwCntrDef == 0)){
 			motor.defenderResult.add(generateRandom());
@@ -214,7 +249,9 @@ public class AttackScreen extends JFrame {
 		}
 	}
 	//Gyõztes számítása: bukott egységes kiszámítása és JGUI-ba állítás
-
+	/**
+	 * Dobott eredmények alapján az egységek módosulásának kiszámítása
+	 */
 	public void calculateWinner(){		
 		if(!(motor.attackerResult.isEmpty() & motor.defenderResult.isEmpty())){
 			if (attackdone){
@@ -250,8 +287,8 @@ public class AttackScreen extends JFrame {
 	//Attackscreen frissítése
 	
 	
-	/**s
-	 * Create the frame.
+	/**
+	 * Create AttackScreen frame.
 	 */
 	public AttackScreen(JGUI jgui, Motor motor) {
 		this.jgui = jgui;
@@ -303,6 +340,9 @@ public class AttackScreen extends JFrame {
 		getContentPane().add(lblWinner);
 		
 		JButton btnAttack = new JButton("T\u00E1mad\u00E1s!");
+		/**
+		 * Támadás gombhoz tartozó listener
+		 */
 		btnAttack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
 							setAttackerMaxThrowNum();
@@ -319,6 +359,9 @@ public class AttackScreen extends JFrame {
 		getContentPane().add(btnAttack);
 		
 		JButton btnEndAttack = new JButton("Támadás vége");
+		/**
+		 * Támadás vége gombhoz tartozó listener
+		 */
 		btnEndAttack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//lblAttDice3.setIcon(Dice1icon);
@@ -355,6 +398,9 @@ public class AttackScreen extends JFrame {
 		btnEndAttack.setBounds(606, 254, 133, 31);
 		getContentPane().add(btnEndAttack);
 		btnClear.setToolTipText("A dobott eredm\u00E9nyek t\u00F6rl\u00E9s\u00E9hez nyomd meg a gombot!");
+		/**
+		 * Eredmények manuális törlése a Törlés gombbal
+		 */
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clearResults();
@@ -362,7 +408,9 @@ public class AttackScreen extends JFrame {
 		});
 		btnClear.setBounds(327, 254, 93, 31);
 		getContentPane().add(btnClear);
-		
+		/**
+		 * Védekezés gomb: dobott eredmények kirajzolása
+		 */
 		btnDefend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setDefenderMaxThrowNum();

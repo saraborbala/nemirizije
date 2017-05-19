@@ -22,6 +22,9 @@ import javax.swing.JRadioButton;
 
 
 @SuppressWarnings("serial")
+/**
+ * Új játékos hozzáadása ezen a képernyõn történik
+ */
 public class NewPlayer extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField_Name;
@@ -74,6 +77,9 @@ public class NewPlayer extends JFrame {
 		playerColor = Color.RED.darker();
 		contentPane.setBackground(Color.RED.darker());
 		comboBoxColor.addItemListener(new ItemListener() {
+			/**
+			 * A játékos választott színének kiolvasása
+			 */
 			public void itemStateChanged(ItemEvent arg0) {
 				playerColorStr = comboBoxColor.getSelectedItem().toString();
 				//A kiválasztott mezõnek megfelõlõen contentPane és details label hátterének állítása
@@ -103,12 +109,18 @@ public class NewPlayer extends JFrame {
 		Details.add(lblClientServer);
 		
 		//Kliens vagy szerver választhatóság
+		/**
+		 * Radiogomb a szerver opcióhoz
+		 */
 		JRadioButton rdbtnServer = new JRadioButton("Szerver");
 		rdbtnServer.setEnabled(true);
 		rdbtnServer.setOpaque(false);
 		rdbtnServer.setBounds(338, 109, 90, 23);
 		Details.add(rdbtnServer);
 		rdbtnServer.setBackground(contentPane.getBackground());
+		/**
+		 * Radiogomb a kliens opcióhoz
+		 */
 		JRadioButton rdbtnClient = new JRadioButton("Kliens");
 		rdbtnClient.setOpaque(false);
 		rdbtnClient.setBounds(253, 109, 83, 23);
@@ -119,8 +131,11 @@ public class NewPlayer extends JFrame {
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnServer);
 		group.add(rdbtnClient);
-				
+			
 		JButton btnNewGame = new JButton("Kezd\u0151dj\u00F6n a harc!");
+		/**
+		 * Új játékos hozzáadása a gomb megnyomásakor
+		 */
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {				
 				if(rdbtnServer.isSelected()){

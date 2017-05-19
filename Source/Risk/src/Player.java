@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.util.Vector;
 
-
 public class Player implements java.io.Serializable {
 
 	private String name;	//jáccó neve
